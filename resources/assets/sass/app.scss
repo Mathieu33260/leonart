@@ -1,9 +1,99 @@
+html, body {
+  background-color: #fff;
+  color: #636b6f;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  height: 100vh;
+  margin: 0;
+}
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+.full-height {
+  height: 100vh;
+}
 
-// Variables
-@import "variables";
+.middle-height {
+  height: 50vh;
+}
 
-// Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+.bandeau-height {
+  height: 10vh;
+}
+
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.position-ref {
+  position: relative;
+}
+
+.top-right {
+  position: absolute;
+  right: 10px;
+  top: 18px;
+}
+
+.content {
+  min-width: 50%;
+}
+
+.content {
+  min-width: 60%;
+}
+
+h2 {
+
+}
+
+.title {
+  font-size: 84px;
+}
+
+.linksUnder > a {
+  font-size: 110%;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+}
+
+.links > a {
+  color: #636b6f;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.m-b-md {
+  margin-bottom: 30px;
+}
+
+.dark {
+  background-color: #1d1b1b;
+}
+
+.border-yellow-right {
+  border-right: 1px solid #e9b90b;
+}
+
+.white-grey {
+  background-color: #cccccc;
+}
+
+.radius {
+  border-radius: 25px;
+}
+
+.nodeco:hover {
+  text-decoration: none;
+}
+
+.shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(201, 201, 201, 0.2), 0 6px 20px 0 rgba(201, 201, 201, 0.19);
+}
+
+// Bootstrap 3.3.7
+@import "boostrap";

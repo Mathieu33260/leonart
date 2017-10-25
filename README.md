@@ -7,7 +7,7 @@ Projet Web dawin (sujet culture)
 #### Installation
 ```shell
 # Clone the project
-git clone https://github.com/Inspirat-fr/laravel-boilerplate.git laravel-boilerplate
+git clone https://github.com/Mathieu33260/leonart.git
 cd laravel-boilerplate
  
 # Copy the .env.example file

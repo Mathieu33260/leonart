@@ -10,31 +10,37 @@ namespace App\Models;
 use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Type
+ * Class Artiste
  * 
  * @property int $id
- * @property string $libelle
+ * @property string $nom
+ * @property string $prenom
+ * @property \Carbon\Carbon $dateN
+ * @property \Carbon\Carbon $dateM
  * 
  * @property \Illuminate\Database\Eloquent\Collection $oeuvres
  *
  * @package App\Models
  */
-class Type extends Eloquent
+class Artiste extends Eloquent
 {
-	protected $table = 'type';
-	public $incrementing = false;
+	protected $table = 'artiste';
 	public $timestamps = false;
 
-	protected $casts = [
-		'id' => 'int'
+	protected $dates = [
+		'dateN',
+		'dateM'
 	];
 
 	protected $fillable = [
-		'libelle'
+		'nom',
+		'prenom',
+		'dateN',
+		'dateM'
 	];
 
 	public function oeuvres()
 	{
-		return $this->hasMany(\App\Models\Oeuvre::class, 'typeId');
+		return $this->hasMany(\App\Models\Oeuvre::class, 'artisteId');
 	}
 }

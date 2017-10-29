@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Thu, 26 Oct 2017 09:07:54 +0000.
+ * Date: Sun, 29 Oct 2017 15:00:58 +0000.
  */
 
 namespace App\Models;
@@ -32,11 +32,9 @@ use Reliese\Database\Eloquent\Model as Eloquent;
 class Oeuvre extends Eloquent
 {
 	protected $table = 'oeuvre';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'id' => 'int',
 		'idIbeacon' => 'int',
 		'posX' => 'float',
 		'posY' => 'float',

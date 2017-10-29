@@ -79,28 +79,28 @@ Route::prefix('type')->namespace('Type')->group(function () {
 
 Route::prefix('oeuvre')->namespace('Oeuvres')->group(function () {
 
-    Route::get('/','OeuvreController@index')
+    Route::get('/','OeuvresController@index')
         ->name('oeuvre:index');
 
-    Route::get('/{id}','OeuvreController@show')
+    Route::get('/{id}','OeuvresController@show')
         ->where(['id' => '[0-9]+'])
         ->name('oeuvre:show');
 
-    Route::get('/create','OeuvreController@create')
+    Route::get('/create','OeuvresController@create')
         ->name('oeuvre:create');
 
-    Route::patch('/store','OeuvreController@store')
+    Route::patch('/store','OeuvresController@store')
         ->name('oeuvre:store');
 
-    Route::get('/edit/{id}','OeuvreController@edit')
+    Route::get('/edit/{id}','OeuvresController@edit')
         ->where(['id' => '[0-9]+'])
         ->name('oeuvre:edit');
 
-    Route::patch('/update/{id}','OeuvreController@update')
+    Route::patch('/update/{id}','OeuvresController@update')
         ->where(['id' => '[0-9]+'])
         ->name('oeuvre:update');
 
-    Route::get('/destroy/{id}','OeuvreController@destroy')
+    Route::get('/destroy/{id}','OeuvresController@destroy')
         ->where(['id' => '[0-9]+'])
         ->name('oeuvre:destroy');
 

@@ -15,7 +15,9 @@ class ArtisteController extends Controller
      */
     public function index()
     {
-        //
+        $artistes = Artiste::all();
+
+        return view('artiste.index')->with(compact('artistes'));
     }
 
     /**
@@ -25,7 +27,7 @@ class ArtisteController extends Controller
      */
     public function create()
     {
-        //
+        return view('artiste.create');
     }
 
     /**
@@ -36,51 +38,103 @@ class ArtisteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nom'     => 'required|string|max:255',
+            'prenom'     => 'required|string|max:255',
+            'dateN' => 'date',
+            'dateM' => 'nullable|date'
+        ]);
+
+        $artiste = Artiste::create([
+            'nom' => $request->input('nom'),
+            'prenom' => $request->input('prenom'),
+            'dateN' => $request->input('dateN'),
+            'dateM' => $request->input('dateM')
+        ]);
+
+        return redirect()->route('artiste:show',['id' => $artiste->id]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Artiste  $artiste
+     * @param int $artisteId
      * @return \Illuminate\Http\Response
+     * @internal param Artiste $artiste
      */
-    public function show(Artiste $artiste)
+    public function show(int $artisteId)
     {
-        //
+        $artiste = Artiste::where('id', $artisteId)
+            ->first();
+
+        return view('artiste.show')->with(compact('artiste'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Artiste  $artiste
+     * @param int $artisteId
      * @return \Illuminate\Http\Response
+     * @internal param Artiste $artiste
      */
-    public function edit(Artiste $artiste)
+    public function edit(int $artisteId)
     {
-        //
+        $artiste = Artiste::where('id', $artisteId)
+            ->first();
+
+        return view('artiste.edit')->with(compact('artiste'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Artiste  $artiste
+     * @param  \Illuminate\Http\Request $request
+     * @param int $artisteId
      * @return \Illuminate\Http\Response
+     * @internal param Artiste $artiste
      */
-    public function update(Request $request, Artiste $artiste)
+    public function update(Request $request, int $artisteId)
     {
-        //
+        $this->validate($request, [
+            'nom'     => 'required|string|max:255',
+            'prenom'     => 'required|string|max:255',
+            'dateN' => 'date',
+            'dateM' => 'nullable|date'
+        ]);
+
+        $artiste = Artiste::where('id', $artisteId)->update([
+            'nom' => $request->input('nom'),
+            'prenom' => $request->input('prenom'),
+            'dateN' => $request->input('dateN'),
+            'dateM' => $request->input('dateM')
+        ]);
+
+        /*if ($type) {
+            flash(__("Profil sauvegardé avec succès !"))->success();
+        } else {
+            flash(__("Une erreur s'est produite."))->error();
+        }*/
+
+        return redirect()->route('artiste:show',['id' => $artisteId]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Artiste  $artiste
+     * @param int $artisteId
      * @return \Illuminate\Http\Response
+     * @internal param Artiste $artiste
      */
-    public function destroy(Artiste $artiste)
+    public function destroy(int $artisteId)
     {
-        //
+        Artiste::where('id', $artisteId)->delete();
+
+        /*if ($type) {
+            flash(__("Profil sauvegardé avec succès !"))->success();
+        } else {
+            flash(__("Une erreur s'est produite."))->error();
+        }*/
+
+        return redirect()->route('artiste:index');
     }
 }

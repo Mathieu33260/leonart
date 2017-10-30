@@ -29,7 +29,12 @@ class OeuvresController extends Controller
      */
     public function create()
     {
-        return view('oeuvre.create');
+        $types = Type::pluck('libelle', 'id');
+        $artistes = Artiste::pluck('prenom', 'nom', 'id')->toArray();
+
+        return view('oeuvre.create')
+            ->with(compact('types'))
+            ->with(compact('artistes'));
     }
 
     /**

@@ -77,6 +77,13 @@
                 </div>
             @endif
 
+                @include('layouts.postLink', [
+                                        'route' => route('logout'),
+                                        'title' => __("Se déconnecter"),
+                                        'content' => "<span class='glyphicon glyphicon-off'></span> " . __("Déconnexion")
+                                    ])
+                @include('flash::message')
+
             <div class="content">
                 <div class="title m-b-md">
                     <img src="{{ asset('/images/leonart.svg') }}" alt="{{ __("Logo Leonart") }}" >

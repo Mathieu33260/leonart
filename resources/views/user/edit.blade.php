@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layout.user')
 
 @section('title', __("Gestion du profil"))
 
@@ -11,7 +11,7 @@
                         {{ $user->name }}
                         <small class="text-muted">{{ $user->created_at->diffForHumans() }}</small>
                     </div>
-                    {!! BootForm::open()->action(route('admin:user:save'))->patch() !!}
+                    {!! BootForm::open()->action(route('user:profil:save'))->patch() !!}
                     {!! BootForm::bind($user) !!}
                     <div class="panel-body">
                         <div class="row">

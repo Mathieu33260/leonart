@@ -26,7 +26,7 @@
 
     {{-- Stylesheets --}}
     @section('style')
-        <link rel="stylesheet" href="{{ mix('css/user.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @show
 </head>
 <body>
@@ -46,19 +46,24 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             @if (Auth::check())
                 <ul class="nav navbar-nav">
-                    <li class="{{ route('user:dashboard') === request()->getUri() ? 'active' : null }}">
-                        <a href="{{ route('user:dashboard') }}">
+                    <li class="{{ route('home') === request()->getUri() ? 'active' : null }}">
+                        <a href="{{ route('home') }}">
                             @lang("Tableau de bord")
                         </a>
                     </li>
                     <li class="{{ request()->segment(2) === 'Oeuvre' ? 'active' : null }}">
-                        <a href="{{ route('user:oeuvre:index') }}">
+                        <a href="{{ route('oeuvre:index') }}">
                             @lang("Oeuvre")
                         </a>
                     </li>
                     <li class="{{ request()->segment(2) === 'Artiste' ? 'active' : null }}">
-                        <a href="{{ route('user:artiste:index') }}">
+                        <a href="{{ route('artiste:index') }}">
                             @lang("Artiste")
+                        </a>
+                    </li>
+                    <li class="{{ request()->segment(2) === 'Type' ? 'active' : null }}">
+                        <a href="{{ route('type:index') }}">
+                            @lang("Type")
                         </a>
                     </li>
                 </ul>
@@ -83,11 +88,7 @@
                                 </a>
                             </li>
                             <li>
-                                @include('layouts.postLink', [
-                                    'route' => route('logout'),
-                                    'title' => __("Se déconnecter"),
-                                    'content' => "<span class='glyphicon glyphicon-off'></span> " . __("Déconnexion")
-                                ])
+
                             </li>
                         </ul>
                     </li>
@@ -97,13 +98,13 @@
     </div>
 </nav>
 <div class="container">
-    @include('flash::message')
+
 </div>
 @yield('content')
 
 {{-- Scripts --}}
 @section('script')
-    <script type="text/javascript" src="{{ mix('js/admin.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 @show
 </body>
 </html>

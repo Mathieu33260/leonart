@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class UserController extends Controller
         $user = User::where('id', auth()->user()->id)
             ->first();
 
-        return view('admin.users.edit')->with(compact('user'));
+        return view('user.edit')->with(compact('user'));
     }
 
     /**
@@ -40,6 +41,6 @@ class UserController extends Controller
             flash(__("Une erreur s'est produite."))->error();
         }
 
-        return redirect()->route('admin:user:edit');
+        return redirect()->route('user:profil:edit');
     }
 }

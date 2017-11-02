@@ -4,21 +4,27 @@
 @section('script')
     @parent
     <script type="application/javascript">
-        function animationBtn(hover) {
+        function animationBtnContact(hover) {
             if(hover)
             {
                 document.getElementById('btnContact').setAttribute(
                     'class','mr-3 p-1 pl-4 pr-4 font-weight-bold text-secondary dark border border-secondary radius nodeco'
                 );
+            } else {
+                document.getElementById('btnContact').setAttribute(
+                    'class','mr-3 p-1 pl-4 pr-4 font-weight-bold text-dark white-grey border-0 radius nodeco'
+                );
+            }
+        }
+        function animationBtnSuivre(hover) {
+            if(hover)
+            {
                 document.getElementById('btnSuivre').setAttribute(
                     'class','ml-3 p-1 pl-4 pr-4 font-weight-bold text-dark white-grey border-0 radius nodeco'
                 );
             } else {
                 document.getElementById('btnSuivre').setAttribute(
                     'class','ml-3 p-1 pl-4 pr-4 font-weight-bold text-secondary dark border border-secondary radius nodeco'
-                );
-                document.getElementById('btnContact').setAttribute(
-                    'class','mr-3 p-1 pl-4 pr-4 font-weight-bold text-dark white-grey border-0 radius nodeco'
                 );
             }
         }
@@ -30,15 +36,32 @@
 
     <div class="top-right links">
 
-        <a class="p-3" href="{{ route('login') }}">Login</a>
-        <a class="p-3" href="{{ route('register') }}">Register</a>
+
+        @guest
+            <a class="p-3" href="{{ route('login') }}">Login</a>
+            <a class="p-3" href="{{ route('register') }}">Register</a>
+            @else
+                    <a href="{{ route('user:profil:edit') }}"  role="button" aria-expanded="false">
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                @endguest
 
     </div>
 
 
     <div class="content">
         <div class="title m-b-md">
-            <img class="img-center" src="leonart.svg" alt="Logo Leonart" >
+            <img src="{{ asset('/images/leonart.svg') }}" alt="{{ __("Logo Leonart") }}" >
         </div>
 
         <div class="linksUnder">
@@ -157,12 +180,12 @@
 
         <div class="row justify-content-center">
             <a id="btnContact" href="" class="mr-3 p-1 pl-4 pr-4 font-weight-bold
-                    text-dark white-grey border-0 radius nodeco" onmouseover="animationBtn(true);"
-               onmouseout="animationBtn(false)">Contact</a>
+                    text-dark white-grey border-0 radius nodeco" onmouseover="animationBtnContact(true);"
+               onmouseout="animationBtnContact(false)">Contact</a>
 
             <a id="btnSuivre" href="" class="ml-3 p-1 pl-4 pr-4 text-secondary font-weight-bold
-                    dark border border-secondary radius nodeco" onmouseover="animationBtn(true);"
-               onmouseout="animationBtn(false)">Suivre</a>
+                    dark border border-secondary radius nodeco" onmouseover="animationBtnSuivre(true);"
+               onmouseout="animationBtnSuivre(false)">Suivre</a>
 
         </div>
     </div>

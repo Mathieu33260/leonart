@@ -30,12 +30,14 @@ class OeuvresController extends Controller
     public function create()
     {
         $types = Type::pluck('libelle', 'id');
-        $artistes = Artiste::pluck('prenom', 'nom', 'id')->toArray();
+        $artistes = Artiste::pluck('nom', 'id')->toArray();
 
         return view('oeuvre.create')
             ->with(compact('types'))
             ->with(compact('artistes'));
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -47,15 +49,16 @@ class OeuvresController extends Controller
     {
         $this->validate($request, [
             'nom'     => 'required|string|max:255',
-            'modele'     => 'string',
+            'modele'     => 'string|nullable',
             'idIbeacon' => 'required|integer|size:3',
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
-            'audio' => 'string',
+            'audio' => 'string|nullable',
             'typeId' => 'required|integer|size:3',
-            'artisteId' => 'integer|size:11',
-            'userId' => 'required|integer|size:10'
+            'artisteId' => 'integer|size:11|nullable'
         ]);
+
+
 
         $oeuvre = Oeuvre::create([
             'nom' => $request->input('nom'),
@@ -68,6 +71,12 @@ class OeuvresController extends Controller
             'artisteId' => $request->input('artisteId'),
             'userId' => auth()->user()->id
         ]);
+
+        if ($oeuvre) {
+            $request->flash("Oeuvre sauvegardé avec succès !");
+        } else {
+            $request->flash("Une erreur s'est produite.");
+        }
 
         return redirect()->route('oeuvre:show',['id' => $oeuvre->id]);
     }
@@ -108,6 +117,7 @@ class OeuvresController extends Controller
             ->with(compact('artistes'));
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -120,14 +130,13 @@ class OeuvresController extends Controller
     {
         $this->validate($request, [
             'nom'     => 'required|string|max:255',
-            'modele'     => 'string',
+            'modele'     => 'string|nullable',
             'idIbeacon' => 'required|integer|size:3',
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
-            'audio' => 'string',
+            'audio' => 'string|nullable',
             'typeId' => 'required|integer|size:3',
-            'artisteId' => 'integer|size:11',
-            'userId' => 'required|integer|size:10'
+            'artisteId' => 'integer|size:11|nullable'
         ]);
 
         $oeuvre = Oeuvre::where('id', $oeuvreId)->update([
@@ -142,11 +151,11 @@ class OeuvresController extends Controller
             'userId' => auth()->user()->id
         ]);
 
-        /*if ($type) {
-            flash(__("Profil sauvegardé avec succès !"))->success();
+        if ($oeuvre) {
+            $request->flash("Oeuvre sauvegardé avec succès !");
         } else {
-            flash(__("Une erreur s'est produite."))->error();
-        }*/
+            $request->flash("Une erreur s'est produite.");
+        }
 
         return redirect()->route('oeuvre:show',['id' => $oeuvreId]);
     }

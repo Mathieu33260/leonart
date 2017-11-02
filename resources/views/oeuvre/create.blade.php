@@ -14,29 +14,29 @@
                             {!! BootForm::text(__("Nom"), 'nom')->required() !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! BootForm::text(__("Modèle"), 'modele')->required() !!}
+                            {!! BootForm::text(__("Modèle"), 'modele') !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('IdiBeacon', 'Id iBeacon :') !!}
-                            {!! Form::number(__("IdiBeacon"), 'idIbeacon', array('required' => 'required')) !!}
+                            {!! Form::number(__("idIbeacon"), 'idIbeacon', array('required' => 'required','class' => 'form-control')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('Latitude', 'Latitude :') !!}
-                            {!! Form::number(__("Latitude"), 'posX', array('required' => 'required', 'step' => '0.00000001')) !!}
+                            {!! Form::number(__("posX"), 'posX', array('required' => 'required', 'class' => 'form-control', 'step' => '0.00000001')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('Longitude', 'Longitude :') !!}
-                            {!! Form::number(__("Longitude"), 'posY', array('required' => 'required', 'step' => '0.00000001')) !!}
+                            {!! Form::number(__("posY"), 'posY', array('required' => 'required', 'class' => 'form-control', 'step' => '0.00000001')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! BootForm::text(__("Audio"), 'audio')->defaultValue(""); !!}
+                            {!! BootForm::text(__("Audio"), 'audio'); !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! Form::select('types', $types, null, ['required']) !!}
+                            {!! Form::select('typeId', $types, null,  array('required' => 'required', 'class' => 'form-control')) !!}
 
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! Form::select('artistes', array(null => 'Please select one option') + $artistes, null) !!}
+                            {!! Form::select('artisteId', array(null => 'Please select one option') + $artistes, null,  array('class' => 'form-control')) !!}
 
                         </div>
                     </div>

@@ -5,7 +5,15 @@
 @section('content')
     <div class="container">
         <div class="row">
-
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="col-xs-12 col-md-8 col-lg-8 panel panel-default">
                 {!! BootForm::open()->action(route('oeuvre:store'))->patch() !!}
                 <div class="panel-body">
@@ -17,25 +25,27 @@
                             {!! BootForm::text(__("Modèle"), 'modele') !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! Form::Label('IdiBeacon', 'Id iBeacon :') !!}
-                            {!! Form::number(__("idIbeacon"), 'idIbeacon', array('required' => 'required','class' => 'form-control')) !!}
+                            {!! Form::Label('idIbeacon', 'Id iBeacon') !!}
+                            {!! Form::number('idIbeacon', null, array('required' => 'required','class' => 'form-control')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! Form::Label('Latitude', 'Latitude :') !!}
-                            {!! Form::number(__("posX"), 'posX', array('required' => 'required', 'class' => 'form-control', 'step' => '0.00000001')) !!}
+                            {!! Form::Label('posX', 'Latitude') !!}
+                            {!! Form::number('posX', null, array('required' => 'required', 'class' => 'form-control', 'step' => '0.00000001')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! Form::Label('Longitude', 'Longitude :') !!}
-                            {!! Form::number(__("posY"), 'posY', array('required' => 'required', 'class' => 'form-control', 'step' => '0.00000001')) !!}
+                            {!! Form::Label('posY', 'Longitude') !!}
+                            {!! Form::number('posY', null, array('required' => 'required', 'class' => 'form-control', 'step' => '0.00000001')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! BootForm::text(__("Audio"), 'audio'); !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
+                            {!! Form::Label('typeId', 'Type') !!}
                             {!! Form::select('typeId', $types, null,  array('required' => 'required', 'class' => 'form-control')) !!}
 
                         </div>
                         <div class="col-xs-12 col-md-6">
+                            {!! Form::Label('artisteId', 'Artiste') !!}
                             {!! Form::select('artisteId', array(null => 'Please select one option') + $artistes, null,  array('class' => 'form-control')) !!}
 
                         </div>

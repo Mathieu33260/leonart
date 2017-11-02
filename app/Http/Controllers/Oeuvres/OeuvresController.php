@@ -50,12 +50,12 @@ class OeuvresController extends Controller
         $this->validate($request, [
             'nom'     => 'required|string|max:255',
             'modele'     => 'string|nullable',
-            'idIbeacon' => 'required|integer|size:3',
+            'idIbeacon' => 'required|integer|digits_between:0,3',
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
             'audio' => 'string|nullable',
-            'typeId' => 'required|integer|size:3',
-            'artisteId' => 'integer|size:11|nullable'
+            'typeId' => 'required|integer|digits_between:0,3',
+            'artisteId' => 'integer|digits_between:0,11|nullable'
         ]);
 
 
@@ -109,7 +109,7 @@ class OeuvresController extends Controller
             ->first();
 
         $types = Type::pluck('libelle', 'id');
-        $artistes = Artiste::pluck('prenom', 'nom', 'id');
+        $artistes = Artiste::pluck('nom', 'id')->toArray();
 
         return view('oeuvre.edit')
             ->with(compact('oeuvre'))
@@ -131,12 +131,12 @@ class OeuvresController extends Controller
         $this->validate($request, [
             'nom'     => 'required|string|max:255',
             'modele'     => 'string|nullable',
-            'idIbeacon' => 'required|integer|size:3',
+            'idIbeacon' => 'required|integer|digits_between:0,3',
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
             'audio' => 'string|nullable',
-            'typeId' => 'required|integer|size:3',
-            'artisteId' => 'integer|size:11|nullable'
+            'typeId' => 'required|integer|digits_between:0,3',
+            'artisteId' => 'integer|digits_between:0,11|nullable'
         ]);
 
         $oeuvre = Oeuvre::where('id', $oeuvreId)->update([

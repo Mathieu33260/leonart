@@ -6,6 +6,15 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="panel panel-default">
                     <div class="panel-heading lead">
                         {{ $oeuvre->nom }}
@@ -21,29 +30,37 @@
                                 {!! BootForm::text(__("Modèle"), 'modele')->required() !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! Form::Label('IdiBeacon', 'Id iBeacon :') !!}
-                                {!! Form::number(__("IdiBeacon"), 'idIbeacon', array('required' => 'required')) !!}
+                                {!! Form::Label('idIbeacon', 'Id iBeacon') !!}
+                                {!! Form::number('idIbeacon',$oeuvre->idIbeacon , array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! Form::Label('Latitude', 'Latitude :') !!}
-                                {!! Form::number(__("Latitude"), 'posX', array('required' => 'required')) !!}
+                                {!! Form::Label('posX', 'Latitude') !!}
+                                {!! Form::number('posX',$oeuvre->posX, array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! Form::Label('Longitude', 'Longitude :') !!}
-                                {!! Form::number(__("Longitude"), 'posY', array('required' => 'required')) !!}
+                                {!! Form::Label('posY', 'Longitude') !!}
+                                {!! Form::number('posY',$oeuvre->posY ,array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 {!! BootForm::text(__("Audio"), 'audio') !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! Form::select('types', $types, $oeuvre->type->id ) !!}
+                                {!! Form::Label('typeId', 'Type') !!}
+                                {!! Form::select('typeId', $types, $oeuvre->type->id, array('required' => 'required', 'class' => 'form-control') ) !!}
 
                             </div>
                             @if($oeuvre->artiste != null)
                             <div class="col-xs-12 col-md-6">
-                                {!! Form::select('artistes', $artistes, $oeuvre->artiste->id ) !!}
+                                {!! Form::Label('artisteId', 'Artiste') !!}
+                                {!! Form::select('artisteId',array(null => 'Aucun') + $artistes, $oeuvre->artiste->id, array('class' => 'form-control') ) !!}
 
                             </div>
+                            @else
+                                <div class="col-xs-12 col-md-6">
+                                    {!! Form::Label('artisteId', 'Artiste') !!}
+                                    {!! Form::select('artisteId',array(null => 'Aucun') + $artistes, null, array('class' => 'form-control') ) !!}
+
+                                </div>
                             @endif
                         </div>
                     </div>

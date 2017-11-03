@@ -44,11 +44,20 @@
                             <div class="col-xs-12 col-md-6">
                                 {!! BootForm::text(__("Audio"), 'audio') !!}
                             </div>
-                            <div class="col-xs-12 col-md-6">
-                                {!! Form::Label('typeId', 'Type') !!}
-                                {!! Form::select('typeId', $types, $oeuvre->type->id, array('required' => 'required', 'class' => 'form-control') ) !!}
+                            @if($oeuvre->type != null)
+                                <div class="col-xs-12 col-md-6">
+                                    {!! Form::Label('typeId', 'Type') !!}
+                                    {!! Form::select('typeId', $types, $oeuvre->type->id, array('class' => 'form-control') ) !!}
 
-                            </div>
+                                </div>
+                            @else
+                                <div class="col-xs-12 col-md-6">
+                                    {!! Form::Label('typeId', 'Type') !!}
+                                    {!! Form::select('typeId',array(null => 'Aucun') + $types, null, array('class' => 'form-control') ) !!}
+
+                                </div>
+                            @endif
+
                             @if($oeuvre->artiste != null)
                             <div class="col-xs-12 col-md-6">
                                 {!! Form::Label('artisteId', 'Artiste') !!}

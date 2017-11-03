@@ -41,12 +41,12 @@
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('typeId', 'Type') !!}
-                            {!! Form::select('typeId', $types, null,  array('required' => 'required', 'class' => 'form-control')) !!}
+                            {!! Form::select('typeId',array(null => 'Sélectionnez un type') + $types, null,  array('class' => 'form-control')) !!}
 
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('artisteId', 'Artiste') !!}
-                            {!! Form::select('artisteId', array(null => 'Please select one option') + $artistes, null,  array('class' => 'form-control')) !!}
+                            {!! Form::select('artisteId', array(null => 'Sélectionnez un artiste') + $artistes, null,  array('class' => 'form-control')) !!}
 
                         </div>
                     </div>

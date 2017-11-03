@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Oeuvres;
 use App\Models\Artiste;
 use App\Models\Oeuvre;
 use App\Models\Type;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -54,7 +55,7 @@ class OeuvresController extends Controller
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
             'audio' => 'string|nullable',
-            'typeId' => 'required|integer|digits_between:0,3',
+            'typeId' => 'required|integer|digits_between:0,3|nullable',
             'artisteId' => 'integer|digits_between:0,11|nullable'
         ]);
 
@@ -96,6 +97,43 @@ class OeuvresController extends Controller
         return view('oeuvre.show')->with(compact('oeuvre'));
     }
 
+    public function showAjax(int $oeuvreId)
+    {
+        $oeuvre = Oeuvre::where('id', $oeuvreId)
+            ->first();
+
+        $type = Type::where('id', $oeuvre->typeId)
+            ->first();
+        $typeArray = null;
+        if($type != null)
+        {
+            $typeArray = $type->toArray();
+        }
+
+        $artiste = Artiste::where('id', $oeuvre->artisteId)
+            ->first();
+        $artisteArray = null;
+        if($artiste != null)
+        {
+            $artisteArray = $artiste->toArray();
+        }
+
+        $user = User::where('id', $oeuvre->userId)
+            ->first();
+        $userArray = null;
+        if($user != null)
+        {
+            $userArray = $user->toArray();
+        }
+
+        return array(
+            'oeuvre' => $oeuvre->toArray(),
+            'type' => $typeArray,
+            'artiste' => $artisteArray,
+            'user' => $userArray
+            );
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -135,7 +173,7 @@ class OeuvresController extends Controller
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
             'audio' => 'string|nullable',
-            'typeId' => 'required|integer|digits_between:0,3',
+            'typeId' => 'required|integer|digits_between:0,3|nullable',
             'artisteId' => 'integer|digits_between:0,11|nullable'
         ]);
 

@@ -70,7 +70,6 @@ class TypeController extends Controller
             ->first();
 
         return $type->toArray();
-        //return view('type.show')->with(compact('type'));
     }
 
     /**
@@ -124,8 +123,10 @@ class TypeController extends Controller
      */
     public function destroy(int $typeId)
     {
+        $type = Type::where('id', $typeId)->first();
 
-        Type::where('id', $typeId)->delete();
+        $type->oeuvres()->rawUpdate(['typeId' => null]);
+        $type->delete();
 
         /*if ($type) {
             flash(__("Profil sauvegardé avec succès !"))->success();

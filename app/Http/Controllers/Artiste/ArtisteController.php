@@ -70,6 +70,15 @@ class ArtisteController extends Controller
         return view('artiste.show')->with(compact('artiste'));
     }
 
+    public function showAjax(int $artisteId)
+    {
+        $artiste = Artiste::where('id', $artisteId)
+            ->first();
+
+        return $artiste->toArray();
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -127,7 +136,10 @@ class ArtisteController extends Controller
      */
     public function destroy(int $artisteId)
     {
-        Artiste::where('id', $artisteId)->delete();
+        $artiste = Artiste::where('id', $artisteId)->first();
+
+        $artiste->oeuvres()->rawUpdate(['artisteId' => null]);
+        $artiste->delete();
 
         /*if ($type) {
             flash(__("Profil sauvegardé avec succès !"))->success();

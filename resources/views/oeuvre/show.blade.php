@@ -14,11 +14,13 @@
                 <p>Latitude : {{ $oeuvre->posX }}</p>
                 <p>Longitude : {{ $oeuvre->posY }}</p>
                 <p>Audio : {{ $oeuvre->audio }}</p>
+                @if($oeuvre->type != null)
                 <p>Type :
                     <a href="{{ route('type:show',['id' => $oeuvre->type->id]) }}">
                         {{ $oeuvre->type->libelle }}
                     </a>
                 </p>
+                @endif
                 @if($oeuvre->artiste != null)
                 <p>Artiste :
                     <a href="{{ route('artiste:show',['id' => $oeuvre->artiste->id]) }}">

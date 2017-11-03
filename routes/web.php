@@ -90,6 +90,10 @@ Route::prefix('oeuvre')->namespace('Oeuvres')->group(function () {
         ->where(['id' => '[0-9]+'])
         ->name('oeuvre:show');
 
+    Route::get('/showAjax/{id}','OeuvresController@showAjax')
+        ->where(['id' => '[0-9]+'])
+        ->name('oeuvre:showAjax');
+
     Route::get('/create','OeuvresController@create')
         ->name('oeuvre:create');
 
@@ -123,6 +127,10 @@ Route::prefix('artiste')->namespace('Artiste')->group(function () {
     Route::get('/{id}','ArtisteController@show')
         ->where(['id' => '[0-9]+'])
         ->name('artiste:show');
+
+    Route::get('/showAjax/{id}','ArtisteController@showAjax')
+        ->where(['id' => '[0-9]+'])
+        ->name('artiste:showAjax');
 
     Route::get('/create','ArtisteController@create')
         ->name('artiste:create');

@@ -64,6 +64,15 @@ class TypeController extends Controller
         return view('type.show')->with(compact('type'));
     }
 
+    public function showAjax(int $typeId)
+    {
+        $type = Type::where('id', $typeId)
+            ->first();
+
+        return $type->toArray();
+        //return view('type.show')->with(compact('type'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

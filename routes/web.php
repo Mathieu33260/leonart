@@ -94,6 +94,10 @@ Route::prefix('oeuvre')->namespace('Oeuvres')->group(function () {
         ->where(['string' => '[A-Za-z]+'])
         ->name('oeuvre:indexAjax');
 
+    /*Route::get('/indexAjax/{offset}/{string?}','OeuvresController@indexAjax')
+        ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
+        ->name('oeuvre:indexAjax');*/
+
     Route::get('/{id}','OeuvresController@show')
         ->where(['id' => '[0-9]+'])
         ->name('oeuvre:show');
@@ -132,8 +136,8 @@ Route::prefix('artiste')->namespace('Artiste')->group(function () {
     Route::get('/','ArtisteController@index')
         ->name('artiste:index');
 
-    Route::get('/indexAjax/{string?}','ArtisteController@indexAjax')
-        ->where(['string' => '[A-Za-z]+'])
+    Route::get('/indexAjax/{offset}/{string?}','ArtisteController@indexAjax')
+        ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
         ->name('artiste:indexAjax');
 
     Route::get('/{id}','ArtisteController@show')

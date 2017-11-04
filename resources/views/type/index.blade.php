@@ -13,7 +13,7 @@
             <div class="col-xs-12 col-md-5 col-lg-5 panel panel-default p-3 m-3">
                 <div class="panel-heading lead">
                     <label>Rechercher un Type
-                        <input id="recherche" type="text" onkeyup="getTypes()">
+                        <input id="recherche" type="text" onkeyup="getSearch()">
                     </label>
                 </div>
                 <ul class="right-list" onscroll="lazyLoad()">
@@ -45,7 +45,7 @@
 
         var offset = 10;
 
-        function getTypes(){
+        function getSearch(){
             offset = 0;
             $.ajax({
                 type:'GET',

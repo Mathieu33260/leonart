@@ -48,8 +48,8 @@ Route::prefix('type')->namespace('Type')->group(function () {
     Route::get('/','TypeController@index')
         ->name('type:index');
 
-    Route::get('/indexAjax/{string?}','TypeController@indexAjax')
-        ->where(['string' => '[A-Za-z]+'])
+    Route::get('/indexAjax/{offset}/{string?}','TypeController@indexAjax')
+        ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
         ->name('type:indexAjax');
 
     Route::get('/{id}','TypeController@show')

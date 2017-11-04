@@ -16,7 +16,7 @@
                         <input id="recherche" type="text" onkeyup="getTypes()">
                     </label>
                 </div>
-                <ul class="right-list">
+                <ul class="right-list" onscroll="lazyLoad()">
                     @foreach($types as $type)
                         <li><a href="#" onclick="getAjax({{ $type->id }})">{{ $type->libelle }}</a></li>
                     @endforeach
@@ -32,7 +32,7 @@
         function getAjax(id){
             $.ajax({
                 type:'GET',
-                url:'type/showAjax/'+id,
+                url:'/type/showAjax/'+id,
                 success:function(data){
                     $('#box').empty();
                     $('#box').append('<h3>Type <a href="/type/'+ data.id +'">'+ data.libelle +'</a></h3>\n' +
@@ -43,19 +43,43 @@
             });
         }
 
+        var offset = 10;
+
         function getTypes(){
+            offset = 0;
             $.ajax({
                 type:'GET',
-                url:'type/indexAjax/'+$('#recherche').val(),
+                url:'/type/indexAjax/'+offset+'/'+$('#recherche').val(),
                 success:function(data){
                     $('.right-list').empty();
                     $.each(data, function( index, value ) {
                         $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
                             ''+ value.libelle +'</a></li>');
                     });
-
+                    offset = offset + 10;
                 }
             });
         }
+
+
+
+        function lazyLoad() {
+            if ($('.right-list').scrollTop() ===
+                document.getElementsByClassName('right-list')[0].scrollHeight - $('.right-list').height()) {
+                $.ajax({
+                    type : "GET",
+                    url : '/type/indexAjax/'+offset+'/'+$('#recherche').val(),
+                    success : function (data)
+                    {
+                        $.each(data, function( index, value ) {
+                            $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
+                                ''+ value.libelle +'</a></li>');
+                        });
+                        offset = offset + 10;
+                    }
+                });
+            }
+        }
     </script>
 @endsection
+

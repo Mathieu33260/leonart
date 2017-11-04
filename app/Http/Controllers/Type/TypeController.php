@@ -15,18 +15,26 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
+        $types = Type::limit(10)
+            ->get();
 
         return view('type.index')->with(compact('types'));
     }
 
-    public function indexAjax($string = "")
+    public function indexAjax($offset,$string = "")
     {
         if($string != "")
         {
-            $types = Type::where('libelle', 'like', '%'.$string.'%')->get();
+            $types = Type::where('libelle', 'like', '%'.$string.'%')
+                ->orderBy('id','ASC')
+                ->offset($offset)
+                ->limit(10)
+                ->get();
         } else {
-            $types = Type::all();
+            $types = Type::orderBy('id','ASC')
+                ->offset($offset)
+                ->limit(10)
+                ->get();
         }
 
         return $types->toArray();

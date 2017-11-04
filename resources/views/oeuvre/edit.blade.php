@@ -47,7 +47,7 @@
                             @if($oeuvre->type != null)
                                 <div class="col-xs-12 col-md-6">
                                     {!! Form::Label('typeId', 'Type') !!}
-                                    {!! Form::select('typeId', $types, $oeuvre->type->id, array('class' => 'form-control') ) !!}
+                                    {!! Form::select('typeId',array(null => 'Aucun') + $types, $oeuvre->type->id, array('class' => 'form-control') ) !!}
 
                                 </div>
                             @else

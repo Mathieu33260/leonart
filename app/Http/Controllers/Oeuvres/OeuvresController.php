@@ -18,18 +18,26 @@ class OeuvresController extends Controller
      */
     public function index()
     {
-        $oeuvres = Oeuvre::all();
+        $oeuvres = Oeuvre::limit(10)
+            ->get();
 
         return view('oeuvre.index')->with(compact('oeuvres'));
     }
 
-    public function indexAjax($string = "")
+    public function indexAjax($offset,$string = "")
     {
         if($string != "")
         {
-            $oeuvres = Oeuvre::where('nom', 'like', '%'.$string.'%')->get();
+            $oeuvres = Oeuvre::where('nom', 'like', '%'.$string.'%')
+                ->orderBy('id','ASC')
+                ->offset($offset)
+                ->limit(10)
+                ->get();
         } else {
-            $oeuvres = Oeuvre::all();
+            $oeuvres = Oeuvre::orderBy('id','ASC')
+                ->offset($offset)
+                ->limit(10)
+                ->get();
         }
 
         return $oeuvres->toArray();
@@ -42,7 +50,7 @@ class OeuvresController extends Controller
      */
     public function create()
     {
-        $types = Type::pluck('libelle', 'id');
+        $types = Type::pluck('libelle', 'id')->toArray();
         $artistes = Artiste::pluck('nom', 'id')->toArray();
 
         return view('oeuvre.create')
@@ -67,7 +75,7 @@ class OeuvresController extends Controller
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
             'audio' => 'string|nullable',
-            'typeId' => 'required|integer|digits_between:0,3|nullable',
+            'typeId' => 'integer|digits_between:0,3|nullable',
             'artisteId' => 'integer|digits_between:0,11|nullable'
         ]);
 
@@ -158,7 +166,7 @@ class OeuvresController extends Controller
         $oeuvre = Oeuvre::where('id', $oeuvreId)
             ->first();
 
-        $types = Type::pluck('libelle', 'id');
+        $types = Type::pluck('libelle', 'id')->toArray();
         $artistes = Artiste::pluck('nom', 'id')->toArray();
 
         return view('oeuvre.edit')
@@ -185,7 +193,7 @@ class OeuvresController extends Controller
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
             'audio' => 'string|nullable',
-            'typeId' => 'required|integer|digits_between:0,3|nullable',
+            'typeId' => 'integer|digits_between:0,3|nullable',
             'artisteId' => 'integer|digits_between:0,11|nullable'
         ]);
 

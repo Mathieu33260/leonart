@@ -90,13 +90,9 @@ Route::prefix('oeuvre')->namespace('Oeuvres')->group(function () {
     Route::get('/','OeuvresController@index')
         ->name('oeuvre:index');
 
-    Route::get('/indexAjax/{string?}','OeuvresController@indexAjax')
-        ->where(['string' => '[A-Za-z]+'])
-        ->name('oeuvre:indexAjax');
-
-    /*Route::get('/indexAjax/{offset}/{string?}','OeuvresController@indexAjax')
+    Route::get('/indexAjax/{offset}/{string?}','OeuvresController@indexAjax')
         ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
-        ->name('oeuvre:indexAjax');*/
+        ->name('oeuvre:indexAjax');
 
     Route::get('/{id}','OeuvresController@show')
         ->where(['id' => '[0-9]+'])

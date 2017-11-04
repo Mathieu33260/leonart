@@ -11,7 +11,12 @@
             </div>
 
             <div class="col-xs-12 col-md-5 col-lg-5 panel panel-default p-3 m-3">
-                <ul>
+                <div class="panel-heading lead">
+                    <label>Rechercher une Oeuvre
+                        <input id="recherche" type="text" onkeyup="getTypes()">
+                    </label>
+                </div>
+                <ul class="right-list">
                         @foreach($oeuvres as $oeuvre)
                         <li>
                             <a href="#" onclick="getAjax({{ $oeuvre->id }})">
@@ -70,6 +75,21 @@
                     $('#box').append('<p>User : '+ data.user.name +'</p>\n' +
                         '                <a href="/oeuvre/edit/'+ data.oeuvre.id +'">Modifier</a>\n' +
                         '                <a href="/oeuvre/destroy/'+ data.oeuvre.id +'">Supprimer</a>');
+                }
+            });
+        }
+
+        function getTypes(){
+            $.ajax({
+                type:'GET',
+                url:'oeuvre/indexAjax/'+$('#recherche').val(),
+                success:function(data){
+                    $('.right-list').empty();
+                    $.each(data, function( index, value ) {
+                        $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
+                            ''+ value.nom +'</a></li>');
+                    });
+
                 }
             });
         }

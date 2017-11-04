@@ -23,6 +23,18 @@ class OeuvresController extends Controller
         return view('oeuvre.index')->with(compact('oeuvres'));
     }
 
+    public function indexAjax($string = "")
+    {
+        if($string != "")
+        {
+            $oeuvres = Oeuvre::where('nom', 'like', '%'.$string.'%')->get();
+        } else {
+            $oeuvres = Oeuvre::all();
+        }
+
+        return $oeuvres->toArray();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -99,6 +99,11 @@ body {
           box-shadow: 0 4px 8px 0 rgba(201, 201, 201, 0.2), 0 6px 20px 0 rgba(201, 201, 201, 0.19);
 }
 
+.right-list {
+  max-height: 300px;
+  overflow: auto;
+}
+
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
 html {

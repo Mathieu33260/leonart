@@ -95,5 +95,10 @@ h2 {
   box-shadow: 0 4px 8px 0 rgba(201, 201, 201, 0.2), 0 6px 20px 0 rgba(201, 201, 201, 0.19);
 }
 
+.right-list {
+  max-height: 300px;
+  overflow: auto;
+}
+
 // Bootstrap 3.3.7
 @import "boostrap";

@@ -20,6 +20,26 @@ class TypeController extends Controller
         return view('type.index')->with(compact('types'));
     }
 
+    public function indexAjax($string = "")
+    {
+        if($string != "")
+        {
+            $types = Type::where('libelle', 'like', '%'.$string.'%')->get();
+        } else {
+            $types = Type::all();
+        }
+
+
+        /*$typesArray = array();
+
+        foreach($types as $type)
+        {
+            array_push($typesArray,$type->toArray());
+        }*/
+
+        return $types->toArray();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

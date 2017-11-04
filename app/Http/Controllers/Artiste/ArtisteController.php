@@ -20,6 +20,20 @@ class ArtisteController extends Controller
         return view('artiste.index')->with(compact('artistes'));
     }
 
+    public function indexAjax($string = "")
+    {
+        if($string != "")
+        {
+            $artistes = Artiste::where('nom', 'like', '%'.$string.'%')
+                ->orwhere('prenom', 'like', '%'.$string.'%')
+                ->get();
+        } else {
+            $artistes = Artiste::all();
+        }
+
+        return $artistes->toArray();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

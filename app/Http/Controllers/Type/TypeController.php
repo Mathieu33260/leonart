@@ -29,14 +29,6 @@ class TypeController extends Controller
             $types = Type::all();
         }
 
-
-        /*$typesArray = array();
-
-        foreach($types as $type)
-        {
-            array_push($typesArray,$type->toArray());
-        }*/
-
         return $types->toArray();
     }
 

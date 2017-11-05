@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:200');
+
 html, body {
   background-color: #fff;
   color: #636b6f;
@@ -44,7 +46,9 @@ html, body {
 }
 
 h2 {
-
+  font-family: 'Raleway', sans-serif !important ;
+  letter-spacing: .1rem;
+  font-size:300% !important ;
 }
 
 .title {
@@ -52,7 +56,7 @@ h2 {
 }
 
 .linksUnder > a {
-  font-size: 110%;
+  font-size: 140%;
   font-weight: 600;
   letter-spacing: .1rem;
   text-decoration: none;
@@ -65,6 +69,7 @@ h2 {
   letter-spacing: .1rem;
   text-decoration: none;
   text-transform: uppercase;
+  margin-right: 10px;
 }
 
 .m-b-md {
@@ -99,6 +104,38 @@ h2 {
   max-height: 300px;
   overflow: auto;
 }
-
+.font-weight-bold{
+  font-weight: bold;
+}
+.card{
+  margin-top: 20px;
+  background-color: white;
+  color: black;
+  margin-right: 50px;
+  height: 310px;
+}
+.text-light{
+  color: #b3b3b3;
+}
+.text-dark{
+  color: black;
+}
+#presentation p{
+  font-size: 110%;
+  letter-spacing: .1rem;
+  margin-top: 10px;
+}
+#presentation hr{
+  margin-top: 8%;
+  margin-bottom: 1%;
+  margin-left: 45%;
+  margin-right: 45%;
+}
+#Ibeacon img{
+  width: 100%;
+}
+#phone img{
+  width: 100%;
+}
 // Bootstrap 3.3.7
 @import "boostrap";

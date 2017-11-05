@@ -1,4 +1,4 @@
-html,
+@import url(https://fonts.googleapis.com/css?family=Raleway:200);html,
 body {
   background-color: #fff;
   color: #636b6f;
@@ -50,12 +50,18 @@ body {
   min-width: 60%;
 }
 
+h2 {
+  font-family: 'Raleway', sans-serif !important;
+  letter-spacing: .1rem;
+  font-size: 300% !important;
+}
+
 .title {
   font-size: 84px;
 }
 
 .linksUnder > a {
-  font-size: 110%;
+  font-size: 140%;
   font-weight: 600;
   letter-spacing: .1rem;
   text-decoration: none;
@@ -68,6 +74,7 @@ body {
   letter-spacing: .1rem;
   text-decoration: none;
   text-transform: uppercase;
+  margin-right: 10px;
 }
 
 .m-b-md {
@@ -102,6 +109,47 @@ body {
 .right-list {
   max-height: 300px;
   overflow: auto;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.card {
+  margin-top: 20px;
+  background-color: white;
+  color: black;
+  margin-right: 50px;
+  height: 310px;
+}
+
+.text-light {
+  color: #b3b3b3;
+}
+
+.text-dark {
+  color: black;
+}
+
+#presentation p {
+  font-size: 110%;
+  letter-spacing: .1rem;
+  margin-top: 10px;
+}
+
+#presentation hr {
+  margin-top: 8%;
+  margin-bottom: 1%;
+  margin-left: 45%;
+  margin-right: 45%;
+}
+
+#Ibeacon img {
+  width: 100%;
+}
+
+#phone img {
+  width: 100%;
 }
 
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1653,7 +1701,7 @@ h2,
 h3,
 .h3 {
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 h1 small,
@@ -6704,4 +6752,3 @@ button.close {
     display: none !important;
   }
 }
-

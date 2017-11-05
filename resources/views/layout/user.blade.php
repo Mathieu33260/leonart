@@ -51,17 +51,17 @@
                             @lang("Tableau de bord")
                         </a>
                     </li>
-                    <li class="{{ request()->segment(2) === 'Oeuvre' ? 'active' : null }}">
+                    <li class="{{ request()->segment(1) === 'oeuvre' ? 'active' : null }}">
                         <a href="{{ route('oeuvre:index') }}">
                             @lang("Oeuvre")
                         </a>
                     </li>
-                    <li class="{{ request()->segment(2) === 'Artiste' ? 'active' : null }}">
+                    <li class="{{ request()->segment(1) === 'artiste' ? 'active' : null }}">
                         <a href="{{ route('artiste:index') }}">
                             @lang("Artiste")
                         </a>
                     </li>
-                    <li class="{{ request()->segment(2) === 'Type' ? 'active' : null }}">
+                    <li class="{{ request()->segment(1) === 'type' ? 'active' : null }}">
                         <a href="{{ route('type:index') }}">
                             @lang("Type")
                         </a>
@@ -89,7 +89,15 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
 
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </li>
                         </ul>
                     </li>

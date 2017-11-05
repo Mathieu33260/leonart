@@ -45,38 +45,42 @@ Route::prefix('user')->namespace('User')->group(function () {
 
 Route::prefix('type')->namespace('Type')->group(function () {
 
-    Route::get('/','TypeController@index')
-        ->name('type:index');
+    Route::middleware(['auth'])->group(function () {
 
-    Route::get('/indexAjax/{offset}/{string?}','TypeController@indexAjax')
-        ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
-        ->name('type:indexAjax');
+        Route::get('/','TypeController@index')
+            ->name('type:index');
 
-    Route::get('/{id}','TypeController@show')
-        ->where(['id' => '[0-9]+'])
-        ->name('type:show');
+        Route::get('/indexAjax/{offset}/{string?}','TypeController@indexAjax')
+            ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
+            ->name('type:indexAjax');
 
-    Route::get('/showAjax/{id}','TypeController@showAjax')
-        ->where(['id' => '[0-9]+'])
-        ->name('type:showAjax');
+        Route::get('/{id}','TypeController@show')
+            ->where(['id' => '[0-9]+'])
+            ->name('type:show');
 
-    Route::get('/create','TypeController@create')
-        ->name('type:create');
+        Route::get('/showAjax/{id}','TypeController@showAjax')
+            ->where(['id' => '[0-9]+'])
+            ->name('type:showAjax');
 
-    Route::patch('/store','TypeController@store')
-        ->name('type:store');
+        Route::get('/create','TypeController@create')
+            ->name('type:create');
 
-    Route::get('/edit/{id}','TypeController@edit')
-        ->where(['id' => '[0-9]+'])
-        ->name('type:edit');
+        Route::patch('/store','TypeController@store')
+            ->name('type:store');
 
-    Route::patch('/update/{id}','TypeController@update')
-        ->where(['id' => '[0-9]+'])
-        ->name('type:update');
+        Route::get('/edit/{id}','TypeController@edit')
+            ->where(['id' => '[0-9]+'])
+            ->name('type:edit');
 
-    Route::get('/destroy/{id}','TypeController@destroy')
-        ->where(['id' => '[0-9]+'])
-        ->name('type:destroy');
+        Route::patch('/update/{id}','TypeController@update')
+            ->where(['id' => '[0-9]+'])
+            ->name('type:update');
+
+        Route::get('/destroy/{id}','TypeController@destroy')
+            ->where(['id' => '[0-9]+'])
+            ->name('type:destroy');
+
+    });
 
 });
 
@@ -87,38 +91,42 @@ Route::prefix('type')->namespace('Type')->group(function () {
 
 Route::prefix('oeuvre')->namespace('Oeuvres')->group(function () {
 
-    Route::get('/','OeuvresController@index')
-        ->name('oeuvre:index');
+    Route::middleware(['auth'])->group(function () {
 
-    Route::get('/indexAjax/{offset}/{string?}','OeuvresController@indexAjax')
-        ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
-        ->name('oeuvre:indexAjax');
+        Route::get('/','OeuvresController@index')
+            ->name('oeuvre:index');
 
-    Route::get('/{id}','OeuvresController@show')
-        ->where(['id' => '[0-9]+'])
-        ->name('oeuvre:show');
+        Route::get('/indexAjax/{offset}/{string?}','OeuvresController@indexAjax')
+            ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
+            ->name('oeuvre:indexAjax');
 
-    Route::get('/showAjax/{id}','OeuvresController@showAjax')
-        ->where(['id' => '[0-9]+'])
-        ->name('oeuvre:showAjax');
+        Route::get('/{id}','OeuvresController@show')
+            ->where(['id' => '[0-9]+'])
+            ->name('oeuvre:show');
 
-    Route::get('/create','OeuvresController@create')
-        ->name('oeuvre:create');
+        Route::get('/showAjax/{id}','OeuvresController@showAjax')
+            ->where(['id' => '[0-9]+'])
+            ->name('oeuvre:showAjax');
 
-    Route::patch('/store','OeuvresController@store')
-        ->name('oeuvre:store');
+        Route::get('/create','OeuvresController@create')
+            ->name('oeuvre:create');
 
-    Route::get('/edit/{id}','OeuvresController@edit')
-        ->where(['id' => '[0-9]+'])
-        ->name('oeuvre:edit');
+        Route::patch('/store','OeuvresController@store')
+            ->name('oeuvre:store');
 
-    Route::patch('/update/{id}','OeuvresController@update')
-        ->where(['id' => '[0-9]+'])
-        ->name('oeuvre:update');
+        Route::get('/edit/{id}','OeuvresController@edit')
+            ->where(['id' => '[0-9]+'])
+            ->name('oeuvre:edit');
 
-    Route::get('/destroy/{id}','OeuvresController@destroy')
-        ->where(['id' => '[0-9]+'])
-        ->name('oeuvre:destroy');
+        Route::patch('/update/{id}','OeuvresController@update')
+            ->where(['id' => '[0-9]+'])
+            ->name('oeuvre:update');
+
+        Route::get('/destroy/{id}','OeuvresController@destroy')
+            ->where(['id' => '[0-9]+'])
+            ->name('oeuvre:destroy');
+
+    });
 
 });
 
@@ -129,38 +137,42 @@ Route::prefix('oeuvre')->namespace('Oeuvres')->group(function () {
 
 Route::prefix('artiste')->namespace('Artiste')->group(function () {
 
-    Route::get('/','ArtisteController@index')
-        ->name('artiste:index');
+    Route::middleware(['auth'])->group(function () {
 
-    Route::get('/indexAjax/{offset}/{string?}','ArtisteController@indexAjax')
-        ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
-        ->name('artiste:indexAjax');
+        Route::get('/','ArtisteController@index')
+            ->name('artiste:index');
 
-    Route::get('/{id}','ArtisteController@show')
-        ->where(['id' => '[0-9]+'])
-        ->name('artiste:show');
+        Route::get('/indexAjax/{offset}/{string?}','ArtisteController@indexAjax')
+            ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
+            ->name('artiste:indexAjax');
 
-    Route::get('/showAjax/{id}','ArtisteController@showAjax')
-        ->where(['id' => '[0-9]+'])
-        ->name('artiste:showAjax');
+        Route::get('/{id}','ArtisteController@show')
+            ->where(['id' => '[0-9]+'])
+            ->name('artiste:show');
 
-    Route::get('/create','ArtisteController@create')
-        ->name('artiste:create');
+        Route::get('/showAjax/{id}','ArtisteController@showAjax')
+            ->where(['id' => '[0-9]+'])
+            ->name('artiste:showAjax');
 
-    Route::patch('/store','ArtisteController@store')
-        ->name('artiste:store');
+        Route::get('/create','ArtisteController@create')
+            ->name('artiste:create');
 
-    Route::get('/edit/{id}','ArtisteController@edit')
-        ->where(['id' => '[0-9]+'])
-        ->name('artiste:edit');
+        Route::patch('/store','ArtisteController@store')
+            ->name('artiste:store');
 
-    Route::patch('/update/{id}','ArtisteController@update')
-        ->where(['id' => '[0-9]+'])
-        ->name('artiste:update');
+        Route::get('/edit/{id}','ArtisteController@edit')
+            ->where(['id' => '[0-9]+'])
+            ->name('artiste:edit');
 
-    Route::get('/destroy/{id}','ArtisteController@destroy')
-        ->where(['id' => '[0-9]+'])
-        ->name('artiste:destroy');
+        Route::patch('/update/{id}','ArtisteController@update')
+            ->where(['id' => '[0-9]+'])
+            ->name('artiste:update');
+
+        Route::get('/destroy/{id}','ArtisteController@destroy')
+            ->where(['id' => '[0-9]+'])
+            ->name('artiste:destroy');
+
+    });
 
 });
 

@@ -29,6 +29,10 @@
 
             </div>
 
+            <div class="col-xs-12 col-md-5 col-lg-5">
+                <a href="{{ route('oeuvre:create') }}"><input type="button" class="btn center-block" value="Ajouter"></a>
+            </div>
+
 
         </div>
     </div>

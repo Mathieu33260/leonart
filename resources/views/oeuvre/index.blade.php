@@ -11,7 +11,12 @@
             </div>
 
             <div class="col-xs-12 col-md-5 col-lg-5 panel panel-default p-3 m-3">
-                <ul>
+                <div class="panel-heading lead">
+                    <label>Rechercher une Oeuvre
+                        <input id="recherche" type="text" onkeyup="getSearch()">
+                    </label>
+                </div>
+                <ul class="right-list" onscroll="lazyLoad()">
                         @foreach($oeuvres as $oeuvre)
                         <li>
                             <a href="#" onclick="getAjax({{ $oeuvre->id }})">
@@ -22,6 +27,10 @@
                 </ul>
 
 
+            </div>
+
+            <div class="col-xs-12 col-md-5 col-lg-5">
+                <a href="{{ route('oeuvre:create') }}"><input type="button" class="btn center-block" value="Ajouter"></a>
             </div>
 
 
@@ -72,6 +81,42 @@
                         '                <a href="/oeuvre/destroy/'+ data.oeuvre.id +'">Supprimer</a>');
                 }
             });
+        }
+
+        var offset = 10;
+
+        function getSearch(){
+            offset = 0;
+            $.ajax({
+                type:'GET',
+                url:'/oeuvre/indexAjax/'+offset+'/'+$('#recherche').val(),
+                success:function(data){
+                    $('.right-list').empty();
+                    $.each(data, function( index, value ) {
+                        $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
+                            ''+ value.nom +'</a></li>');
+                    });
+                    offset = offset + 10;
+                }
+            });
+        }
+
+        function lazyLoad() {
+            if ($('.right-list').scrollTop() ===
+                document.getElementsByClassName('right-list')[0].scrollHeight - $('.right-list').height()) {
+                $.ajax({
+                    type : "GET",
+                    url : '/oeuvre/indexAjax/'+offset+'/'+$('#recherche').val(),
+                    success : function (data)
+                    {
+                        $.each(data, function( index, value ) {
+                            $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
+                                ''+ value.nom +'</a></li>');
+                        });
+                        offset = offset + 10;
+                    }
+                });
+            }
         }
     </script>
 @endsection

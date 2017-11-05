@@ -15,9 +15,30 @@ class ArtisteController extends Controller
      */
     public function index()
     {
-        $artistes = Artiste::all();
+        $artistes = Artiste::limit(10)
+            ->get();
 
         return view('artiste.index')->with(compact('artistes'));
+    }
+
+    public function indexAjax($offset,$string = "")
+    {
+        if($string != "")
+        {
+            $artistes = Artiste::where('nom', 'like', '%'.$string.'%')
+                ->orwhere('prenom', 'like', '%'.$string.'%')
+                ->orderBy('id','ASC')
+                ->offset($offset)
+                ->limit(10)
+                ->get();
+        } else {
+            $artistes = Artiste::orderBy('id','ASC')
+                ->offset($offset)
+                ->limit(10)
+                ->get();
+        }
+
+        return $artistes->toArray();
     }
 
     /**

@@ -11,7 +11,12 @@
             </div>
 
             <div class="col-xs-12 col-md-5 col-lg-5 panel panel-default p-3 m-3">
-                <ul>
+                <div class="panel-heading lead">
+                    <label>Rechercher un Artiste
+                        <input id="recherche" type="text" onkeyup="getSearch()">
+                    </label>
+                </div>
+                <ul class="right-list" onscroll="lazyLoad()">
                         @foreach($artistes as $artiste)
                         <li>
                             <a href="#" onclick="getAjax({{ $artiste->id }})">
@@ -24,6 +29,9 @@
 
             </div>
 
+            <div class="col-xs-12 col-md-5 col-lg-5">
+                <a href="{{ route('artiste:create') }}"><input type="button" class="btn center-block" value="Ajouter"></a>
+            </div>
 
         </div>
     </div>
@@ -31,7 +39,7 @@
         function getAjax(id){
             $.ajax({
                 type:'GET',
-                url:'artiste/showAjax/'+id,
+                url:'/artiste/showAjax/'+id,
                 success:function(data){
                     $('#box').empty();
                     var dateMort = "";
@@ -48,6 +56,42 @@
                         '                <a href="/artiste/destroy/'+ data.id +'">Supprimer</a>\n');
                 }
             });
+        }
+
+        var offset = 10;
+
+        function getSearch(){
+            offset = 0;
+            $.ajax({
+                type:'GET',
+                url:'/artiste/indexAjax/'+offset+'/'+$('#recherche').val(),
+                success:function(data){
+                    $('.right-list').empty();
+                    $.each(data, function( index, value ) {
+                        $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
+                            ''+ value.nom +' '+ value.prenom +'</a></li>');
+                    });
+                    offset = offset + 10;
+                }
+            });
+        }
+
+        function lazyLoad() {
+            if ($('.right-list').scrollTop() ===
+                document.getElementsByClassName('right-list')[0].scrollHeight - $('.right-list').height()) {
+                $.ajax({
+                    type : "GET",
+                    url : '/artiste/indexAjax/'+offset+'/'+$('#recherche').val(),
+                    success : function (data)
+                    {
+                        $.each(data, function( index, value ) {
+                            $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
+                                ''+ value.nom +' '+ value.prenom +'</a></li>');
+                        });
+                        offset = offset + 10;
+                    }
+                });
+            }
         }
     </script>
 @endsection

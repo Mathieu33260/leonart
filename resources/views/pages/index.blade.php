@@ -181,7 +181,7 @@
         </div>
 
         <div class="row justify-content-center">
-            <a id="btnContact" href="" class="mr-3 p-1 pl-4 pr-4 font-weight-bold
+            <a id="btnContact" href="{{ route('page:contact') }}" class="mr-3 p-1 pl-4 pr-4 font-weight-bold
                     text-dark white-grey border-0 radius nodeco" onmouseover="animationBtnContact(true);"
                onmouseout="animationBtnContact(false)">Contact</a>
 

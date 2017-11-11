@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PageController@index')
     ->name('page:index');
 
+Route::get('/contact', 'PageController@contact')
+    ->name('page:contact');
+
+Route::post('/contactPost', 'PageController@contactPost')
+    ->name('page:contactPost');
+
 Route::get('/{page}', 'PageController@show')
     ->where(['page' => 'services|conditions'])
     ->name('page:show');
@@ -149,10 +155,6 @@ Route::prefix('artiste')->namespace('Artiste')->group(function () {
         Route::get('/{id}','ArtisteController@show')
             ->where(['id' => '[0-9]+'])
             ->name('artiste:show');
-
-        Route::get('/showAjax/{id}','ArtisteController@showAjax')
-            ->where(['id' => '[0-9]+'])
-            ->name('artiste:showAjax');
 
         Route::get('/create','ArtisteController@create')
             ->name('artiste:create');

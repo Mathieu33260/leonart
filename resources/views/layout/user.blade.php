@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#2c3e50" />
 
     {{-- Page title --}}
-    <title>{{ config('app.name') }}: @yield('title') | @lang("User")</title>
+    <title>{{ config('app.name') }}: @yield('title') | @yield('subtitle')</title>
 
     {{-- Favicons --}}
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">

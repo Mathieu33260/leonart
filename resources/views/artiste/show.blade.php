@@ -1,6 +1,6 @@
-@extends('layout.user')
+@extends('artiste.artisteLayout')
 
-@section('title', __("Gestion du profil"))
+@section('subtitle', __($artiste->nom." ".$artiste->prenom))
 
 @section('content')
     <div class="container">
@@ -20,3 +20,9 @@
         </div>
     </div>
 @endsection
+
+
+
+
+
+

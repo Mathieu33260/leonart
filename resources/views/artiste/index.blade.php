@@ -1,12 +1,12 @@
-@extends('layout.user')
+@extends('artiste.artisteLayout')
 
-@section('title', __("Gestion du profil"))
+@section('subtitle', __("Accueil"))
 
 @section('content')
     <div class="container">
         <div class="row">
 
-            <div id="box" class="col-xs-12 col-md-5 col-lg-5 panel panel-default p-3">
+            <div id="box" class="col-xs-12 col-md-5 col-lg-5 p-3">
 
             </div>
 
@@ -36,24 +36,14 @@
         </div>
     </div>
     <script>
+
         function getAjax(id){
             $.ajax({
                 type:'GET',
-                url:'/artiste/showAjax/'+id,
+                url:'/artiste/'+id,
                 success:function(data){
                     $('#box').empty();
-                    var dateMort = "";
-                    if(data.dateM !== null)
-                    {
-                        dateMort = data.dateM;
-                    }
-                    $('#box').append('<h3>Artiste <a href="/artiste/'+ data.id +'">'+ data.nom + ' '+ data.prenom +'</a></h3>\n' +
-                        '                <p>Nom : '+ data.nom +'</p>\n' +
-                        '                <p>Prénom : '+ data.prenom +'</p>\n' +
-                        '                <p>Date de naissance : '+ data.dateN +'</p>\n' +
-                        '                <p>Date de mort : '+ dateMort +'</p>\n' +
-                        '                <a href="/artiste/edit/'+ data.id +'">Modifier</a>\n' +
-                        '                <a href="/artiste/destroy/'+ data.id +'">Supprimer</a>\n');
+                    $('#box').append(data);
                 }
             });
         }
@@ -85,7 +75,7 @@
                     success : function (data)
                     {
                         $.each(data, function( index, value ) {
-                            $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
+                            $('.right-list').append('<li><a href="#" onclick="getAjax1('+ value.id +')">' +
                                 ''+ value.nom +' '+ value.prenom +'</a></li>');
                         });
                         offset = offset + 10;

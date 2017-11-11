@@ -7,8 +7,11 @@
  */
 
 namespace App\Http\Controllers;
+use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
+
 
 class PageController extends Controller
 {
@@ -19,5 +22,20 @@ class PageController extends Controller
 
     public function show ($page) {
         return view("pages.$page");
+    }
+
+    public function contact()
+    {
+        return view("contact.contact");
+    }
+
+    public function contactPost(ContactRequest $request)
+    {
+        Mail::send('contact.email_contact', $request->all(), function($message)
+        {
+            $message->to('mat_dumez@hotmail.fr')->subject('Contact');
+        });
+
+        return view('confirm');
     }
 }

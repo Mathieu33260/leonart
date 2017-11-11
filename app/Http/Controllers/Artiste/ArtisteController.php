@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Artiste;
 use App\Models\Artiste;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 
 class ArtisteController extends Controller
 {
@@ -85,18 +86,15 @@ class ArtisteController extends Controller
      */
     public function show(int $artisteId)
     {
+
         $artiste = Artiste::where('id', $artisteId)
             ->first();
+
+        if(\request()->ajax()) {
+            return View::make('artiste.showAjax',compact('artiste'))->render();
+        }
 
         return view('artiste.show')->with(compact('artiste'));
-    }
-
-    public function showAjax(int $artisteId)
-    {
-        $artiste = Artiste::where('id', $artisteId)
-            ->first();
-
-        return $artiste->toArray();
     }
 
 

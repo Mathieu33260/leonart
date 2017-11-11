@@ -70,7 +70,7 @@
         function lazyLoad() {
             if ($('.right-list').scrollTop() ===
                 document.getElementsByClassName('right-list')[0].scrollHeight - $('.right-list').height()) {
-                $('.right-list').append('<img src="{{ asset('/images/ajax-loader.gif') }}" class="loading-indicator"/>"');
+                $('.right-list').append('<img src="{{ asset('/images/ajax-loader.gif') }}" class="loading-indicator"/>');
                 $.ajax({
                     type : "GET",
                     url : '/oeuvre/indexAjax/'+offset+'/'+$('#recherche').val(),

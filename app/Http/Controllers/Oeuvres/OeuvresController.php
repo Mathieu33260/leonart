@@ -8,6 +8,7 @@ use App\Models\Type;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 
 class OeuvresController extends Controller
 {
@@ -114,44 +115,11 @@ class OeuvresController extends Controller
         $oeuvre = Oeuvre::where('id', $oeuvreId)
             ->first();
 
+        if(\request()->ajax()) {
+            return View::make('oeuvre.showAjax',compact('oeuvre'))->render();
+        }
+
         return view('oeuvre.show')->with(compact('oeuvre'));
-    }
-
-    public function showAjax(int $oeuvreId)
-    {
-        $oeuvre = Oeuvre::where('id', $oeuvreId)
-            ->first();
-
-        $type = Type::where('id', $oeuvre->typeId)
-            ->first();
-        $typeArray = null;
-        if($type != null)
-        {
-            $typeArray = $type->toArray();
-        }
-
-        $artiste = Artiste::where('id', $oeuvre->artisteId)
-            ->first();
-        $artisteArray = null;
-        if($artiste != null)
-        {
-            $artisteArray = $artiste->toArray();
-        }
-
-        $user = User::where('id', $oeuvre->userId)
-            ->first();
-        $userArray = null;
-        if($user != null)
-        {
-            $userArray = $user->toArray();
-        }
-
-        return array(
-            'oeuvre' => $oeuvre->toArray(),
-            'type' => $typeArray,
-            'artiste' => $artisteArray,
-            'user' => $userArray
-            );
     }
 
     /**

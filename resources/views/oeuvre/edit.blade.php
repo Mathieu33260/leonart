@@ -1,6 +1,6 @@
-@extends('layout.user')
+@extends('oeuvre.oeuvreLayout')
 
-@section('title', __("Gestion du profil"))
+@section('subtitle', __("Modification"))
 
 @section('content')
     <div class="container">

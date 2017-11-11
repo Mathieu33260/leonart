@@ -64,10 +64,6 @@ Route::prefix('type')->namespace('Type')->group(function () {
             ->where(['id' => '[0-9]+'])
             ->name('type:show');
 
-        Route::get('/showAjax/{id}','TypeController@showAjax')
-            ->where(['id' => '[0-9]+'])
-            ->name('type:showAjax');
-
         Route::get('/create','TypeController@create')
             ->name('type:create');
 

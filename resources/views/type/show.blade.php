@@ -1,6 +1,6 @@
-@extends('layout.user')
+@extends('type.typeLayout')
 
-@section('title', __("Gestion du profil"))
+@section('subtitle', __($type->libelle))
 
 @section('content')
     <div class="container">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Type;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 
 class TypeController extends Controller
 {
@@ -81,15 +82,11 @@ class TypeController extends Controller
         $type = Type::where('id', $typeId)
             ->first();
 
+        if(\request()->ajax()) {
+            return View::make('type.showAjax',compact('type'))->render();
+        }
+
         return view('type.show')->with(compact('type'));
-    }
-
-    public function showAjax(int $typeId)
-    {
-        $type = Type::where('id', $typeId)
-            ->first();
-
-        return $type->toArray();
     }
 
     /**

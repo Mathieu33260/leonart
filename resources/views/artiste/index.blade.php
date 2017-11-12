@@ -69,11 +69,13 @@
         function lazyLoad() {
             if ($('.right-list').scrollTop() ===
                 document.getElementsByClassName('right-list')[0].scrollHeight - $('.right-list').height()) {
+                $('.right-list').append('<img src="{{ asset('/images/ajax-loader.gif') }}" class="loading-indicator"/>');
                 $.ajax({
                     type : "GET",
                     url : '/artiste/indexAjax/'+offset+'/'+$('#recherche').val(),
                     success : function (data)
                     {
+                        $('.loading-indicator').remove();
                         $.each(data, function( index, value ) {
                             $('.right-list').append('<li><a href="#" onclick="getAjax1('+ value.id +')">' +
                                 ''+ value.nom +' '+ value.prenom +'</a></li>');

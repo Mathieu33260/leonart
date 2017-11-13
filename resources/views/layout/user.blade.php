@@ -28,6 +28,9 @@
     @section('style')
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @show
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">

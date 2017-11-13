@@ -1,5 +1,8 @@
 @extends('layout.user')
 
+@section('title', __("Gestion"))
+@section('subtitle', __("Home"))
+
 @section('content')
 <div class="container">
     <div class="row">

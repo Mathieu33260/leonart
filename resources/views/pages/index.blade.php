@@ -4,21 +4,28 @@
 @section('script')
     @parent
     <script type="application/javascript">
-        function animationBtn(hover) {
+        function animationBtnContact(hover) {
             if(hover)
             {
                 document.getElementById('btnContact').setAttribute(
                     'class','mr-3 p-1 pl-4 pr-4 font-weight-bold text-secondary dark border border-secondary radius nodeco'
                 );
-                document.getElementById('btnSuivre').setAttribute(
-                    'class','ml-3 p-1 pl-4 pr-4 font-weight-bold text-dark white-grey border-0 radius nodeco'
-                );
             } else {
+                document.getElementById('btnContact').setAttribute(
+                    'class','mr-3 p-1 pl-4 pr-4 font-weight-bold text-dark white-grey border-0 radius nodeco'
+                );
+            }
+        }
+
+        function animationBtnSuivre(hover) {
+            if(hover)
+            {
                 document.getElementById('btnSuivre').setAttribute(
                     'class','ml-3 p-1 pl-4 pr-4 font-weight-bold text-secondary dark border border-secondary radius nodeco'
                 );
-                document.getElementById('btnContact').setAttribute(
-                    'class','mr-3 p-1 pl-4 pr-4 font-weight-bold text-dark white-grey border-0 radius nodeco'
+            } else {
+                document.getElementById('btnSuivre').setAttribute(
+                    'class','ml-3 p-1 pl-4 pr-4 font-weight-bold text-dark white-grey border-0 radius nodeco'
                 );
             }
         }
@@ -159,12 +166,12 @@
 
         <div class="row justify-content-center">
             <a id="btnContact" href="" class="mr-3 p-1 pl-4 pr-4 font-weight-bold
-                    text-dark white-grey border-0 radius nodeco" onmouseover="animationBtn(true);"
-               onmouseout="animationBtn(false)">Contact</a>
+                    text-dark white-grey border-0 radius nodeco" onmouseover="animationBtnContact(true);"
+               onmouseout="animationBtnContact(false)">Contact</a>
 
-            <a id="btnSuivre" href="" class="ml-3 p-1 pl-4 pr-4 text-secondary font-weight-bold
-                    dark border border-secondary radius nodeco" onmouseover="animationBtn(true);"
-               onmouseout="animationBtn(false)">Suivre</a>
+            <a id="btnSuivre" href="" class="ml-3 p-1 pl-4 pr-4 text-dark font-weight-bold
+                    white-grey border-0 radius nodeco" onmouseover="animationBtnSuivre(true);"
+               onmouseout="animationBtnSuivre(false)">Suivre</a>
 
         </div>
     </div>

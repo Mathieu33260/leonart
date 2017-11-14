@@ -36,6 +36,6 @@ class PageController extends Controller
             $message->to('mat_dumez@hotmail.fr')->subject('Contact');
         });
 
-        return view('confirm');
+        return view('contact.confirmContact');
     }
 }

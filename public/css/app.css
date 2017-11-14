@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:200);html,
+@import url(https://fonts.googleapis.com/css?family=Raleway:200|Nunito+Sans:600|Roboto);html,
 body {
   background-color: #fff;
   color: #636b6f;
@@ -60,7 +60,7 @@ h2 {
   font-size: 84px;
 }
 
-.linksUnder > a {
+.linksUnder {
   font-size: 140%;
   font-weight: 600;
   letter-spacing: .1rem;
@@ -75,6 +75,10 @@ h2 {
   text-decoration: none;
   text-transform: uppercase;
   margin-right: 10px;
+}
+
+a:hover {
+  color: #023147 !important;
 }
 
 .m-b-md {
@@ -116,7 +120,27 @@ h2 {
   height: 100%;
 }
 
+.navbar {
+  background-color: white;
+}
+
+.navbar img {
+  width: 55%;
+  margin-left: 15%;
+  margin-top: 5%;
+}
+
+p {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 500;
+  font-size: 19px;
+}
+
 #iBeacon img {
+  width: 100%;
+}
+
+#phone img {
   width: 100%;
 }
 

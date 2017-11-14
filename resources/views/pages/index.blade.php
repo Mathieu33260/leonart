@@ -4,21 +4,27 @@
 @section('script')
     @parent
     <script type="application/javascript">
-        function animationBtn(hover) {
+        function animationBtnContact(hover) {
             if(hover)
             {
                 document.getElementById('btnContact').setAttribute(
                     'class','mr-3 p-1 pl-4 pr-4 font-weight-bold text-secondary dark border border-secondary radius nodeco'
                 );
-                document.getElementById('btnSuivre').setAttribute(
-                    'class','ml-3 p-1 pl-4 pr-4 font-weight-bold text-dark white-grey border-0 radius nodeco'
-                );
             } else {
+                document.getElementById('btnContact').setAttribute(
+                    'class','mr-3 p-1 pl-4 pr-4 font-weight-bold text-dark white-grey border-0 radius nodeco'
+                );
+            }
+        }
+        function animationBtnSuivre(hover) {
+            if(hover)
+            {
                 document.getElementById('btnSuivre').setAttribute(
                     'class','ml-3 p-1 pl-4 pr-4 font-weight-bold text-secondary dark border border-secondary radius nodeco'
                 );
-                document.getElementById('btnContact').setAttribute(
-                    'class','mr-3 p-1 pl-4 pr-4 font-weight-bold text-dark white-grey border-0 radius nodeco'
+            } else {
+                document.getElementById('btnSuivre').setAttribute(
+                    'class','ml-3 p-1 pl-4 pr-4 font-weight-bold text-dark white-grey border-0 radius nodeco'
                 );
             }
         }
@@ -30,19 +36,19 @@
 
     <div class="top-right links">
 
-        <a class="p-3" href="{{ route('login') }}">Login</a>
-        <a class="p-3" href="{{ route('register') }}">Register</a>
+        <a class="p-3 font-weight-bold" href="{{ route('login') }}">Login</a>
+        <a class="p-3 font-weight-bold" href="{{ route('register') }}">Register</a>
 
     </div>
 
 
     <div class="content">
         <div class="title m-b-md">
-            <img src="{{ asset('/images/leonart.svg') }}" alt="{{ __("Logo Leonart") }}" >
+            <a href="{{ route('page:index') }}"><img src="{{ asset('/images/leonart.svg') }}" alt="{{ __("Logo Leonart") }}" ></a>
         </div>
 
         <div class="linksUnder">
-            <a class="text-success" href="">L'art dans la poche</a>
+             <h4 class="text-success">L'art dans la poche</h4>
 
         </div>
     </div>
@@ -57,9 +63,9 @@
         <div class="row justify-content-center">
             <h2 class="text-uppercase text-light text-center col-lg-12">Présentation</h2>
             <p class="text-light col-lg-8 text-center font-weight-bold">_____</p>
-            <p class="text-light col-lg-7 text-center mr-1 ml-1">Nous sommes une start-up avec une idée originale qui
+            <p class="text-light col-lg-8 text-center mr-1 ml-1">Nous sommes une start-up avec une idée originale qui
                 souhaite révolutionner l'art en apportant une touche de modernité.</p>
-            <p class="text-light col-lg-7 text-center ">En effet, Leonart vous offre une application web capable
+            <p class="text-light col-lg-8 text-center ">En effet, Leonart vous offre une application web capable
                 de faire revivre à vos visiteurs les oeuvres d'arts qu'ils ont déjà découvert, en réalité augmentée.</p>
 
             <div class="row justify-content-center mt-4">
@@ -101,7 +107,7 @@
             <div class="col-lg-6 ">
                 <img src="{{ asset('/images/Ibeacon.png') }}" alt="iBeacon">
             </div>
-            <div class="align-self-center col-lg-6 text-dark ">
+            <div class="align-self-center col-lg-6 text-dark  ">
                 <p>L'iBeacon, est une balise de géolocalisation bluetooth précise, qui permet de détecter
                     et d'intéragir avec un visiteur.<br>
                     Il peut par exemple lui envoyer des informations sur une oeuvre.</p>
@@ -128,17 +134,17 @@
 </div>
 </section>
 <!-------------------Phone------------------------->
-<section>
+<section id="phone">
 <div class="flex-center position-ref full-height">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-5 p-3 pr-5 mr-3 text-dark font-weight-bold border-yellow-right">
+            <div class="align-self-center col-lg-6 p-3 pr-5  text-dark border-yellow-right">
                 <p class="text-right">Notre application proposera à vos visiteurs une expérience immersive
                     dans l'art grâce à la réalité augmentée.</p>
                 <p class="text-right">Une fois découverte, l'oeuvre d'art sera disponible à la consultation
                     dans le smartphone.</p>
             </div>
-            <div class="col-lg-5 ml-5">
+            <div class="col-lg-6 ">
               <img src="{{ asset('/images/phone.png') }}" alt="Carte et smartphone">
             </div>
         </div>
@@ -158,16 +164,15 @@
         </div>
 
         <div class="row justify-content-center">
-            <a id="btnContact" href="" class="mr-3 p-1 pl-4 pr-4 font-weight-bold
-                    text-dark white-grey border-0 radius nodeco" onmouseover="animationBtn(true);"
-               onmouseout="animationBtn(false)">Contact</a>
+            <a id="btnContact" href="{{ route('page:contact') }}" class="mr-3 p-1 pl-4 pr-4 font-weight-bold
+                    text-dark white-grey border-0 radius nodeco" onmouseover="animationBtnContact(true);"
+               onmouseout="animationBtnContact(false)">Contact</a>
 
-            <a id="btnSuivre" href="" class="ml-3 p-1 pl-4 pr-4 text-secondary font-weight-bold
-                    dark border border-secondary radius nodeco" onmouseover="animationBtn(true);"
-               onmouseout="animationBtn(false)">Suivre</a>
+            <a id="btnSuivre" href="" class="ml-3 p-1 pl-4 pr-4 text-dark font-weight-bold
+                    white-grey border-0 radius nodeco" onmouseover="animationBtnSuivre(true);"
+               onmouseout="animationBtnSuivre(false)">Suivre</a>
 
         </div>
-    </div>
 </div>
 </section>
 @endsection

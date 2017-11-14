@@ -104,38 +104,13 @@ h2 {
   max-height: 180px;
   overflow: auto;
 }
-.font-weight-bold{
-  font-weight: bold;
+
+.card-img-top{
+  width: 60% !important;
+  height: 100%;
 }
-.card{
-  margin-top: 20px;
-  background-color: white;
-  color: black;
-  margin-right: 50px;
-  height: 310px;
-}
-.text-light{
-  color: #b3b3b3;
-}
-.text-dark{
-  color: black;
-}
-#presentation p{
-  font-size: 110%;
-  letter-spacing: .1rem;
-  margin-top: 10px;
-}
-#presentation hr{
-  margin-top: 8%;
-  margin-bottom: 1%;
-  margin-left: 45%;
-  margin-right: 45%;
-}
-#Ibeacon img{
-  width: 100%;
-}
-#phone img{
+#iBeacon img{
   width: 100%;
 }
 // Bootstrap 3.3.7
-@import "boostrap";
+@import "node_modules/bootstrap/scss/bootstrap";

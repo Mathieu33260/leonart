@@ -16,6 +16,7 @@
                 );
             }
         }
+        
         function animationBtnSuivre(hover) {
             if(hover)
             {

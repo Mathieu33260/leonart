@@ -1,28 +1,54 @@
 <div class="panel panel-default">
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-         * element that contains the map. */
-        #map {
-            min-height: 300px;
-            width: 100%;
-        }
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-    <div id="map"></div>
+
+    <div id="map" class="col-lg-12" style="min-height: 300px"></div>
     <input id="mapsearch">
     <script>
         var map;
         function initMap() {
+
+            @if(isset($oeuvres) && !empty($oeuvres))
+                    @foreach($oeuvres as $oeuvre)
+                        var centre = {lat: {{ $oeuvre->posX }}, lng: {{ $oeuvre->posY }} };
+                    @endforeach
+            @else
+                    var centre = {lat: -34.397, lng: 150.644};
+            @endif
+
             geocoder = new google.maps.Geocoder();
             map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: -34.397, lng: 150.644},
-                zoom: 8
+                center: centre,
+                zoom: 10
             });
+
+            @foreach($oeuvres as $oeuvre)
+
+            var contentString = "{{ $oeuvre->nom }}, ";
+                    @if($oeuvre->type != null)
+                        contentString  += "{{ $oeuvre->type->libelle }}, ";
+                    @endif
+
+                    @if($oeuvre->artiste != null)
+                        contentString  += "{{ $oeuvre->artiste->nom }} {{ $oeuvre->artiste->prenom }}, ";
+                    @endif
+
+            contentString += "{{ $oeuvre->idIbeacon }}, {{ $oeuvre->posX }}, {{ $oeuvre->posY }}";
+
+            var infowindow = new google.maps.InfoWindow({});
+
+                var marker = new google.maps.Marker({
+                    position: {lat: {{ $oeuvre->posX }}, lng: {{ $oeuvre->posY }}},
+                    map: map,
+                    label: '{{ $oeuvre->id }}',
+                    title: '{{$oeuvre->nom}}',
+                    contentString: contentString
+                });
+            marker.addListener('click', function() {
+                infowindow.setContent(this.contentString);
+                infowindow.open(map, this);
+            });
+            @endforeach
+
+
         }
 
         function codeAddress(address) {

@@ -18,7 +18,7 @@
             },
                 {
                     label: 'Oeuvres',
-                    data: [{{count($oeuvre)}}],
+                    data: [{{count($oeuvres)}}],
                     backgroundColor: [
                         '#4dd2ff',
                     ],

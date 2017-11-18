@@ -19,7 +19,8 @@ class OeuvresController extends Controller
      */
     public function index()
     {
-        $oeuvres = Oeuvre::limit(10)
+        $oeuvres = Oeuvre::where('userId', auth()->user()->id)
+            ->limit(10)
             ->get();
 
         return view('oeuvre.index')->with(compact('oeuvres'));
@@ -30,12 +31,14 @@ class OeuvresController extends Controller
         if($string != "")
         {
             $oeuvres = Oeuvre::where('nom', 'like', '%'.$string.'%')
+                ->where('userId', auth()->user()->id)
                 ->orderBy('id','ASC')
                 ->offset($offset)
                 ->limit(10)
                 ->get();
         } else {
-            $oeuvres = Oeuvre::orderBy('id','ASC')
+            $oeuvres = Oeuvre::where('userId', auth()->user()->id)
+                ->orderBy('id','ASC')
                 ->offset($offset)
                 ->limit(10)
                 ->get();
@@ -113,7 +116,13 @@ class OeuvresController extends Controller
     public function show(int $oeuvreId)
     {
         $oeuvre = Oeuvre::where('id', $oeuvreId)
+            ->where('userId', auth()->user()->id)
             ->first();
+
+        if(is_null($oeuvre))
+        {
+            return redirect()->route('oeuvre:index');
+        }
 
         if(\request()->ajax()) {
             return View::make('oeuvre.showAjax',compact('oeuvre'))->render();
@@ -132,7 +141,13 @@ class OeuvresController extends Controller
     public function edit(int $oeuvreId)
     {
         $oeuvre = Oeuvre::where('id', $oeuvreId)
+            ->where('userId', auth()->user()->id)
             ->first();
+
+        if(is_null($oeuvre))
+        {
+            return redirect()->route('oeuvre:index');
+        }
 
         $types = Type::pluck('libelle', 'id')->toArray();
         $artistes = Artiste::pluck('nom', 'id')->toArray();
@@ -154,6 +169,15 @@ class OeuvresController extends Controller
      */
     public function update(Request $request, int $oeuvreId)
     {
+        $oeuvretest = Oeuvre::where('id', $oeuvreId)
+            ->where('userId', auth()->user()->id)
+            ->first();
+
+        if(is_null($oeuvretest))
+        {
+            return redirect()->route('oeuvre:index');
+        }
+
         $this->validate($request, [
             'nom'     => 'required|string|max:255',
             'modele'     => 'string|nullable',
@@ -195,13 +219,16 @@ class OeuvresController extends Controller
      */
     public function destroy(int $oeuvreId)
     {
-        Oeuvre::where('id', $oeuvreId)->delete();
+        $oeuvre = Oeuvre::where('id', $oeuvreId)
+            ->where('userId', auth()->user()->id)
+            ->first();
 
-        /*if ($type) {
-            flash(__("Profil sauvegardé avec succès !"))->success();
-        } else {
-            flash(__("Une erreur s'est produite."))->error();
-        }*/
+        if(is_null($oeuvre))
+        {
+            return redirect()->route('oeuvre:index');
+        }
+
+        Oeuvre::where('id', $oeuvreId)->delete();
 
         return redirect()->route('oeuvre:index');
     }

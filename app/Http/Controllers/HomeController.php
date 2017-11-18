@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $oeuvre = Oeuvre::all();
+        $oeuvres = Oeuvre::all();
         $type = Type::all();
         $artiste = Artiste::all();
 
@@ -51,14 +51,15 @@ class HomeController extends Controller
         $general = View::make('charts.general')
             ->with(compact('type'))
             ->with(compact('artiste'))
-            ->with(compact('oeuvre'))->render();
+            ->with(compact('oeuvres'))->render();
 
         $oeuvreV = View::make('charts.oeuvre')
             ->with(compact('tab1'))
             ->with(compact('tab2'))
-            ->with(compact('oeuvre'))->render();
+            ->with(compact('oeuvres'))->render();
 
         $map = View::make('map.map')
+            ->with(compact('oeuvres'))
             ->render();
 
 

@@ -30,11 +30,11 @@
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('posX', 'Latitude') !!}
-                            {!! Form::number('posX', null, array('required' => 'required', 'class' => 'form-control')) !!}
+                            {!! Form::number('posX', null, array('required' => 'required', 'class' => 'form-control', 'step' => '0.000001')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('posY', 'Longitude') !!}
-                            {!! Form::number('posY', null, array('required' => 'required', 'class' => 'form-control')) !!}
+                            {!! Form::number('posY', null, array('required' => 'required', 'class' => 'form-control', 'step' => '0.000001')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! BootForm::text(__("Audio"), 'audio'); !!}

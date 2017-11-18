@@ -72,7 +72,7 @@ class OeuvresController extends Controller
         $this->validate($request, [
             'nom'     => 'required|string|max:255',
             'modele'     => 'string|nullable',
-            'idIbeacon' => 'required|integer|digits_between:0,3',
+            'idIbeacon' => 'required|integer|digits_between:0,6',
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
             'audio' => 'string|nullable',
@@ -157,7 +157,7 @@ class OeuvresController extends Controller
         $this->validate($request, [
             'nom'     => 'required|string|max:255',
             'modele'     => 'string|nullable',
-            'idIbeacon' => 'required|integer|digits_between:0,3',
+            'idIbeacon' => 'required|integer|digits_between:0,6',
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
             'audio' => 'string|nullable',

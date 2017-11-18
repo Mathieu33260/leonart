@@ -29,12 +29,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $oeuvres = Oeuvre::all();
+        $oeuvres = Oeuvre::where('userId', auth()->user()->id)
+            ->get();
         $type = Type::all();
         $artiste = Artiste::all();
 
         $oeuvreOrd = DB::table('oeuvre')
             ->join('type', 'oeuvre.typeId', '=', 'type.id')
+            ->where('oeuvre.userId', auth()->user()->id)
             ->select('type.libelle', DB::raw('count(*) as total'))
             ->groupBy('libelle')
             ->get()

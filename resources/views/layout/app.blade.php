@@ -54,6 +54,8 @@
 </head>
 <body>
 <div id="app">
+    @yield('nav')
+
     @yield('content')
 </div>
 

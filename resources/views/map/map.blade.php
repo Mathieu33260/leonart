@@ -48,8 +48,17 @@
                     contentString: contentString
                 });
             marker.addListener('click', function() {
-                infowindow.setContent(this.contentString);
-                infowindow.open(map, this);
+                /*infowindow.setContent(this.contentString);
+                infowindow.open(map, this);*/
+                var lethis = this;
+                $.ajax({
+                    type:'GET',
+                    url:'/oeuvre/'+{{$oeuvre->id}},
+                    success:function(data){
+                        infowindow.setContent(data);
+                        infowindow.open(map, lethis);
+                    }
+                });
             });
 
             /*marker.addListener('mouseout', function() {

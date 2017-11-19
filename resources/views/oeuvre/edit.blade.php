@@ -27,7 +27,7 @@
                                 {!! BootForm::text(__("Nom"), 'nom')->required() !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::text(__("Modèle"), 'modele')->required() !!}
+                                {!! BootForm::text(__("Modèle"), 'modele') !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 {!! Form::Label('idIbeacon', 'Id iBeacon') !!}
@@ -35,11 +35,11 @@
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 {!! Form::Label('posX', 'Latitude') !!}
-                                {!! Form::number('posX',$oeuvre->posX, array('required' => 'required', 'class' => 'form-control', 'step' => '0.000001'))) !!}
+                                {!! Form::number('posX',$oeuvre->posX, array('required' => 'required', 'class' => 'form-control', 'step' => '0.000001')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 {!! Form::Label('posY', 'Longitude') !!}
-                                {!! Form::number('posY',$oeuvre->posY ,array('required' => 'required', 'class' => 'form-control', 'step' => '0.000001'))) !!}
+                                {!! Form::number('posY',$oeuvre->posY ,array('required' => 'required', 'class' => 'form-control', 'step' => '0.000001')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 {!! BootForm::text(__("Audio"), 'audio') !!}

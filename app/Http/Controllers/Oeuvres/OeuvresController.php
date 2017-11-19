@@ -23,7 +23,13 @@ class OeuvresController extends Controller
             ->limit(10)
             ->get();
 
-        return view('oeuvre.index')->with(compact('oeuvres'));
+        $map = View::make('oeuvre.map')
+            ->with(compact('oeuvres'))
+            ->render();
+
+        return view('oeuvre.index')
+            ->with(compact('map'))
+            ->with(compact('oeuvres'));
     }
 
     public function indexAjax($offset,$string = "")

@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-xs-12 col-md-8 col-lg-8 panel panel-default">
+            <div class="col-xs-12 col-md-8 col-lg-12">
                 <h3>Oeuvre {{ $oeuvre->nom }}</h3>
                 <p>Nom : {{ $oeuvre->nom }}</p>
                 <p>Modèle : {{ $oeuvre->modele }}</p>

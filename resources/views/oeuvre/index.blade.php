@@ -6,11 +6,15 @@
     <div class="container">
         <div class="row">
 
-            <div id="box" class="col-xs-12 col-md-5 col-lg-5 p-3">
+
+
+            <div id="box" class="col-xs-12 col-md-5 col-lg-4">
 
             </div>
 
-            <div class="col-xs-12 col-md-5 col-lg-5 panel panel-default p-3 m-3">
+            <div class="col-lg-4">{!! $map !!}</div>
+
+            <div class="col-lg-3">
                 <div class="panel-heading lead">
                     <label>Rechercher une Oeuvre
                         <input id="recherche" type="text" onkeyup="getSearch()">
@@ -19,7 +23,7 @@
                 <ul class="right-list" onscroll="lazyLoad()">
                         @foreach($oeuvres as $oeuvre)
                         <li>
-                            <a href="#" onclick="getAjax({{ $oeuvre->id }})">
+                            <a href="#" onclick="getAjax({{ $oeuvre->id }},{{ $oeuvre->posX }},{{ $oeuvre->posY }})">
                                 {{ $oeuvre->nom }}
                             </a>
                         </li>
@@ -38,7 +42,9 @@
     </div>
     <script>
 
-        function getAjax(id){
+
+        function getAjax(id,lat,long){
+            centerMap(lat,long);
             $.ajax({
                 type:'GET',
                 url:'/oeuvre/'+id,
@@ -58,8 +64,11 @@
                 url:'/oeuvre/indexAjax/'+offset+'/'+$('#recherche').val(),
                 success:function(data){
                     $('.right-list').empty();
+                    deleteAllMarker();
                     $.each(data, function( index, value ) {
-                        $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
+                        var pos = {lat: value.posX, lng: value.posY};
+                        placeMarker(pos,map);
+                        $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')">' +
                             ''+ value.nom +'</a></li>');
                     });
                     offset = offset + 10;
@@ -78,7 +87,9 @@
                     {
                         $('.loading-indicator').remove();
                         $.each(data, function( index, value ) {
-                            $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
+                            var pos = {lat: value.posX, lng: value.posY};
+                            placeMarker(pos,map);
+                            $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')">' +
                                 ''+ value.nom +'</a></li>');
                         });
                         offset = offset + 10;

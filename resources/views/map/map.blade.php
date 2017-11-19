@@ -1,9 +1,10 @@
 <div class="panel panel-default">
 
     <div id="map" class="col-lg-12" style="min-height: 300px"></div>
-    <input id="mapsearch" placeholder="ville">
-    <input id="latitude" placeholder="latitude">
-    <input id="longitude" placeholder="longitude">
+    <input id="mapsearch" placeholder="Ville">
+    <input id="latitude" placeholder="Latitude">
+    <input id="longitude" placeholder="Longitude">
+    <input id="nom" placeholder="Nom d'oeuvre">
     <script>
         var map;
         var centre = {lat: 44.791213, lng: -0.608717};
@@ -35,6 +36,8 @@
 
             contentString += "{{ $oeuvre->idIbeacon }}, {{ $oeuvre->posX }}, {{ $oeuvre->posY }}";
 
+            contentString += "<br><a href='{{ route('oeuvre:show',array('id'=>$oeuvre->id)) }}'>Consulter l'oeuvre</a>";
+
             var infowindow = new google.maps.InfoWindow({});
 
                 var marker = new google.maps.Marker({
@@ -44,14 +47,14 @@
                     title: '{{$oeuvre->nom}}',
                     contentString: contentString
                 });
-            marker.addListener('mouseover', function() {
+            marker.addListener('click', function() {
                 infowindow.setContent(this.contentString);
                 infowindow.open(map, this);
             });
 
-            marker.addListener('mouseout', function() {
+            /*marker.addListener('mouseout', function() {
                 infowindow.close(map, this);
-            });
+            });*/
             @endforeach
 
 
@@ -62,7 +65,7 @@
                 if (status === google.maps.GeocoderStatus.OK) {
                     map.setCenter(results[0].geometry.location);
                 } else {
-                    alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
+                    console.log("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
                 }
             });
         }
@@ -73,7 +76,7 @@
                 if (status === google.maps.GeocoderStatus.OK) {
                     map.setCenter(results[0].geometry.location);
                 } else {
-                    alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
+                    console.log("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
                 }
             });
         }
@@ -96,6 +99,24 @@
             if($("#latitude").val().length !== 0 && $("#longitude").val().length !== 0)
             {
                 codePos($("#latitude").val(),$("#longitude").val());
+            }
+        });
+
+        $("#nom").on("input", function () {
+            if($("#nom").val().length !== 0)
+            {
+                $.ajax({
+                    type:'GET',
+                    url:'/oeuvre/indexAjax/0/'+$('#nom').val(),
+                    success:function(data){
+                        $.each(data, function( index, value ) {
+                            if(index === 0)
+                            {
+                                codePos(value.posX,value.posY);
+                            }
+                        });
+                    }
+                });
             }
         });
     </script>

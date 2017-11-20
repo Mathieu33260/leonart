@@ -64,7 +64,7 @@ Updating the **phpunit.xml** may be needed (DB_CONNECTION, DB_DATABASE)
 - [MySQL](https://mysql.com)
 - [Laravel Mix](https://)
 
-###Database
+### Database
 
 If you have to use LAMP, MAMP, WAMP for local DB, please change the .env and database.php :
 

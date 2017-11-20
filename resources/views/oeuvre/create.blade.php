@@ -15,6 +15,7 @@
                 </div>
             @endif
 
+
             <div class="col-xs-12 col-md-8 col-lg-8 panel panel-default">
                 {!! BootForm::open()->action(route('oeuvre:store'))->patch() !!}
                 <div class="panel-body">

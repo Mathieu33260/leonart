@@ -1,38 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    {{-- Basic metas --}}
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="language" content="{{ app()->getLocale() }}" />
-    <meta name="copyright" content="{{ url('/') }}" />
-    <meta name="author" content="Leon-art.fr" />
+@extends('layout.app')
 
-    {{-- CSRF meta --}}
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    {{-- Navbar color --}}
-    <meta name="theme-color" content="#2c3e50" />
-    <meta name="msapplication-navbutton-color" content="#2c3e50" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="#2c3e50" />
-
-    {{-- Page title --}}
-    <title>{{ config('app.name') }}: @yield('title') | @yield('subtitle')</title>
-
-    {{-- Favicons --}}
-    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
-
-    {{-- Stylesheets --}}
-    @section('style')
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    @show
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-<body>
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -109,14 +79,3 @@
         </div>
     </div>
 </nav>
-<div class="container">
-
-</div>
-@yield('content')
-
-{{-- Scripts --}}
-@section('script')
-    <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
-@show
-</body>
-</html>

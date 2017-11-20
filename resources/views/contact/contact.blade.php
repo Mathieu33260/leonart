@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
       <div class="row justify-content-center">
-        <h2 class="text-dark text-center col-lg-12 ">Contactez-nous !</h2>
+        <h2 class="text-dark text-center col-lg-12">Contactez-nous !</h2>
       </div>
         <div class="row justify-content-center">
             @if ($errors->any())
@@ -19,7 +19,7 @@
             @endif
             <div class="col-xs-12 col-md-8 col-lg-8 panel panel-default ">
                 {!! BootForm::open()->action(route('page:contactPost'))->post() !!}
-                <div class="panel-body ">
+                <div class="panel-body">
                     <div class="row ">
                         <div class="col-xs-12 col-md-6">
                             {!! BootForm::text(__("Nom"), 'nom')->required() !!}

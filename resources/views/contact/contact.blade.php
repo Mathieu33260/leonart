@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
       <div class="row justify-content-center">
-        <h2 class="text-dark text-center col-lg-12">Contactez-nous&nbsp;!</h2>
+        <h2 class="text-dark text-center col-lg-12" id="title_h2">Contactez-nous&nbsp;!</h2>
       </div>
         <div class="row justify-content-center">
             @if ($errors->any())

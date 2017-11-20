@@ -9,8 +9,8 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             @guest
             <div class="navbar-nav links ">
-                <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('login') }}">Login</a>
-                <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('register') }}">Register</a>
+                <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('login') }}">Connexion</a>
+                <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('register') }}">S'enregistrer</a>
             </div>
             @else
                     <div class="navbar-nav links ">

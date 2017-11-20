@@ -144,6 +144,16 @@ p {
   width: 100%;
 }
 
+#title_h2 {
+  margin: 5%;
+}
+
+@media (max-width: 576px) {
+  .navbar-brand {
+    width: 70%;
+  }
+}
+
 /*!
  * Bootstrap v4.0.0-beta.2 (https://getbootstrap.com)
  * Copyright 2011-2017 The Bootstrap Authors

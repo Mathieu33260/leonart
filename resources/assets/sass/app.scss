@@ -131,5 +131,14 @@ p{
 #phone img{
   width: 100%;
 }
+#title_h2 {
+  margin: 5%;
+}
+
+@media (max-width: 576px) {
+  .navbar-brand{
+    width: 70%;
+  }
+ }
 // Bootstrap 3.3.7
 @import "node_modules/bootstrap/scss/bootstrap";

@@ -6,15 +6,6 @@
     <h2 class="text-dark text-center col-lg-12" id="title_h2">Se connecter&nbsp;</h2>
   </div>
     <div class="row justify-content-center">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <div class="col-xs-12 col-md-9 col-lg-9 panel panel-default ">
           <form class="form-horizontal" method="POST" action="{{ route('login') }}">
               {{ csrf_field() }}

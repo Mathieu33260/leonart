@@ -7,7 +7,7 @@
       <div class="row justify-content-center">
         <h2 class="text-dark text-center col-lg-12" id="title_h2">Contactez-nous&nbsp;!</h2>
       </div>
-        <div class="row justify-content-center">
+      <div class="row justify-content-center">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

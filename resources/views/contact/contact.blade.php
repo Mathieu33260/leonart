@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
       <div class="row justify-content-center">
-        <h2 class="text-dark text-center col-lg-12">Contactez-nous !</h2>
+        <h2 class="text-dark text-center col-lg-12">Contactez-nous&nbsp;!</h2>
       </div>
         <div class="row justify-content-center">
             @if ($errors->any())
@@ -17,27 +17,39 @@
                     </ul>
                 </div>
             @endif
-            <div class="col-xs-12 col-md-8 col-lg-8 panel panel-default ">
-                {!! BootForm::open()->action(route('page:contactPost'))->post() !!}
+            <div class="col-xs-12 col-md-9 col-lg-9 panel panel-default ">
+                {!! Form::open(['route'=>'page:contactPost']) !!}
                 <div class="panel-body">
                     <div class="row ">
                         <div class="col-xs-12 col-md-6">
-                            {!! BootForm::text(__("Nom"), 'nom')->required() !!}
+                          {!! Form::label('Nom') !!}
+                          {!! Form::text('Nom', null,
+                          array('required',
+                          'class'=>'form-control',
+                          'placeholder'=>'Votre Nom')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! BootForm::text(__("Email"), 'email')->required() !!}
+                          {!! Form::label('Email') !!}
+                          {!! Form::email('Email', null,
+                          array('required',
+                          'class'=>'form-control',
+                          'placeholder'=>'Votre adresse Email')) !!}
                         </div>
-                        <div class="col-xs-12 col-md-6">
-                            {!! BootForm::text(__("Texte"), 'texte')->required() !!}
+                        <div class="col-xs-12 col-md-12">
+                          {!! Form::label('Message') !!}
+                          {!! Form::textarea('Message', null,
+                          array('required',
+                          'class'=>'form-control',
+                          'placeholder'=>'Votre message')) !!}
                         </div>
                     </div>
                 </div>
                 <div class="panel-footer text-right">
-                    <button type="submit" class="btn btn-success">
-                        @lang("Envoyer") <span class="glyphicon glyphicon-ok"></span>
-                    </button>
+                  {!! Form::submit('Envoyer',
+                  array('class'=>'btn btn-success')) !!}
+
                 </div>
-                {!! BootForm::close() !!}
+                {!! Form::close() !!}
             </div>
 
 

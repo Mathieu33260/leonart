@@ -10,12 +10,12 @@
                     <div class="panel-heading lead">
                         {{ $type->libelle }}
                     </div>
-                    {!! BootForm::open()->action(route('type:update', ['id' => $type->id]))->patch() !!}
-                    {!! BootForm::bind($type) !!}
+                    {!! Form::model($type, array('route' => array('type:update', $type->id), 'method' => 'post')) !!}
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::text(__("Libelle"), 'libelle')->required() !!}
+                                {!! Form::Label('libelle', 'Libelle') !!}
+                                {!! Form::text('libelle', $type->libelle, array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                             @lang("Sauvegarder") <span class="glyphicon glyphicon-ok"></span>
                         </button>
                     </div>
-                    {!! BootForm::close() !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

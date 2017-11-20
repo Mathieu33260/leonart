@@ -63,9 +63,13 @@ class OeuvresController extends Controller
         $types = Type::pluck('libelle', 'id')->toArray();
         $artistes = Artiste::pluck('nom', 'id')->toArray();
 
+        $map = View::make('oeuvre.mapCreate')
+            ->render();
+
         return view('oeuvre.create')
             ->with(compact('types'))
-            ->with(compact('artistes'));
+            ->with(compact('artistes'))
+            ->with(compact('map'));
     }
 
 

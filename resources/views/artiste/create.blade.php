@@ -7,20 +7,24 @@
         <div class="row">
 
             <div class="col-xs-12 col-md-8 col-lg-8 panel panel-default">
-                {!! BootForm::open()->action(route('artiste:store'))->patch() !!}
+                {!! Form::open(['route' => 'artiste:store', 'method' => 'post']) !!}
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
-                            {!! BootForm::text(__("Nom"), 'nom')->required() !!}
+                            {!! Form::Label('nom', 'Nom') !!}
+                            {!! Form::text('nom', null, array('required' => 'required', 'class' => 'form-control')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! BootForm::text(__("Prénom"), 'prenom')->required() !!}
+                            {!! Form::Label('prenom', 'Prénom') !!}
+                            {!! Form::text('prenom', null, array('required' => 'required', 'class' => 'form-control')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! BootForm::date(__("Date de naissance"), 'dateN')->required() !!}
+                            {!! Form::Label('dateN', 'Date de naissance') !!}
+                            {!! Form::date('dateN', null, array('required' => 'required', 'class' => 'form-control')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! BootForm::date(__("Date de mort"), 'dateM') !!}
+                            {!! Form::Label('dateM', 'Date de mort') !!}
+                            {!! Form::date('dateM', null, array('class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>
@@ -29,7 +33,7 @@
                         @lang("Sauvegarder") <span class="glyphicon glyphicon-ok"></span>
                     </button>
                 </div>
-                {!! BootForm::close() !!}
+                {!! Form::close() !!}
             </div>
 
 

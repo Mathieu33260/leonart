@@ -7,11 +7,12 @@
         <div class="row">
 
             <div class="col-xs-12 col-md-8 col-lg-8 panel panel-default">
-                {!! BootForm::open()->action(route('type:store'))->patch() !!}
+                {!! Form::open(['route' => 'type:store', 'method' => 'post'])!!}
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
-                            {!! BootForm::text(__("Libelle"), 'libelle')->required() !!}
+                            {!! Form::Label('libelle', 'Libelle') !!}
+                            {!! Form::text('libelle', null, array('required' => 'required', 'class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>
@@ -20,7 +21,7 @@
                         @lang("Sauvegarder") <span class="glyphicon glyphicon-ok"></span>
                     </button>
                 </div>
-                {!! BootForm::close() !!}
+                {!! Form::close() !!}
             </div>
 
 

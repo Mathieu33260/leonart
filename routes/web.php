@@ -67,14 +67,14 @@ Route::prefix('type')->namespace('Type')->group(function () {
         Route::get('/create','TypeController@create')
             ->name('type:create');
 
-        Route::patch('/store','TypeController@store')
+        Route::post('/store','TypeController@store')
             ->name('type:store');
 
         Route::get('/edit/{id}','TypeController@edit')
             ->where(['id' => '[0-9]+'])
             ->name('type:edit');
 
-        Route::patch('/update/{id}','TypeController@update')
+        Route::post('/update/{id}','TypeController@update')
             ->where(['id' => '[0-9]+'])
             ->name('type:update');
 
@@ -109,14 +109,14 @@ Route::prefix('oeuvre')->namespace('Oeuvres')->group(function () {
         Route::get('/create','OeuvresController@create')
             ->name('oeuvre:create');
 
-        Route::patch('/store','OeuvresController@store')
+        Route::post('/store','OeuvresController@store')
             ->name('oeuvre:store');
 
         Route::get('/edit/{id}','OeuvresController@edit')
             ->where(['id' => '[0-9]+'])
             ->name('oeuvre:edit');
 
-        Route::patch('/update/{id}','OeuvresController@update')
+        Route::post('/update/{id}','OeuvresController@update')
             ->where(['id' => '[0-9]+'])
             ->name('oeuvre:update');
 
@@ -151,14 +151,14 @@ Route::prefix('artiste')->namespace('Artiste')->group(function () {
         Route::get('/create','ArtisteController@create')
             ->name('artiste:create');
 
-        Route::patch('/store','ArtisteController@store')
+        Route::post('/store','ArtisteController@store')
             ->name('artiste:store');
 
         Route::get('/edit/{id}','ArtisteController@edit')
             ->where(['id' => '[0-9]+'])
             ->name('artiste:edit');
 
-        Route::patch('/update/{id}','ArtisteController@update')
+        Route::post('/update/{id}','ArtisteController@update')
             ->where(['id' => '[0-9]+'])
             ->name('artiste:update');
 

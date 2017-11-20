@@ -16,15 +16,17 @@
             @endif
 
 
-            <div class="col-xs-12 col-md-8 col-lg-8 panel panel-default">
-                {!! BootForm::open()->action(route('oeuvre:store'))->patch() !!}
+            <div class="col-xs-12 col-md-8 col-lg-5">
+                {!! Form::open(['route' => 'oeuvre:store', 'method' => 'post']) !!}
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
-                            {!! BootForm::text(__("Nom"), 'nom')->required() !!}
+                            {!! Form::Label('nom', 'Nom') !!}
+                            {!! Form::text('nom', null, array('required' => 'required', 'class' => 'form-control')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! BootForm::text(__("Modèle"), 'modele') !!}
+                            {!! Form::Label('modele', 'Modèle') !!}
+                            {!! Form::text('modele', null, array('class' => 'form-control')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('idIbeacon', 'Id iBeacon') !!}
@@ -32,14 +34,15 @@
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('posX', 'Latitude') !!}
-                            {!! Form::number('posX', null, array('required' => 'required', 'class' => 'form-control', 'step' => '0.000001')) !!}
+                            {!! Form::text('posX', null, array('required' => 'required', 'class' => 'form-control')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('posY', 'Longitude') !!}
-                            {!! Form::number('posY', null, array('required' => 'required', 'class' => 'form-control', 'step' => '0.000001')) !!}
+                            {!! Form::text('posY', null, array('required' => 'required', 'class' => 'form-control')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            {!! BootForm::text(__("Audio"), 'audio'); !!}
+                            {!! Form::Label('audio', 'Audio') !!}
+                            {!! Form::text('audio', null, array('class' => 'form-control')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('typeId', 'Type') !!}
@@ -58,8 +61,12 @@
                         @lang("Sauvegarder") <span class="glyphicon glyphicon-ok"></span>
                     </button>
                 </div>
-                {!! BootForm::close() !!}
+                {!! Form::close() !!}
             </div>
+
+                <div class="col-xs-12 col-md-8 col-lg-5">
+                    {!! $map !!}
+                </div>
 
 
         </div>

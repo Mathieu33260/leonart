@@ -19,15 +19,21 @@
                     <div class="panel-heading lead">
                         {{ $oeuvre->nom }}
                     </div>
-                    {!! BootForm::open()->action(route('oeuvre:update', ['id' => $oeuvre->id]))->patch() !!}
-                    {!! BootForm::bind($oeuvre) !!}
+                    {!! Form::model($oeuvre, array('route' => array('oeuvre:update', $oeuvre->id), 'method' => 'post')) !!}
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::text(__("Nom"), 'nom')->required() !!}
+                                {!! Form::Label('nom', 'Nom') !!}
+                                {!! Form::text('nom', $oeuvre->nom, array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::text(__("Modèle"), 'modele') !!}
+                                @if($oeuvre->modele != null)
+                                    {!! Form::Label('modele', 'Modèle') !!}
+                                    {!! Form::text('modele', $oeuvre->modele, array('class' => 'form-control')) !!}
+                                @else
+                                    {!! Form::Label('modele', 'Modèle') !!}
+                                    {!! Form::text('modele', null, array('class' => 'form-control')) !!}
+                                @endif
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 {!! Form::Label('idIbeacon', 'Id iBeacon') !!}
@@ -42,7 +48,15 @@
                                 {!! Form::number('posY',$oeuvre->posY ,array('required' => 'required', 'class' => 'form-control', 'step' => '0.000001')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::text(__("Audio"), 'audio') !!}
+                                @if($oeuvre->audio != null)
+                                    {!! Form::Label('audio', 'Audio') !!}
+                                    {!! Form::text('audio', $oeuvre->audio, array('class' => 'form-control')) !!}
+                                @else
+                                    {!! Form::Label('audio', 'Audio') !!}
+                                    {!! Form::text('audio', null, array('class' => 'form-control')) !!}
+                                @endif
+
+
                             </div>
                             @if($oeuvre->type != null)
                                 <div class="col-xs-12 col-md-6">
@@ -78,7 +92,7 @@
                             @lang("Sauvegarder") <span class="glyphicon glyphicon-ok"></span>
                         </button>
                     </div>
-                    {!! BootForm::close() !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

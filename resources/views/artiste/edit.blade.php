@@ -10,21 +10,29 @@
                     <div class="panel-heading lead">
                         {{ $artiste->nom }} {{ $artiste->prenom }}
                     </div>
-                    {!! BootForm::open()->action(route('artiste:update', ['id' => $artiste->id]))->patch() !!}
-                    {!! BootForm::bind($artiste) !!}
+                    {!! Form::model($artiste, array('route' => array('artiste:update', $artiste->id), 'method' => 'post')) !!}
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::text(__("Nom"), 'nom')->required() !!}
+                                {!! Form::Label('nom', 'Nom') !!}
+                                {!! Form::text('nom', $artiste->nom, array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::text(__("Prénom"), 'prenom')->required() !!}
+                                {!! Form::Label('prenom', 'Prénom') !!}
+                                {!! Form::text('prenom', $artiste->prenom, array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::date(__("Date de naissance"), 'dateN')->required() !!}
+                                {!! Form::Label('dateN', 'Date de naissance') !!}
+                                {!! Form::date('dateN', $artiste->dateN, array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::date(__("Date de mort"), 'dateM') !!}
+                                @if($artiste->dateM != null)
+                                    {!! Form::Label('dateM', 'Date de mort') !!}
+                                    {!! Form::date('dateM', $artiste->dateM, array('required' => 'required', 'class' => 'form-control')) !!}
+                                @else
+                                    {!! Form::Label('dateM', 'Date de mort') !!}
+                                    {!! Form::date('dateM', null, array('class' => 'form-control')) !!}
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -33,7 +41,7 @@
                             @lang("Sauvegarder") <span class="glyphicon glyphicon-ok"></span>
                         </button>
                     </div>
-                    {!! BootForm::close() !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

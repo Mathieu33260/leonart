@@ -22,8 +22,9 @@
             initMap: function() {
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: this.center,
+                    scrollwheel: false,
                     zoom: 4
-                });
+                })
                 this.oeuvres.forEach(function (value,index,array) {
                     var centre = {lat: value.posX, lng: value.posY };
                     //this.markers.push(centre);
@@ -38,11 +39,11 @@
                         $.ajax({
                             type:'GET',
                             url:'/oeuvre/'+value.id,
-                        success:function(data){
-                            infowindow.setContent(data);
-                            infowindow.open(map, lethis);
-                        }
-                    });
+                            success:function(data){
+                                infowindow.setContent(data);
+                                infowindow.open(map, lethis);
+                            }
+                        });
                     });
                 });
             }

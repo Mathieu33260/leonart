@@ -28818,6 +28818,9 @@ window.Vue = __webpack_require__(10);
 
 Vue.component('example', __webpack_require__(39));
 Vue.component('maphome', __webpack_require__(42));
+Vue.component('mapoeuvre', __webpack_require__(52));
+Vue.component('indexoeuvre', __webpack_require__(58));
+Vue.component('mapoeuvrecreate', __webpack_require__(53));
 
 var app = new Vue({
   el: '#app'
@@ -44290,7 +44293,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         initMap: function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: this.center,
-                scrollwheel: false,
                 zoom: 4
             });
             this.oeuvres.forEach(function (value, index, array) {
@@ -44349,6 +44351,660 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(12)
+/* script */
+var __vue_script__ = __webpack_require__(54)
+/* template */
+var __vue_template__ = __webpack_require__(55)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\MapOeuvre.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-50aba003", Component.options)
+  } else {
+    hotAPI.reload("data-v-50aba003", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(12)
+/* script */
+var __vue_script__ = __webpack_require__(56)
+/* template */
+var __vue_template__ = __webpack_require__(57)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\MapOeuvreCreate.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c9f17a42", Component.options)
+  } else {
+    hotAPI.reload("data-v-c9f17a42", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['oeuvres'],
+    name: 'mapHome',
+    data: function data() {
+        return {
+            map: null,
+            markers: [],
+            center: { lat: 44.791213, lng: -0.608717 }
+        };
+    },
+
+    mounted: function mounted() {
+        this.initMap();
+    },
+    methods: {
+        initMap: function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: this.center,
+                zoom: 4
+            });
+            var tab = this.markers;
+            this.oeuvres.forEach(function (value, index, array) {
+                var centre = { lat: value.posX, lng: value.posY };
+                //this.markers.push(centre);
+                var marker = new google.maps.Marker({
+                    position: centre,
+                    map: map,
+                    label: "" + value.id + ""
+                });
+                var infowindow = new google.maps.InfoWindow({});
+                marker.addListener('click', function () {
+                    var lethis = this;
+                    $.ajax({
+                        type: 'GET',
+                        url: '/oeuvre/' + value.id,
+                        success: function success(data) {
+                            infowindow.setContent(data);
+                            infowindow.open(map, lethis);
+                        }
+                    });
+                });
+                tab.push(marker);
+            });
+            this.markers = tab;
+            this.map = map;
+        },
+        placeMarker: function placeMarker(position) {
+            console.log(position);
+            var map = this.map;
+            var infowindow = new google.maps.InfoWindow({});
+            var marker = new google.maps.Marker({
+                position: position,
+                map: map
+            });
+            map.panTo(position);
+            marker.addListener('click', function () {
+                /*infowindow.setContent(this.contentString);
+                infowindow.open(map, this);*/
+                var lethis = this;
+                $.ajax({
+                    type: 'GET',
+                    url: '/oeuvre/' + loeuvre.id,
+                    success: function success(data) {
+                        infowindow.setContent(data);
+                        infowindow.open(map, lethis);
+                    }
+                });
+            });
+            this.markers.push(marker);
+        },
+        deleteAllMarker: function deleteAllMarker() {
+            $.each(this.markers, function () {
+                this.setMap(null);
+            });
+        },
+        centerMap: function centerMap(lat, long) {
+            var latlng = { lat: parseFloat(lat), lng: parseFloat(long) };
+            geocoder.geocode({ 'location': latlng }, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                } else {
+                    console.log("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
+                }
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {
+    staticClass: "col-lg-12",
+    staticStyle: { "min-height": "300px" },
+    attrs: { id: "map" }
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-50aba003", module.exports)
+  }
+}
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['oeuvres'],
+    name: 'mapHome',
+    data: function data() {
+        return {
+            markers: [],
+            center: { lat: 44.791213, lng: -0.608717 }
+        };
+    },
+
+    mounted: function mounted() {
+        this.initMap();
+    },
+    methods: {
+        initMap: function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: this.center,
+                scrollwheel: false,
+                zoom: 4
+            });
+            this.oeuvres.forEach(function (value, index, array) {
+                var centre = { lat: value.posX, lng: value.posY };
+                //this.markers.push(centre);
+                var marker = new google.maps.Marker({
+                    position: centre,
+                    map: map,
+                    label: "" + value.id + ""
+                });
+                var infowindow = new google.maps.InfoWindow({});
+                marker.addListener('click', function () {
+                    var lethis = this;
+                    $.ajax({
+                        type: 'GET',
+                        url: '/oeuvre/' + value.id,
+                        success: function success(data) {
+                            infowindow.setContent(data);
+                            infowindow.open(map, lethis);
+                        }
+                    });
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {
+    staticClass: "col-lg-12",
+    staticStyle: { "min-height": "300px" },
+    attrs: { id: "map" }
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c9f17a42", module.exports)
+  }
+}
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(12)
+/* script */
+var __vue_script__ = __webpack_require__(59)
+/* template */
+var __vue_template__ = __webpack_require__(60)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\IndexOeuvre.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7fa7bab9", Component.options)
+  } else {
+    hotAPI.reload("data-v-7fa7bab9", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['oeuvres'],
+    name: 'indexoeuvre',
+    data: function data() {
+        return {
+            map: null,
+            geocoder: null,
+            markers: [],
+            center: { lat: 44.791213, lng: -0.608717 },
+            offset: 10
+        };
+    },
+
+    mounted: function mounted() {
+        this.initMap();
+    },
+    methods: {
+        initMap: function initMap() {
+            var geocoder = new google.maps.Geocoder();
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: this.center,
+                zoom: 4
+            });
+            var tab = this.markers;
+            this.oeuvres.forEach(function (value, index, array) {
+                var centre = { lat: value.posX, lng: value.posY };
+                //this.markers.push(centre);
+                var marker = new google.maps.Marker({
+                    position: centre,
+                    map: map,
+                    label: "" + value.id + ""
+                });
+                var infowindow = new google.maps.InfoWindow({});
+                marker.addListener('click', function () {
+                    var lethis = this;
+                    $.ajax({
+                        type: 'GET',
+                        url: '/oeuvre/' + value.id,
+                        success: function success(data) {
+                            infowindow.setContent(data);
+                            infowindow.open(map, lethis);
+                        }
+                    });
+                });
+                tab.push(marker);
+            });
+            this.markers = tab;
+            this.map = map;
+            this.geocoder = geocoder;
+        },
+        placeMarker: function placeMarker(position, id) {
+            var map = this.map;
+            var infowindow = new google.maps.InfoWindow({});
+            var marker = new google.maps.Marker({
+                position: position,
+                map: map
+            });
+            map.panTo(position);
+            marker.addListener('click', function () {
+                var lethis = this;
+                $.ajax({
+                    type: 'GET',
+                    url: '/oeuvre/' + id,
+                    success: function success(data) {
+                        infowindow.setContent(data);
+                        infowindow.open(map, lethis);
+                    }
+                });
+            });
+            this.markers.push(marker);
+        },
+        deleteAllMarker: function deleteAllMarker() {
+            $.each(this.markers, function () {
+                this.setMap(null);
+            });
+        },
+        centerMap: function centerMap(lat, long) {
+            var map = this.map;
+            var latlng = { lat: parseFloat(lat), lng: parseFloat(long) };
+            this.geocoder.geocode({ 'location': latlng }, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                } else {
+                    console.log("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
+                }
+            });
+        },
+        getAjax: function getAjax(id, lat, long) {
+            this.centerMap(lat, long);
+            $.ajax({
+                type: 'GET',
+                url: '/oeuvre/' + id,
+                success: function success(data) {
+                    $('#box').empty();
+                    $('#box').append(data);
+                }
+            });
+        },
+        getSearch: function getSearch() {
+            this.offset = 0;
+            var offset = this.offset;
+            var lethis = this;
+            $('.right-list').empty();
+            $('.right-list').append('Chargement');
+            $.ajax({
+                type: 'GET',
+                url: '/oeuvre/indexAjax/' + offset + '/' + $('#recherche').val(),
+                success: function success(data) {
+                    $('.right-list').empty();
+                    lethis.deleteAllMarker();
+                    $.each(data, function (index, value) {
+                        var pos = { lat: value.posX, lng: value.posY };
+                        lethis.placeMarker(pos, value.id);
+                        $('.right-list').append('<li><a href="#" v-on:click="getAjax(' + value.id + ',' + value.posX + ',' + value.posY + ')">' + '' + value.nom + '</a></li>');
+                    });
+                    offset = offset + 10;
+                }
+            });
+            this.offset = offset;
+        },
+        lazyLoad: function lazyLoad() {
+            var offset = this.offset;
+            var lethis = this;
+            if ($('.right-list').scrollTop() === document.getElementsByClassName('right-list')[0].scrollHeight - $('.right-list').height()) {
+
+                $.ajax({
+                    type: "GET",
+                    url: '/oeuvre/indexAjax/' + offset + '/' + $('#recherche').val(),
+                    success: function success(data) {
+                        $('.loading-indicator').remove();
+                        $.each(data, function (index, value) {
+                            var pos = { lat: value.posX, lng: value.posY };
+                            lethis.placeMarker(pos, value.id);
+                            $('.right-list').append('<li><a href="#" v-on:click="getAjax(' + value.id + ',' + value.posX + ',' + value.posY + ')">' + '' + value.nom + '</a></li>');
+                        });
+                        offset = offset + 10;
+                    }
+                });
+            }
+            this.offset = offset;
+        }
+    }
+});
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", {
+        staticClass: "col-xs-12 col-md-5 col-lg-4",
+        attrs: { id: "box" }
+      }),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-3" }, [
+        _c("div", { staticClass: "panel-heading lead" }, [
+          _c("label", [
+            _vm._v("Rechercher une Oeuvre\n                    "),
+            _c("input", {
+              attrs: { id: "recherche", type: "text" },
+              on: {
+                keyup: function($event) {
+                  _vm.getSearch()
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "ul",
+          {
+            staticClass: "right-list",
+            on: {
+              scroll: function($event) {
+                _vm.lazyLoad()
+              }
+            }
+          },
+          _vm._l(_vm.oeuvres, function(oeuvre) {
+            return _c("li", [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      _vm.getAjax(oeuvre.id, oeuvre.posX, oeuvre.posY)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(oeuvre.nom) +
+                      "\n                    "
+                  )
+                ]
+              )
+            ])
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(1)
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-4" }, [
+      _c("div", {
+        staticClass: "col-lg-12",
+        staticStyle: { "min-height": "300px" },
+        attrs: { id: "map" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 col-md-5 col-lg-5" }, [
+      _c("a", { attrs: { href: "/oeuvre/create" } }, [
+        _c("input", {
+          staticClass: "btn center-block",
+          attrs: { type: "button", value: "Ajouter" }
+        })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7fa7bab9", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

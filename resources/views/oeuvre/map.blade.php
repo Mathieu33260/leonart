@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 
-    <div id="map" class="col-lg-12" style="min-height: 800px"></div>
+    <div id="map" class="col-lg-12" style="min-height: 300px"></div>
     <script>
         var map;
         var centre = {lat: 44.791213, lng: -0.608717};

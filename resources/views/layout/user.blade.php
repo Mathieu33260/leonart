@@ -8,7 +8,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
     <a class="navbar-brand" href="{{ url('/')}}">
-        {{config('app.name', 'Laravel')}}
+        <img src="http://svgur.com/i/3yP.svg" height="30" class="d-inline-block align-top" alt="Logo de Leonart"></img>
     </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         @if (Auth::check())

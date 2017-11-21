@@ -4,6 +4,95 @@
 @section('script')
     @parent
     <script type="application/javascript">
+    var silver = [
+          {
+            elementType: 'geometry',
+            stylers: [{color: '#f5f5f5'}]
+          },
+          {
+            elementType: 'labels.icon',
+            stylers: [{visibility: 'off'}]
+          },
+          {
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#616161'}]
+          },
+          {
+            elementType: 'labels.text.stroke',
+            stylers: [{color: '#f5f5f5'}]
+          },
+          {
+            featureType: 'administrative.land_parcel',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#bdbdbd'}]
+          },
+          {
+            featureType: 'poi',
+            elementType: 'geometry',
+            stylers: [{color: '#eeeeee'}]
+          },
+          {
+            featureType: 'poi',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#757575'}]
+          },
+          {
+            featureType: 'poi.park',
+            elementType: 'geometry',
+            stylers: [{color: '#e5e5e5'}]
+          },
+          {
+            featureType: 'poi.park',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#9e9e9e'}]
+          },
+          {
+            featureType: 'road',
+            elementType: 'geometry',
+            stylers: [{color: '#ffffff'}]
+          },
+          {
+            featureType: 'road.arterial',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#757575'}]
+          },
+          {
+            featureType: 'road.highway',
+            elementType: 'geometry',
+            stylers: [{color: '#dadada'}]
+          },
+          {
+            featureType: 'road.highway',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#616161'}]
+          },
+          {
+            featureType: 'road.local',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#9e9e9e'}]
+          },
+          {
+            featureType: 'transit.line',
+            elementType: 'geometry',
+            stylers: [{color: '#e5e5e5'}]
+          },
+          {
+            featureType: 'transit.station',
+            elementType: 'geometry',
+            stylers: [{color: '#eeeeee'}]
+          },
+          {
+            featureType: 'water',
+            elementType: 'geometry',
+            stylers: [{color: '#c9c9c9'}]
+          },
+          {
+            featureType: 'water',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#9e9e9e'}]
+          }
+        ]
+
         function animationBtnContact(hover) {
             if(hover)
             {
@@ -29,7 +118,21 @@
                 );
             }
         }
+        function initMap() {
+
+          var uluru = {lat: 44.791346, lng:-0.608779};
+          var map = new google.maps.Map(document.getElementById('map_index'), {
+            zoom: 14,
+            center: uluru
+          });
+          map.setOptions({styles: silver});
+          var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+          });
+        }
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWARvkaDg6P7iC40S1FF3BN3uZVKC1UFU&callback=initMap" async defer></script>
 @endsection
 @section('content')
 <section>
@@ -80,23 +183,23 @@
 </section>
 <!---------------------------------------------------------->
 <section>
-<div class="flex-center position-ref full-height dark">
-
-
+<div class="position-ref dark">
     <div class="container">
         <div class="row justify-content-center">
-            <h2 class="text-uppercase text-light text-center col-lg-12">Présentation</h2>
-            <p class="text-light col-lg-8 text-center font-weight-bold">_____</p>
-            <p class="text-light col-lg-8 text-center mr-1 ml-1">Nous sommes une start-up avec une idée originale qui
-                souhaite révolutionner l'art en apportant une touche de modernité.</p>
-            <p class="text-light col-lg-8 text-center ">En effet, Leonart vous offre une application web capable
-                de faire revivre à vos visiteurs les oeuvres d'arts qu'ils ont déjà découvert, en réalité augmentée.</p>
+            <h2 class="title text-uppercase text-light text-center col-lg-12 mt-4 mb-4">Présentation</h2>
+            <div class="line mb-3"></div>
+            <div class="row justify-content-center mt-3 mb-3">
+              <p class="col-md-8 text-light text-center">Nous sommes une start-up avec une idée originale qui
+                  souhaite révolutionner l'art en apportant une touche de modernité.</p>
+              <p class="col-md-8 text-light text-center ">En effet, Leonart vous offre une application web capable
+                  de faire revivre à vos visiteurs les oeuvres d'arts qu'ils ont déjà découvert, en réalité augmentée.</p>
+            </div>
 
-            <div class="row justify-content-center mt-4">
 
-                <div class="card col-lg-3 mr-4 shadow">
+            <div class="row justify-content-center">
+                <div class="card col-md-3 col-sm-8  mb-4 mr-4 shadow">
                   <div class="row justify-content-center">
-                     <img class="card-img-top" src="{{ asset('/images/Pins_maps.png') }}" alt="Pins map">
+                     <img class="card-img-top mt-3" src="{{ asset('/images/Pins_maps.svg') }}" alt="Pins map">
                    </div>
                     <div class="card-body text-dark">
                         <h4 class="card-title text-center font-weight-bold">Carte iBeacons</h4>
@@ -104,9 +207,9 @@
                     </div>
                 </div>
 
-                <div class="card col-lg-3 ml-4 shadow">
+                <div class="card col-md-3 col-sm-8 mb-4 mr-4 shadow">
                   <div class="row justify-content-center">
-                    <img class="card-img-top" src="{{ asset('/images/MonCompte.png') }}" alt="Mon compte">
+                    <img class="card-img-top mt-3" src="{{ asset('/images/MonCompte.svg') }}" alt="Mon compte">
                   </div>
                     <div class="card-body text-dark">
                         <h4 class="card-title text-center font-weight-bold">Compte</h4>
@@ -117,26 +220,21 @@
             </div>
         </div>
     </div>
-
 </div>
 </section>
 <!---------------------------------------------------------->
-<section id="iBeacon">
-<div class="flex-center position-ref full-height">
-
-
-
+<section id=iBeacon>
+<div class="position-ref">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-6 ">
-                <img src="{{ asset('/images/Ibeacon.png') }}" alt="iBeacon">
+            <div class="col-md-6">
+                <img class="img-fluid" src="{{ asset('/images/Ibeacon.png') }}" alt="iBeacon">
             </div>
-            <div class="align-self-center col-lg-6 text-dark  ">
+            <div class="texte align-self-center col-md-6 text-dark  ">
                 <p>L'iBeacon, est une balise de géolocalisation bluetooth précise, qui permet de détecter
                     et d'intéragir avec un visiteur.<br>
                     Il peut par exemple lui envoyer des informations sur une oeuvre.</p>
                 <p>La balise iBeacon est discrète est peut se cacher derrière une oeuvre.</p>
-
             </div>
         </div>
     </div>
@@ -144,32 +242,27 @@
 </section>
 <!---------------------------------------------------------->
 <section>
-<div class="flex-center position-ref bandeau-height dark">
-
-
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <h2 class="text-light text-center col-lg-12 p-4">
-                Prolongez votre visite jusqu'à votre poche !
-            </h2>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="flex-center  dark">
+          <h2 class="text-light text-center pt-2 pb-2">Prolongez votre visite jusqu'à votre poche !</h2>
+      </div>
     </div>
-</div>
+  </div>
 </section>
 <!-------------------Phone------------------------->
-<section id="phone">
-<div class="flex-center position-ref full-height">
+<section id=phone>
+<div class="position-ref">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="align-self-center col-lg-6 p-3 pr-5  text-dark border-yellow-right">
+            <div class="texte align-self-center col-md-6 p-3 pr-5  text-dark border-yellow-right">
                 <p class="text-right">Notre application proposera à vos visiteurs une expérience immersive
                     dans l'art grâce à la réalité augmentée.</p>
                 <p class="text-right">Une fois découverte, l'oeuvre d'art sera disponible à la consultation
                     dans le smartphone.</p>
             </div>
-            <div class="col-lg-6 ">
-              <img src="{{ asset('/images/phone.png') }}" alt="Carte et smartphone">
+            <div class="col-md-6 ">
+              <img class="img-fluid" src="{{ asset('/images/phone.png') }}" alt="Carte et smartphone">
             </div>
         </div>
     </div>
@@ -177,25 +270,31 @@
 </section>
 <!-------------------Contact---------------------->
 <section>
-<div class="flex-center position-ref middle-height dark">
-
-
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <h2 class="text-light text-center col-lg-12">Contactez nous</h2>
-            <p class="text-light text-center col-lg-4">zeurhgv paieuvhaps hvapihvfa pkHFVLKDSh vpBDSF OKJSBd vlkQBDSVL QBSDLKJBVQ SDLJHBQSd kvc bql bvclS DBCV</p>
-        </div>
-
-        <div class="row justify-content-center">
-            <a id="btnContact" href="{{ route('page:contact') }}" class="mr-3 p-1 pl-4 pr-4 font-weight-bold
-                    text-dark white-grey border-0 radius nodeco" onmouseover="animationBtnContact(true);"
-               onmouseout="animationBtnContact(false)">Contact</a>
-
-            <a id="btnSuivre" href="" class="ml-3 p-1 pl-4 pr-4 text-dark font-weight-bold
-                    white-grey border-0 radius nodeco" onmouseover="animationBtnSuivre(true);"
-               onmouseout="animationBtnSuivre(false)">Suivre</a>
-
+<div class="position-ref dark">
+    <div class="container-fluid ">
+        <div class="row d-flex align-items-center">
+          <div class="col-md-6 pl-5">
+            <div class="row ">
+                <h4 class="text-light text-center col-lg-12 mt-3">Nous contacter :</h4>
+            </div>
+            <div class="row ">
+              <h5 class="text-light">Nos bureaux </h5>
+            </div>
+            <div class="row ">
+              <p class="text-light">Adresse : 15, rue Naudet, 33175 Gradignan  </p>
+            </div>
+            <div class="row ">
+              <p class="text-light">Email : contact@leon-art.fr</p>
+            </div>
+            <div class="row justify-content-center mb-3">
+              <a id="btnContact" href="{{ route('page:contact') }}" class=" p-1 pl-4 pr-4 font-weight-bold
+                          text-dark white-grey border-0 radius nodeco" onmouseover="animationBtnContact(true);"
+                     onmouseout="animationBtnContact(false)">Nous contacter</a>
+            </div>
+          </div>
+          <div class="col-md-6 map_container">
+            <div id="map_index"></div>
+          </div>
         </div>
     </div>
 </div>

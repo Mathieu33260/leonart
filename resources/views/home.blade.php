@@ -6,10 +6,9 @@
 @section('content')
 <style>
 	#banner{
-		background-image: url("https://files.slack.com/files-pri/T7AAFMCF6-F84KAH5PH/dim.jpg");
+		background-image: url("https://i.imgur.com/Lk73Pru.jpg");
 		height: 35%;
 		width: 100%;
-
 	}
 </style>
     	<div class="col-md-12 d-flex align-items-center justify-content-md-center" id="banner">
@@ -18,16 +17,13 @@
 
 <section>
 <div class="position-ref full-height dark">
-    <h1 class="p-4 text-center text-light display-1">Vos options</h1>
-        <div class="container">
-            <div class="row">
-            	<div class="col-sm">
-           		<div class="jumbotron ">
-           			<h2 class="display-4 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
+        <div class="container-fluid pt-4">
+            <div class="row pl-5">
+            	<div class="col-5">
+           			<h2 class="display-4 pb-4 text-white d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
            			{!! $map !!}
            		</div>
-           		</div>
-           		<div class="col-sm">
+           		<div class="col-4">
            		<div class="jumbotron">
            			<h2 class="display-4 d-flex align-items-center justify-content-md-center">Vos oeuvres</h2>
            			{!! $general !!}

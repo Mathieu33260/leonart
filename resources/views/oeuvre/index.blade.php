@@ -3,36 +3,35 @@
 @section('subtitle', __("Accueil"))
 
 @section('content')
+    <div class="col-md-12 d-flex align-items-center justify-content-md-center" id="banner">
+        <h1 class="display-1 text-white">Vos Oeuvres</h1>
+    </div>
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">
+        </form>
+    </nav>
     <div class="container">
         <div class="row">
-
-
-
-            <div id="box" class="col-xs-12 col-md-5 col-lg-4">
-
-            </div>
-
-            <div class="col-lg-4">{!! $map !!}</div>
-
-            <div class="col-lg-3">
-                <div class="panel-heading lead">
-                    <label>Rechercher une Oeuvre
-                        <input id="recherche" type="text" onkeyup="getSearch()">
-                    </label>
+            <div class="col-lg-5">
+                <div class="row" onscroll="lazyLoad()">
+                    @foreach($oeuvres as $oeuvre)
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <img src="{{asset('images/oeuvre1.jpg')}}" alt="">
+                            </div>
+                            <div class="col-lg-5">
+                                <a href="#" onclick="getAjax({{ $oeuvre->id }},{{ $oeuvre->posX }},{{ $oeuvre->posY }})">
+                                    <h4 class="text-dark nameO">{{ $oeuvre->nom }}</h4>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                <ul class="right-list" onscroll="lazyLoad()">
-                        @foreach($oeuvres as $oeuvre)
-                        <li>
-                            <a href="#" onclick="getAjax({{ $oeuvre->id }},{{ $oeuvre->posX }},{{ $oeuvre->posY }})">
-                                {{ $oeuvre->nom }}
-                            </a>
-                        </li>
-                        @endforeach
-                </ul>
 
 
             </div>
-
+            <div class="col-lg-4">{!! $map !!}</div>
             <div class="col-xs-12 col-md-5 col-lg-5">
                 <a href="{{ route('oeuvre:create') }}"><input type="button" class="btn center-block" value="Ajouter"></a>
             </div>

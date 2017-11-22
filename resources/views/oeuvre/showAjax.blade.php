@@ -38,6 +38,7 @@
                     <td><a href="{{ route('oeuvre:destroy', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-outline-danger" >Supprimer</button></a></td>
                 </tr>
             </table>
+
      </div>
     </div>
 </div>

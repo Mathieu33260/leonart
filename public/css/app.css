@@ -160,7 +160,7 @@ a:hover {
 }
 
 .right-list {
-  max-height: 100vh;
+  max-height: 180px;
   overflow: auto;
 }
 

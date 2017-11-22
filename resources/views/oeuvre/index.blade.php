@@ -176,7 +176,7 @@
                     deleteAllMarker();
                     $.each(data, function( index, value ) {
                         var pos = {lat: value.posX, lng: value.posY};
-                        placeMarker(pos,map);
+                        placeMarker(pos,map,value.id);
                         $('.list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')"><h4 class="text-light nameO">' +
                             ''+ value.nom +'</h4></a></td></tr>');
                     });
@@ -197,7 +197,7 @@
                         $('.loading-indicator').remove();
                         $.each(data, function( index, value ) {
                             var pos = {lat: value.posX, lng: value.posY};
-                            placeMarker(pos,map);
+                            placeMarker(pos,map,value.id);
                             $('.right-list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')">' +
                                 ''+ value.nom +'</a></td></tr>');
                         });

@@ -43,8 +43,6 @@
                 contentString: contentString
             });
             marker.addListener('click', function() {
-                /*infowindow.setContent(this.contentString);
-                infowindow.open(map, this);*/
                 var lethis = this;
                 $.ajax({
                     type:'GET',
@@ -75,7 +73,7 @@
             });
         }
 
-        function placeMarker(position, map) {
+        function placeMarker(position, map, id) {
             var infowindow = new google.maps.InfoWindow({});
             var marker = new google.maps.Marker({
                 position: position,
@@ -88,7 +86,7 @@
                 var lethis = this;
                 $.ajax({
                     type:'GET',
-                    url:'/oeuvre/'+{{$oeuvre->id}},
+                    url:'/oeuvre/'+id,
                     success:function(data){
                         infowindow.setContent(data);
                         infowindow.open(map, lethis);

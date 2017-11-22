@@ -13,7 +13,7 @@
           <div class="row justify-content-center">
             <div class="col-xs-12 col-md-7 ">
               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <label for="name" class="control-label">Name</label>
+                <label for="name" class="control-label">Nom</label>
                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
                 @if ($errors->has('name'))
                 <span class="help-block">
@@ -24,7 +24,7 @@
             </div>
             <div class="col-xs-12 col-md-7">
               <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="email" class="control-label">E-Mail Address</label>
+                <label for="email" class="control-label">Adresse mail</label>
                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
                 @if ($errors->has('email'))
                   <span class="help-block">
@@ -46,7 +46,7 @@
             </div>
             <div class="col-xs-12 col-md-7">
               <div class="form-group">
-                <label for="password-confirm" class="control-label">Confirmer votre mot de passe</label>
+                <label for="password-confirm" class="control-label">Confirmation du mot de passe</label>
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
               </div>
             </div>

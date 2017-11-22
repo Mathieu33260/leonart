@@ -168,10 +168,16 @@ return [
         AdamWathan\BootForms\BootFormsServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
+        /*
+        * Flash messages for Laravel
+        */
 
+        Laracasts\Flash\FlashServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */

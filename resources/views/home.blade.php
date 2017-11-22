@@ -34,26 +34,27 @@
         <div class="row justify-content-center">
         	<div class="col-3">
         		<div class="titleHead">
-        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Oeuvres par type</h2>
-           			{!! $oeuvreV !!}
+        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
+           			{!! $oeuvreT !!}
            			</div>
            	</div>
            	<div class="col-3">
         		<div class="titleHead">
-        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Répartition</h2>
+        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
            			{!! $general !!}
            			</div>
            	</div>
            	<div class="col-3">
         		<div class="titleHead">
-        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Oeuvres par artiste</h2>
-           			{!! $oeuvreV !!}
+        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
+           			{!! $oeuvreA !!}
            			</div>
            	</div>
         </div>
        	</div>
 
 </div>
+<<<<<<< HEAD
 </section>
 
        <!-- <div class="col-md-8 col-lg-5">{!! $general !!}</div>
@@ -61,4 +62,10 @@
         <div class="col-md-8 col-lg-5">{!! $oeuvreV !!}</div>
 
         <div class="col-md-8">{!! $map !!}</div> -->
+=======
+
+
+</section>
+
+>>>>>>> 5e8d084851eda169f5a7ce7cb96c851124c60db9
 @endsection

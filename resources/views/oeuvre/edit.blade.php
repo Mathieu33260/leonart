@@ -41,11 +41,11 @@
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 {!! Form::Label('posX', 'Latitude') !!}
-                                {!! Form::number('posX',$oeuvre->posX, array('required' => 'required', 'class' => 'form-control', 'step' => '0.000001')) !!}
+                                {!! Form::text('posX',$oeuvre->posX, array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 {!! Form::Label('posY', 'Longitude') !!}
-                                {!! Form::number('posY',$oeuvre->posY ,array('required' => 'required', 'class' => 'form-control', 'step' => '0.000001')) !!}
+                                {!! Form::text('posY',$oeuvre->posY ,array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 @if($oeuvre->audio != null)

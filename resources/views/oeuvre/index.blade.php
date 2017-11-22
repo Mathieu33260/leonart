@@ -80,7 +80,7 @@
                 <div class="row">
                     <div class=" col-lg-6">{!! $map !!}</div>
                     <div class=" col-lg-6">
-                        <h1>Image et 3D</h1>
+                      <div id="container"></div>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,68 @@
         </div>
 
     <script>
+        $(document).ready(function() {
+            var renderer, scene, camera, mesh;
 
+            init();
+            animate();
+
+            function init() {
+              renderer = new THREE.WebGLRenderer();
+
+              renderer.setSize( $(window).width()/2, $(window).height()/2 );
+
+              $('#container').append(renderer.domElement);
+
+              scene = new THREE.Scene();
+              camera =new THREE.PerspectiveCamera(50, $(window).width() / $(window).height(), 1, 10000);
+              camera.position.set(150, 0, 1000);
+              scene.add(camera);
+
+              var geometry = new THREE.CubeGeometry($(window).width()/5, $(window).width()/5, $(window).width()/5);
+              var texture1 = new THREE.TextureLoader().load( "{{ asset('/images/texture/texture1.jpg')}}" );
+              var texture2 = new THREE.TextureLoader().load( "{{ asset('/images/texture/texture2.jpg')}}" );
+
+              var tabTexture = [
+                texture1,
+                texture2,
+              ]
+
+              var texture = tabTexture[Math.floor((Math.random() * 2) + 0)];
+
+              var materials = [
+                    new THREE.MeshBasicMaterial({
+                        map: texture
+                    }),
+                    new THREE.MeshBasicMaterial({
+                        map: texture
+                    }),
+                    new THREE.MeshBasicMaterial({
+                        map: texture
+                    }),
+                    new THREE.MeshBasicMaterial({
+                        map: texture
+                    }),
+                    new THREE.MeshBasicMaterial({
+                        map: texture
+                    }),
+                    new THREE.MeshBasicMaterial({
+                        map: texture
+                    })
+                 ];		mesh = new THREE.Mesh ( geometry, materials );
+              scene.add( mesh );
+
+              renderer.render( scene, camera );
+            }
+
+            function animate(){
+              requestAnimationFrame( animate );
+              mesh.rotation.x += .03;
+              mesh.rotation.y += .01;
+              renderer.render( scene, camera );
+          }
+
+        });
 
         function getAjax(id,lat,long){
             centerMap(lat,long);

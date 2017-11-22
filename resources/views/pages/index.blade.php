@@ -138,22 +138,26 @@
 <section>
 <div class="flex-center position-ref full-height">
 
-    <div class="top-right links">
+    <div class="top-right">
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+           <a class="navbar-brand" href="#"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 @guest
                     <div class="navbar-nav links ">
-                        <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('login') }}">Connexion</a>
-                        <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('register') }}">S'enregistrer</a>
+                        <a class="font-weight-bold nav-item nav-link" href="{{ route('login') }}">Connexion</a>
+                        <a class="font-weight-bold nav-item nav-link" href="{{ route('register') }}">S'enregistrer</a>
                     </div>
                     @else
 
                         <div class="navbar-nav links ">
-                            <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('home') }}">
+                            <a class="font-weight-bold nav-item nav-link" href="{{ route('home') }}">
                                 {{ Auth::user()->name }}
                             </a>
 
-                                    <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('logout') }}"
+                                    <a class="font-weight-bold nav-item nav-link" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         Logout

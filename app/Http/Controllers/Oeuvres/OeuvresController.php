@@ -60,8 +60,8 @@ class OeuvresController extends Controller
      */
     public function create()
     {
-        $types = Type::pluck('libelle', 'id')->toArray();
-        $artistes = Artiste::pluck('nom', 'id')->toArray();
+        $types = Type::all();
+        $artistes = Artiste::all();
 
         $map = View::make('oeuvre.mapCreate')
             ->render();

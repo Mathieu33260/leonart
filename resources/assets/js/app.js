@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('maphome', require('./components/MapHome.vue'));
+Vue.component('createoeuvre', require('./components/CreateOeuvre.vue'));
 Vue.component('mapoeuvre', require('./components/MapOeuvre.vue'));
 Vue.component('indexoeuvre', require('./components/IndexOeuvre.vue'));
 Vue.component('mapoeuvrecreate', require('./components/MapOeuvreCreate.vue'));

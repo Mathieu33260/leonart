@@ -1098,6 +1098,7 @@ window.Vue = __webpack_require__(36);
 
 Vue.component('example', __webpack_require__(39));
 Vue.component('maphome', __webpack_require__(42));
+Vue.component('createoeuvre', __webpack_require__(59));
 Vue.component('mapoeuvre', __webpack_require__(45));
 Vue.component('indexoeuvre', __webpack_require__(48));
 Vue.component('mapoeuvrecreate', __webpack_require__(51));
@@ -44639,7 +44640,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var tab = this.markers;
             this.oeuvres.forEach(function (value, index, array) {
                 var centre = { lat: value.posX, lng: value.posY };
-                //this.markers.push(centre);
                 var marker = new google.maps.Marker({
                     position: centre,
                     map: map,
@@ -44995,6 +44995,515 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(60)
+/* template */
+var __vue_template__ = __webpack_require__(61)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\CreateOeuvre.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ab8a0f0e", Component.options)
+  } else {
+    hotAPI.reload("data-v-ab8a0f0e", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['types', 'artistes', 'route'],
+    name: 'createoeuvre',
+    data: function data() {
+        return {
+            map: null,
+            geocoder: null,
+            markers: [],
+            center: { lat: 44.791213, lng: -0.608717 },
+            offset: 10,
+            type_selected: null,
+            artiste_selected: null,
+            route: this.route
+        };
+    },
+
+    mounted: function mounted() {
+        this.initMap();
+    },
+    methods: {
+        initMap: function initMap() {
+            var geocoder = new google.maps.Geocoder();
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: this.center,
+                zoom: 4
+            });
+            this.map = map;
+            this.geocoder = geocoder;
+        },
+        placeMarker: function placeMarker(position, id) {
+            var map = this.map;
+            var infowindow = new google.maps.InfoWindow({});
+            var marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                draggable: true
+            });
+            map.panTo(position);
+
+            google.maps.event.addListener(marker, 'drag', function (marker) {
+                var latLng = marker.latLng;
+                currentLatitude = latLng.lat();
+                currentLongitude = latLng.lng();
+                $("#posX").val(currentLatitude);
+                $("#posY").val(currentLongitude);
+            });
+            this.markers.push(marker);
+        },
+        deleteAllMarker: function deleteAllMarker() {
+            $.each(this.markers, function () {
+                this.setMap(null);
+            });
+        },
+        centerMap: function centerMap(lat, long) {
+            var map = this.map;
+            var latlng = { lat: parseFloat(lat), lng: parseFloat(long) };
+            this.geocoder.geocode({ 'location': latlng }, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                } else {
+                    console.log("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
+                }
+            });
+        },
+        getAjax: function getAjax(id, lat, long) {
+            this.centerMap(lat, long);
+            $.ajax({
+                type: 'GET',
+                url: '/oeuvre/' + id,
+                success: function success(data) {
+                    $('#box').empty();
+                    $('#box').append(data);
+                }
+            });
+        },
+        getSearch: function getSearch() {
+            this.offset = 0;
+            var lethis = this;
+            $('.right-list').empty();
+            $('.right-list').append('Chargement');
+            $.ajax({
+                type: 'GET',
+                url: '/oeuvre/indexAjax/' + lethis.offset + '/' + $('#recherche').val(),
+                success: function success(data) {
+                    $('.right-list').empty();
+                    lethis.deleteAllMarker();
+                    $.each(data, function (index, value) {
+                        var pos = { lat: value.posX, lng: value.posY };
+                        lethis.placeMarker(pos, value.id);
+                        $('.right-list').append('<li><a href="#" v-on:click="getAjax(' + value.id + ',' + value.posX + ',' + value.posY + ')">' + '' + value.nom + '</a></li>');
+                    });
+                    lethis.offset = lethis.offset + 10;
+                }
+            });
+        },
+        lazyLoad: function lazyLoad() {
+            var lethis = this;
+            if ($('.right-list').scrollTop() === document.getElementsByClassName('right-list')[0].scrollHeight - $('.right-list').height()) {
+
+                $.ajax({
+                    type: "GET",
+                    url: '/oeuvre/indexAjax/' + lethis.offset + '/' + $('#recherche').val(),
+                    success: function success(data) {
+                        $('.loading-indicator').remove();
+                        $.each(data, function (index, value) {
+                            var pos = { lat: value.posX, lng: value.posY };
+                            lethis.placeMarker(pos, value.id);
+                            $('.right-list').append('<li><a href="#" v-on:click="getAjax(' + value.id + ',' + value.posX + ',' + value.posY + ')">' + '' + value.nom + '</a></li>');
+                        });
+                        lethis.offset = lethis.offset + 10;
+                    }
+                });
+            }
+        },
+        moveLatLng: function moveLatLng() {
+            var lethis = this;
+            if ($("#posX").val().length !== 0 && $("#posY").val().length !== 0) {
+                var posX = $("#posX").val().replace(",", ".");
+                var posY = $("#posY").val().replace(",", ".");
+                if ($.isNumeric(posX) && $.isNumeric(posY)) {
+                    lethis.deleteAllMarker();
+                    var pos = { lat: parseFloat(posX), lng: parseFloat(posY) };
+                    lethis.placeMarker(pos, map);
+                }
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-xs-12 col-md-8 col-lg-5" }, [
+        _c(
+          "form",
+          { attrs: { method: "post", action: _vm.route, id: "leform" } },
+          [
+            _c("div", { staticClass: "panel-body" }, [
+              _c("div", { staticClass: "row" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-xs-12 col-md-6" }, [
+                  _c("label", { attrs: { for: "posX" } }, [_vm._v("Latitude")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "posX",
+                      name: "posX",
+                      placeholder: "Latitude",
+                      required: ""
+                    },
+                    on: {
+                      input: function($event) {
+                        _vm.moveLatLng()
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-xs-12 col-md-6" }, [
+                  _c("label", { attrs: { for: "posY" } }, [
+                    _vm._v("Longitude")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "posY",
+                      name: "posY",
+                      placeholder: "Longitude",
+                      required: ""
+                    },
+                    on: {
+                      input: function($event) {
+                        _vm.moveLatLng()
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-xs-12 col-md-6" }, [
+                  _c("label", { attrs: { for: "typeId" } }, [_vm._v("Type")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      staticClass: "form-control",
+                      attrs: { id: "typeId", form: "leform" }
+                    },
+                    _vm._l(_vm.types, function(type) {
+                      return _c("option", { domProps: { value: type.id } }, [
+                        _vm._v(
+                          "\n                                    " +
+                            _vm._s(type.libelle) +
+                            "\n                                "
+                        )
+                      ])
+                    })
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-xs-12 col-md-6" }, [
+                  _c("label", { attrs: { for: "artisteId" } }, [
+                    _vm._v("Artiste")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      staticClass: "form-control",
+                      attrs: { id: "artisteId", form: "leform" }
+                    },
+                    [
+                      _c(
+                        "option",
+                        _vm._b({}, "option", _vm.artiste_selected, false),
+                        [_vm._v("Sélectionner un artiste")]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.artistes, function(artiste) {
+                        return _c(
+                          "option",
+                          { domProps: { value: artiste.id } },
+                          [
+                            _vm._v(
+                              "\n                                        " +
+                                _vm._s(artiste.nom) +
+                                " " +
+                                _vm._s(artiste.prenom) +
+                                "\n                                    "
+                            )
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(4)
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(5)
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 col-md-6" }, [
+      _c("label", { attrs: { for: "nom" } }, [_vm._v("Nom")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          id: "nom",
+          name: "nom",
+          placeholder: "Nom",
+          required: ""
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 col-md-6" }, [
+      _c("label", { attrs: { for: "modele" } }, [_vm._v("Modèle")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          id: "modele",
+          name: "modele",
+          placeholder: "Modèle"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 col-md-6" }, [
+      _c("label", { attrs: { for: "idIbeacon" } }, [_vm._v("Id iBeacon")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "number",
+          id: "idIbeacon",
+          name: "idIbeacon",
+          placeholder: "Id iBeacon",
+          required: ""
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 col-md-6" }, [
+      _c("label", { attrs: { for: "audio" } }, [_vm._v("Audio")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          id: "audio",
+          name: "audio",
+          placeholder: "Audio"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-footer text-right" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [
+          _vm._v("\n                    Sauvegarder "),
+          _c("span", { staticClass: "glyphicon glyphicon-ok" })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 col-md-8 col-lg-5" }, [
+      _c("div", {
+        staticClass: "col-lg-12",
+        staticStyle: { "min-height": "300px" },
+        attrs: { id: "map" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ab8a0f0e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

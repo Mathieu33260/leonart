@@ -33,14 +33,6 @@
         });
         map.panTo(position);
 
-        /*google.maps.event.addListener(marker, 'dragend', function(marker){
-            var latLng = marker.latLng;
-            currentLatitude = latLng.lat();
-            currentLongitude = latLng.lng();
-            $("#posX").val(currentLatitude);
-            $("#posY").val(currentLongitude);
-        });*/
-
         google.maps.event.addListener(marker, 'drag', function(marker){
             var latLng = marker.latLng;
             currentLatitude = latLng.lat();

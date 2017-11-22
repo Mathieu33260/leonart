@@ -65,7 +65,6 @@
                 var tab = this.markers;
                 this.oeuvres.forEach(function (value,index,array) {
                     var centre = {lat: value.posX, lng: value.posY };
-                    //this.markers.push(centre);
                     var marker = new google.maps.Marker({
                         position: centre,
                         map: map,

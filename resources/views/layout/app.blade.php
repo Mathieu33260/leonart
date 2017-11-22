@@ -59,6 +59,8 @@
     @yield('nav')
 
     @yield('content')
+
+    @include('layout.footer')
 </div>
 
 {{-- Scripts --}}

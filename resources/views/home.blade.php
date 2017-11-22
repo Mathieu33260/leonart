@@ -36,7 +36,7 @@
         	<div class="col-3">
         		<div class="titleHead">
         			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
-           			{!! $oeuvreV !!}
+           			{!! $oeuvreT !!}
            			</div>
            	</div>
            	<div class="col-3">
@@ -48,18 +48,15 @@
            	<div class="col-3">
         		<div class="titleHead">
         			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
-           			{!! $oeuvreV !!}
+           			{!! $oeuvreA !!}
            			</div>
            	</div>
         </div>
        	</div>
 
 </div>
+
+
 </section>
 
-       <!-- <div class="col-md-8 col-lg-5">{!! $general !!}</div>
-
-        <div class="col-md-8 col-lg-5">{!! $oeuvreV !!}</div>
-
-        <div class="col-md-8">{!! $map !!}</div> -->
 @endsection

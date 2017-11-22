@@ -15,7 +15,7 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item {{ route('home') === request()->getUri() ? 'active' : null }}">
                 <a class="nav-link" href="{{route('home')}}">
-                    @lang("Tableau de bord")
+                   <i class="fa fa-tachometer"></i> @lang("Tableau de bord")
                 </a>
             </li>
             <li class="nav-item {{ request()->segment(1) === 'oeuvre' ? 'active' : null }}">
@@ -47,15 +47,15 @@
                         </a>
                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ route('user:profil:edit') }}" title="@lang('Modifier mon profil')">
-                                    <span class="glyphicon glyphicon-user"></span> @lang("Profil")
+                                    <i class="fa fa-user"></i> @lang("Profil")
                                 </a>
                                 <a class="dropdown-item" href="{{ route('page:index') }}" title="@lang('Accéder au site')">
-                                    <span class="glyphicon glyphicon-log-out"></span> @lang('Retour au site')
+                                    <i class="fa fa-caret-left"></i> @lang('Retour au site')
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    Logout
+                                   <i class="fa fa-sign-out"></i> Logout
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -139,13 +139,12 @@
             },
             getSearch: function () {
                 this.offset = 0;
-                var offset = this.offset;
                 var lethis = this;
                 $('.right-list').empty();
                 $('.right-list').append('Chargement');
                 $.ajax({
                     type:'GET',
-                    url:'/oeuvre/indexAjax/'+offset+'/'+$('#recherche').val(),
+                    url:'/oeuvre/indexAjax/'+lethis.offset+'/'+$('#recherche').val(),
                     success:function(data){
                         $('.right-list').empty();
                         lethis.deleteAllMarker();
@@ -155,20 +154,18 @@
                             $('.right-list').append('<li><a href="#" v-on:click="getAjax('+ value.id +','+value.posX+','+value.posY+')">' +
                                 ''+ value.nom +'</a></li>');
                         });
-                        offset = offset + 10;
+                        lethis.offset = lethis.offset + 10;
                     }
                 });
-                this.offset = offset;
             },
             lazyLoad: function () {
-                var offset = this.offset;
                 var lethis = this;
                 if ($('.right-list').scrollTop() ===
                     document.getElementsByClassName('right-list')[0].scrollHeight - $('.right-list').height()) {
 
                     $.ajax({
                         type : "GET",
-                        url : '/oeuvre/indexAjax/'+offset+'/'+$('#recherche').val(),
+                        url : '/oeuvre/indexAjax/'+lethis.offset+'/'+$('#recherche').val(),
                         success : function (data)
                         {
                             $('.loading-indicator').remove();
@@ -178,11 +175,10 @@
                                 $('.right-list').append('<li><a href="#" v-on:click="getAjax('+ value.id +','+value.posX+','+value.posY+')">' +
                                     ''+ value.nom +'</a></li>');
                             });
-                            offset = offset + 10;
+                            lethis.offset = lethis.offset + 10;
                         }
                     });
                 }
-                this.offset = offset;
             }
         }
     }

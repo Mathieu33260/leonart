@@ -149,6 +149,10 @@ a:hover {
   background-color: white;
 }
 
+.navbar.light-dark {
+  background-color: #282525;
+}
+
 .navbar img {
   width: 55%;
   margin-left: 15%;

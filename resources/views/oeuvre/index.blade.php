@@ -10,35 +10,30 @@
         <form class="form-inline">
             <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">
         </form>
+        <a href="{{ route('oeuvre:create') }}"><input type="button" class="btn btn-outline-success center-block" value="Ajouter"></a>
+
     </nav>
-    <div class="container">
         <div class="row">
-            <div class="col-lg-5">
-                <div class="row" onscroll="lazyLoad()">
+            <div class="col-lg-3 right-list" onscroll="lazyLoad()">
+                    <table class="table table-dark list">
                     @foreach($oeuvres as $oeuvre)
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <img src="{{asset('images/oeuvre1.jpg')}}" alt="">
-                            </div>
-                            <div class="col-lg-5">
-                                <a href="#" onclick="getAjax({{ $oeuvre->id }},{{ $oeuvre->posX }},{{ $oeuvre->posY }})">
-                                    <h4 class="text-dark nameO">{{ $oeuvre->nom }}</h4>
-                                </a>
-                            </div>
-                        </div>
+                            <tr>
+                                <td>
+                                    <a href="#" onclick="getAjax({{ $oeuvre->id }},{{ $oeuvre->posX }},{{ $oeuvre->posY }})">
+                                        <h4 class="text-light nameO">{{ $oeuvre->nom }}</h4>
+                                    </a>
+                                </td>
+                            </tr>
                     @endforeach
-                </div>
-
-
+                    </table>
             </div>
-            <div class="col-lg-4">{!! $map !!}</div>
-            <div class="col-xs-12 col-md-5 col-lg-5">
-                <a href="{{ route('oeuvre:create') }}"><input type="button" class="btn center-block" value="Ajouter"></a>
+            <div></div>
+            <div class="col-lg-9">
+                <div id="box"></div>
             </div>
-
 
         </div>
-    </div>
+    <div class="col-lg-3">{!! $map !!}</div>
     <script>
 
 
@@ -62,13 +57,13 @@
                 type:'GET',
                 url:'/oeuvre/indexAjax/'+offset+'/'+$('#recherche').val(),
                 success:function(data){
-                    $('.right-list').empty();
+                    $('.list').empty();
                     deleteAllMarker();
                     $.each(data, function( index, value ) {
                         var pos = {lat: value.posX, lng: value.posY};
                         placeMarker(pos,map);
-                        $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')">' +
-                            ''+ value.nom +'</a></li>');
+                        $('.list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')"><h4 class="text-light nameO">' +
+                            ''+ value.nom +'</h4></a></td></tr>');
                     });
                     offset = offset + 10;
                 }
@@ -88,8 +83,8 @@
                         $.each(data, function( index, value ) {
                             var pos = {lat: value.posX, lng: value.posY};
                             placeMarker(pos,map);
-                            $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')">' +
-                                ''+ value.nom +'</a></li>');
+                            $('.right-list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')">' +
+                                ''+ value.nom +'</a></td></tr>');
                         });
                         offset = offset + 10;
                     }

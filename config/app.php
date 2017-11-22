@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 return [
 
     /*
@@ -172,6 +174,11 @@ return [
          * Package Service Providers...
          */
 
+        /*
+         * Flash package
+         */
+
+        Laracasts\Flash\FlashServiceProvider::class,
         /*
          * Application Service Providers...
          */

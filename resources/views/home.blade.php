@@ -49,7 +49,7 @@
 	function init() {
 		renderer = new THREE.WebGLRenderer();
 
-		renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.setSize( $(window).width(), $(window).height() );
 
 		$('#container').append(renderer.domElement);
 
@@ -58,7 +58,7 @@
 		camera.position.set(0, 0, 1000);
 		scene.add(camera);
 
-		var geometry = new THREE.CubeGeometry(200, 200, 200);
+		var geometry = new THREE.CubeGeometry($(window).width()/9, $(window).width()/9, $(window).width()/9);
 		var texture1 = new THREE.TextureLoader().load( "{{ asset('/images/texture/texture1.jpg')}}" );
 		var texture2 = new THREE.TextureLoader().load( "{{ asset('/images/texture/texture2.jpg')}}" );
 		var texture3 = new THREE.TextureLoader().load( "{{ asset('/images/texture/texture3.jpg')}}" );

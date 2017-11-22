@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 03 Nov 2017 17:16:16 +0000.
+ * Date: Wed, 22 Nov 2017 17:33:53 +0000.
  */
 
 namespace App\Models;
@@ -14,7 +14,9 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * 
  * @property int $id
  * @property string $libelle
+ * @property int $userId
  * 
+ * @property \App\Models\User $user
  * @property \Illuminate\Database\Eloquent\Collection $oeuvres
  *
  * @package App\Models
@@ -24,9 +26,19 @@ class Type extends Eloquent
 	protected $table = 'type';
 	public $timestamps = false;
 
-	protected $fillable = [
-		'libelle'
+	protected $casts = [
+		'userId' => 'int'
 	];
+
+	protected $fillable = [
+		'libelle',
+		'userId'
+	];
+
+	public function user()
+	{
+		return $this->belongsTo(\App\Models\User::class, 'userId');
+	}
 
 	public function oeuvres()
 	{

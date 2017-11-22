@@ -54,18 +54,4 @@
        	</div>
 
 </div>
-<<<<<<< HEAD
-</section>
-
-       <!-- <div class="col-md-8 col-lg-5">{!! $general !!}</div>
-
-        <div class="col-md-8 col-lg-5">{!! $oeuvreV !!}</div>
-
-        <div class="col-md-8">{!! $map !!}</div> -->
-=======
-
-
-</section>
-
->>>>>>> 5e8d084851eda169f5a7ce7cb96c851124c60db9
 @endsection

@@ -60,8 +60,10 @@ class OeuvresController extends Controller
      */
     public function create()
     {
-        $types = Type::pluck('libelle', 'id')->toArray();
-        $artistes = Artiste::pluck('nom', 'id')->toArray();
+        $types = Type::where('userId', auth()->user()->id)
+            ->pluck('libelle', 'id')->toArray();
+        $artistes = Artiste::where('userId', auth()->user()->id)
+            ->pluck('nom', 'id')->toArray();
 
         $map = View::make('oeuvre.mapCreate')
             ->render();
@@ -159,8 +161,10 @@ class OeuvresController extends Controller
             return redirect()->route('oeuvre:index');
         }
 
-        $types = Type::pluck('libelle', 'id')->toArray();
-        $artistes = Artiste::pluck('nom', 'id')->toArray();
+        $types = Type::where('userId', auth()->user()->id)
+            ->pluck('libelle', 'id')->toArray();
+        $artistes = Artiste::where('userId', auth()->user()->id)
+            ->pluck('nom', 'id')->toArray();
 
         return view('oeuvre.edit')
             ->with(compact('oeuvre'))

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Fri, 03 Nov 2017 17:16:16 +0000.
+ * Date: Wed, 22 Nov 2017 17:33:53 +0000.
  */
 
 namespace App\Models;
@@ -20,7 +20,9 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
+ * @property \Illuminate\Database\Eloquent\Collection $artistes
  * @property \Illuminate\Database\Eloquent\Collection $oeuvres
+ * @property \Illuminate\Database\Eloquent\Collection $types
  *
  * @package App\Models
  */
@@ -38,8 +40,18 @@ class User extends Eloquent
 		'remember_token'
 	];
 
+	public function artistes()
+	{
+		return $this->hasMany(\App\Models\Artiste::class, 'userId');
+	}
+
 	public function oeuvres()
 	{
 		return $this->hasMany(\App\Models\Oeuvre::class, 'userId');
+	}
+
+	public function types()
+	{
+		return $this->hasMany(\App\Models\Type::class, 'userId');
 	}
 }

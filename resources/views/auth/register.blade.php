@@ -1,9 +1,9 @@
 @extends('layout.navbarFront')
-
+@section('title', __("S'enregistrer"))
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
-    <h2 class="text-dark text-center col-lg-12" id="title_h2">S'enregistrer</h2>
+    <h2 class="text-dark text-center col-lg-12 mt-4 mb-4" >S'enregistrer</h2>
   </div>
   <div class="row justify-content-center">
     <div class="col-xs-12 col-md-9 col-lg-9 panel panel-default ">

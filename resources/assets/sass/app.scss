@@ -1,12 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:200|Nunito+Sans:600|Roboto');
-
+html {
+  height: 100%;
+}
+* {-moz-box-sizing: border-box; box-sizing: border-box;}
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 53px;
+}
 html, body {
   background-color: #fff;
   color: #636b6f;
   font-family: 'Roboto', sans-serif;
-  margin: 0;
   overflow-x: hidden;
 }
+body {position: relative;}
+footer {position: absolute; bottom: 0; left: 0; right: 0}
 
 .full-height {
   height: 100vh;
@@ -139,10 +149,6 @@ a:hover {
 .navbar img{
   width: 55%;
   margin-left: 15%;
-  margin-top: 5%;
-}
-.narvar p{
-
 }
 p{
   font-family: 'Roboto', sans-serif !important;
@@ -157,10 +163,6 @@ p{
   margin-top: 15%;
   margin-bottom: 15%;
 }
-#title_h2 {
-  margin: 5%;
-}
-
 @media (max-width: 576px) {
   .navbar-brand{
     width: 70%;

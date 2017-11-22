@@ -1,31 +1,12 @@
 @extends('layout.user')
 
-@section('title', __("Gestion"))
-@section('subtitle', __("Home"))
+@section('title', __("Accueil"))
+@section('subtitle', __("Dashboard"))
 
 @section('content')
-<style>
-	#banner{
-		background-image: url("https://i.imgur.com/Lk73Pru.jpg");
-		height: 35%;
-		width: 100%;
-	}
-	.titleHead{
-		width: 100%;
-		background-color: white;
-		border-radius: 5px;
-	}
-	.separationBar{
-		width: 10%;
-		background-color: white;
-		border: 1px solid white;
-		border-radius: 5px;
-		height:1px;
-	}
-</style>
-    	<div class="col-md-12 d-flex align-items-center justify-content-md-center" id="banner">
+<div class="col-md-12 d-flex align-items-center justify-content-md-center" id="banner">
 			<h1 class="display-1 text-white">Bienvenue {{ Auth::user()->name }}</h1>
-    	</div>
+</div>
 
 <section>
 <div class="position-ref dark">

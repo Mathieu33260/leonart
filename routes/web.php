@@ -19,6 +19,9 @@ Route::get('/', 'PageController@index')
 Route::get('/contact', 'PageController@contact')
     ->name('page:contact');
 
+Route::get('/mentions-legales', 'PageController@mentions')
+    ->name('page:mentions');
+
 Route::post('/contactPost', 'PageController@contactPost')
     ->name('page:contactPost');
 

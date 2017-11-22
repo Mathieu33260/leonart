@@ -10510,6 +10510,7 @@ a.text-dark:hover {
   content: "\F05D";
 }
 
+
 .fa-ban:before {
   content: "\F05E";
 }
@@ -12976,5 +12977,29 @@ a.text-dark:hover {
   margin: 0;
   overflow: visible;
   clip: auto;
+}
+/******************Banner*********************/
+
+#banner{
+    background-image: url("https://i.imgur.com/Lk73Pru.jpg");
+    height: 35%;
+    width: 100%;
+}
+.titleHead{
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+}
+.separationBar{
+    width: 10%;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    height:1px;
+}
+
+/*****************Index Oeuvre******************/
+.nameO{
+    font-weight: 600;
 }
 

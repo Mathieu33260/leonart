@@ -39,4 +39,9 @@ class PageController extends Controller
 
         return view('contact.confirmContact');
     }
+
+    public function mentions()
+    { 
+    	return view("pages.mentions");
+    }
 }

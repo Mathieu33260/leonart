@@ -15,22 +15,22 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item {{ route('home') === request()->getUri() ? 'active' : null }}">
                 <a class="nav-link" href="{{route('home')}}">
-                   <i class="fa fa-tachometer"></i> @lang("Tableau de bord")
+                   <i class="fa fa-area-chart"></i> @lang("Tableau de bord")
                 </a>
             </li>
             <li class="nav-item {{ request()->segment(1) === 'oeuvre' ? 'active' : null }}">
                 <a class="nav-link" href="{{route('oeuvre:index')}}">
-                    @lang("Oeuvre")
+                    <i class="fa fa-paint-brush"></i> @lang("Oeuvre")
                 </a>
             </li>
             <li class="nav-item {{ request()->segment(1) === 'artiste' ? 'active' : null }}">
                 <a class="nav-link" href="{{route('artiste:index')}}">
-                    @lang("Artiste")
+                   <i class="fa fa-user"></i> @lang("Artiste")
                 </a>
             </li>
             <li class="nav-item {{ request()->segment(1) === 'type' ? 'active' : null }}">
                 <a class="nav-link" href="{{route('type:index')}}">
-                    @lang("Type")
+                    <i class="fa fa-sliders"></i> @lang("Type")
                 </a>
             </li>
         </ul>

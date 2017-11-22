@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.leonart.fr'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'info@leon-art.fr'),
+        'address' => env('MAIL_FROM_ADDRESS', 'leonartfr@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'Administrateur'),
     ],
 
@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
 
     /*
     |--------------------------------------------------------------------------
@@ -119,5 +119,11 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
-
+    'stream' => [
+	'ssl' => [
+    'allow_self_signed' => true,
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+		],
+	],
 ];

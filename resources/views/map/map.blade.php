@@ -1,14 +1,7 @@
 <div class="panel panel-default">
 
-    <div id="map" class="col-lg-12" style="min-height: 300px"></div>
-   <!-- <div class="row">
-    <div class="col-md-6">
-    <input id="mapsearch" class="form-control" placeholder="Ville">
-    </div>
-    <div class="col-md-6"><input id="latitude" class="form-control" placeholder="Latitude">  </div>
-    <div class="col-md-6"><input id="longitude" class="form-control" placeholder="Longitude">  </div>
-    <div class="col-md-6"><input id="nom" class="form-control" placeholder="Nom d'oeuvre">  </div>
-    </div> Keeping those in case we want to access those attributes. -->
+    <div id="map" class="col-lg-12" style="min-height: 500px"></div>
+
     <script>
         var map;
         var centre = {lat: 44.791213, lng: -0.608717};

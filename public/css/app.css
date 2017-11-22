@@ -160,8 +160,13 @@ a:hover {
 }
 
 .right-list {
-  max-height: 180px;
+  max-height: 100vh;
   overflow: auto;
+}
+
+.table-dark2 {
+  color: #fff;
+  background-color: #212529;
 }
 
 .card-img-top {

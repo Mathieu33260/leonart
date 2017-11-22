@@ -72,7 +72,7 @@
 
                 <div class="col-xs-12 col-md-8 col-lg-5">
                     <button id="btnDefautMarker" type="button" class="btn btn-success">
-                        @lang("Placer un marqueur") <span class="glyphicon glyphicon-ok"></span>
+                        @lang("Placer un marqueur au centre") <span class="glyphicon glyphicon-ok"></span>
                     </button>
                     {!! $map !!}
                 </div>

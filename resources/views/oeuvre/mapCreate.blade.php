@@ -85,7 +85,9 @@
 
     $("#btnDefautMarker").click(function () {
         deleteAllMarker();
-        placeMarker(centre,map);
+        placeMarker(map.getCenter(),map);
+        $("#posX").val(markertab[0].position.lat());
+        $("#posY").val(markertab[0].position.lng());
     });
 
 

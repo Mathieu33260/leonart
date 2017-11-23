@@ -1,6 +1,6 @@
 @extends('artiste.artisteLayout')
 
-@section('subtitle', __("Accueil"))
+@section('subtitle', __("Artiste"))
 
 @section('content')
     <div class="col-md-12 d-flex align-items-center justify-content-md-center" id="banner">
@@ -14,8 +14,9 @@
 
     </nav>
     <div class="row">
-        <div class="dark col-lg-3 right-listA" onscroll="lazyLoad()">
-            <table class="table table-dark2 list">
+        <div class=" col-lg-3 right-listA" onscroll="lazyLoad()">
+            <div class="dark">
+            <table class="table table-hover table-dark2 list">
                 @foreach($artistes as $artiste)
                     <tr>
                         <td>
@@ -26,6 +27,7 @@
                     </tr>
                 @endforeach
             </table>
+            </div>
         </div>
         <div class="col-lg-9">
             <div class="row">

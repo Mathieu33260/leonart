@@ -23,7 +23,7 @@
            		<div class="col-5">
            		<div class="titleHead">
            			<h2 class="display-4 p-2 pl-4"><i class="fa fa-paint-brush pr-2"></i>Vos oeuvres</h2>
-
+              
            		</div>
            		</div>
            	</div>

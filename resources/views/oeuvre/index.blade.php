@@ -100,6 +100,7 @@
         $(document).ready(function() {
           init('null');
           animate();
+          $('#box').text('');
         })
 
         var renderer, scene, camera, mesh;
@@ -117,10 +118,11 @@
             scene.add(camera);
 
             var geometry = new THREE.CubeGeometry($(window).width()/5, $(window).width()/5, $(window).width()/5);
-            if( image === 'null' ){
-              var texture = new THREE.TextureLoader().load( "{{ asset('images/texture/leonart.png') }}");
-            } else {
+
+            try {
               var texture = new THREE.TextureLoader().load( "/storage/uploads/images/" + image);
+            } catch(exception) {
+              var texture = new THREE.TextureLoader().load( "{{ asset('images/texture/leonart.png') }}");
             }
 
             var materials = [

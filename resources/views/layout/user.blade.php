@@ -13,9 +13,10 @@
     </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         @if (Auth::check())
+            @if(!Auth::user()->visiteur && !Auth::user()->admin)
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item {{ route('home') === request()->getUri() ? 'active' : null }}">
-                <a class="nav-link" href="{{route('home')}}">
+            <li class="nav-item {{ route('user:home') === request()->getUri() ? 'active' : null }}">
+                <a class="nav-link" href="{{route('user:home')}}">
                    <i class="fa fa-area-chart"></i> @lang("Tableau de bord")
                 </a>
             </li>
@@ -59,6 +60,27 @@
             </div>
             </li>
         </ul>
+            @endif
+
+            @if(Auth::user()->visiteur && !Auth::user()->admin)
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item {{ route('guestuser:home') === request()->getUri() ? 'active' : null }}">
+                            <a class="nav-link" href="{{route('guestuser:home')}}">
+                                <i class="fa fa-area-chart"></i> @lang("Tableau de bord")
+                            </a>
+                        </li>
+                    </ul>
+            @endif
+
+            @if(Auth::user()->admin)
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item {{ route('admin:manage') === request()->getUri() ? 'active' : null }}">
+                            <a class="nav-link" href="{{route('admin:manage')}}">
+                                <i class="fa fa-area-chart"></i> @lang("Gérer les droits")
+                            </a>
+                        </li>
+                    </ul>
+            @endif
 
         @endif
         <ul class="nav navbar-nav navbar-right">
@@ -71,9 +93,21 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                           @if(!Auth::user()->visiteur && !Auth::user()->admin)
                                 <a class="dropdown-item" href="{{ route('user:profil:edit') }}" title="@lang('Modifier mon profil')">
                                     <i class="fa fa-user"></i> @lang("Profil")
                                 </a>
+                           @endif
+                               @if(Auth::user()->admin)
+                                <a class="dropdown-item" href="{{ route('admin:profil:edit') }}" title="@lang('Modifier mon profil')">
+                                    <i class="fa fa-user"></i> @lang("Profil")
+                                </a>
+                           @endif
+                               @if(Auth::user()->visiteur && !Auth::user()->admin)
+                                <a class="dropdown-item" href="{{ route('guestuser:profil:edit') }}" title="@lang('Modifier mon profil')">
+                                    <i class="fa fa-user"></i> @lang("Profil")
+                                </a>
+                           @endif
                                 <a class="dropdown-item" href="{{ route('page:index') }}" title="@lang('Accéder au site')">
                                     <i class="fa fa-caret-left"></i> @lang('Retour au site')
                                 </a>

@@ -153,9 +153,21 @@
                     @else
 
                         <div class="navbar-nav links ">
-                            <a class="font-weight-bold nav-item nav-link" href="{{ route('home') }}">
-                                {{ Auth::user()->name }}
-                            </a>
+                            @if(!Auth::user()->visiteur && !Auth::user()->admin)
+                                <a class="font-weight-bold nav-item nav-link" href="{{ route('user:home') }}">
+                                    {{ Auth::user()->name }}
+                                </a>
+                            @endif
+                            @if(Auth::user()->visiteur && !Auth::user()->admin)
+                                <a class="font-weight-bold nav-item nav-link" href="{{ route('guestuser:home') }}">
+                                    {{ Auth::user()->name }}
+                                </a>
+                            @endif
+                            @if(Auth::user()->admin)
+                                <a class="font-weight-bold nav-item nav-link" href="{{ route('admin:manage') }}">
+                                    Gérer les droits
+                                </a>
+                            @endif
 
                                     <a class="font-weight-bold nav-item nav-link" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -213,7 +225,24 @@
 
                 <div class="card col-md-3 col-sm-8 mb-4 mr-4 shadow">
                   <div class="row justify-content-center">
-                    <a href="{{ route('home') }}" class="text-center"><img class="card-img-top mt-3" src="{{ asset('/images/MonCompte.svg') }}" alt="Mon compte"></a>
+                      @guest
+                          <a href="#" class="text-center"><img class="card-img-top mt-3" src="{{ asset('/images/MonCompte.svg') }}" alt="Mon compte"></a>
+                      @else
+                              @if(!Auth::user()->visiteur && !Auth::user()->admin)
+                                  <a href="{{ route('user:home') }}" class="text-center"><img class="card-img-top mt-3" src="{{ asset('/images/MonCompte.svg') }}" alt="Mon compte"></a>
+
+                              @endif
+
+                              @if(Auth::user()->visiteur && !Auth::user()->admin)
+                                  <a href="{{ route('guestuser:home') }}" class="text-center"><img class="card-img-top mt-3" src="{{ asset('/images/MonCompte.svg') }}" alt="Mon compte"></a>
+
+                              @endif
+
+                              @if(Auth::user()->admin)
+                                  <a href="{{ route('admin:manage') }}" class="text-center"><img class="card-img-top mt-3" src="{{ asset('/images/MonCompte.svg') }}" alt="Mon compte"></a>
+
+                              @endif
+                      @endguest
                   </div>
                     <div class="card-body text-dark">
                         <h4 class="card-title text-center font-weight-bold">Compte</h4>

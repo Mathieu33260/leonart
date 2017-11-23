@@ -33,18 +33,19 @@ class UserController extends Controller
 
         if ( !$request->input('password') == '')
         {
-            //$user->password = bcrypt($request->input('password'));
             $user = User::where('id', auth()->user()->id)->update([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
-                'visiteur' => true
+                'visiteur' => true,
+                'admin' => false
             ]);
         } else {
             $user = User::where('id', auth()->user()->id)->update([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'visiteur' => true
+                'visiteur' => true,
+                'admin' => false
             ]);
         }
 

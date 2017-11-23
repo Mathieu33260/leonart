@@ -34,7 +34,7 @@ class Contact extends Mailable
      */
     public function build()
     {
-        return $this->from('laravel@laravel.fr')
+        return $this->from('contact@leonart.fr')
             ->view('pages.contact');
     }
 }

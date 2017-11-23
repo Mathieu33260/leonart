@@ -34,14 +34,19 @@ class PageController extends Controller
     {
         Mail::send('contact.email_contact', $request->all(), function($message)
         {
-            $message->to('mat_dumez@hotmail.fr')->subject('Contact');
+            $message->to('morganel.julien@gmail.com')->subject('Contact');
         });
 
         return view('contact.confirmContact');
     }
 
     public function mentions()
-    { 
+    {
     	return view("pages.mentions");
+    }
+
+    public function map()
+    {
+        return view("pages.map");
     }
 }

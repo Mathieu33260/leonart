@@ -91,7 +91,7 @@
             elementType: 'labels.text.fill',
             stylers: [{color: '#9e9e9e'}]
           }
-        ]
+        ];
 
         function animationBtnContact(hover) {
             if(hover)
@@ -120,14 +120,14 @@
         }
         function initMap() {
 
-          var uluru = {lat: 44.791346, lng:-0.608779};
+          var iut = {lat: 44.791346, lng:-0.608779};
           var map = new google.maps.Map(document.getElementById('map_index'), {
             zoom: 14,
-            center: uluru
+            center: iut
           });
           map.setOptions({styles: silver});
           var marker = new google.maps.Marker({
-            position: uluru,
+            position: iut,
             map: map
           });
         }

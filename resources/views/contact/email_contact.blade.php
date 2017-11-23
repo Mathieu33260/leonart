@@ -4,8 +4,7 @@
     <meta charset="utf-8">
 </head>
 <body>
-<h2>Prise de contact sur mon beau site</h2>
-<p>Réception d'une prise de contact avec les éléments suivants :</p>
+<h2>Leonart a recu un nouveau message</h2>
 <ul>
     <li><strong>Nom</strong> : {{ $Nom }}</li>
     <li><strong>Email</strong> : {{ $Email }}</li>

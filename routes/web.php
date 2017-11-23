@@ -25,6 +25,9 @@ Route::get('/mentions-legales', 'PageController@mentions')
 Route::post('/contactPost', 'PageController@contactPost')
     ->name('page:contactPost');
 
+Route::get('/map', 'PageController@map')
+        ->name('page:map');
+
 Route::get('/{page}', 'PageController@show')
     ->where(['page' => 'services|conditions'])
     ->name('page:show');

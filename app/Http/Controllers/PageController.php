@@ -41,7 +41,12 @@ class PageController extends Controller
     }
 
     public function mentions()
-    { 
+    {
     	return view("pages.mentions");
+    }
+
+    public function map()
+    {
+        return view("pages.map");
     }
 }

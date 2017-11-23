@@ -3,38 +3,61 @@
 @section('subtitle', __("Accueil"))
 
 @section('content')
-    <div class="container">
-        <div class="row">
+    <div class="col-md-12 d-flex align-items-center justify-content-md-center" id="banner">
+        <h1 class="display-1 text-white">Artistes</h1>
+    </div>
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">
+        </form>
+        <a href="{{ route('artiste:create') }}"><input type="button" class="btn btn btn-outline-success center-block" value="Ajouter"></a>
 
+    </nav>
+    <div class="row">
+        <div class="dark col-lg-3 right-listA" onscroll="lazyLoad()">
+            <table class="table table-dark2 list">
+                @foreach($artistes as $artiste)
+                    <tr>
+                        <td>
+                        <a href="#" onclick="getAjax({{ $artiste->id }})">
+                            <h4 class="text-light nameO">{{ $artiste->nom }} {{ $artiste->prenom }}</h4>
+                        </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+        <div class="col-lg-9">
+            <div class="row">
+                <div id="box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-lg-12 panel panel-default">
+                                <table class="table">
+                                    <th><h3>Artiste</h3></th>
+                                    <th><h3><a href="{{ route('artiste:show',['id' => $artiste->id]) }}">{{ $artiste->nom }} {{ $artiste->prenom }}</a></h3></th>
+                                    <tr>
+                                        <td><p>Nom : {{ $artiste->nom }}</p></td>
+                                        <td><p>Prénom : {{ $artiste->prenom }}</p></td>
+                                        <td><p>Date de naissance : {{ $artiste->dateN }}</p></td>
+                                        <td><p>Date de mort : {{ $artiste->dateM }}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="{{ route('artiste:edit', ['id' => $artiste->id]) }}"><button type="button" class="btn btn-outline-info">Modifier</button></a></td>
+                                        <td><a href="{{ route('artiste:destroy', ['id' => $artiste->id]) }}"><button type="button" class="btn btn-outline-danger" >Supprimer</button></a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
             <div id="box" class="col-xs-12 col-md-5 col-lg-5 p-3">
 
             </div>
-
-            <div class="col-xs-12 col-md-5 col-lg-5 panel panel-default p-3 m-3">
-                <div class="panel-heading lead">
-                    <label>Rechercher un Artiste
-                        <input id="recherche" type="text" onkeyup="getSearch()">
-                    </label>
-                </div>
-                <ul class="right-list" onscroll="lazyLoad()">
-                        @foreach($artistes as $artiste)
-                        <li>
-                            <a href="#" onclick="getAjax({{ $artiste->id }})">
-                                {{ $artiste->nom }} {{ $artiste->prenom }}
-                            </a>
-                        </li>
-                        @endforeach
-                </ul>
-
-
-            </div>
-
-            <div class="col-xs-12 col-md-5 col-lg-5">
-                <a href="{{ route('artiste:create') }}"><input type="button" class="btn center-block" value="Ajouter"></a>
-            </div>
-
-        </div>
-    </div>
     <script>
 
         function getAjax(id){
@@ -48,7 +71,7 @@
             });
         }
 
-        var offset = 10;
+        var offset = 5;
 
         function getSearch(){
             offset = 0;
@@ -56,20 +79,20 @@
                 type:'GET',
                 url:'/artiste/indexAjax/'+offset+'/'+$('#recherche').val(),
                 success:function(data){
-                    $('.right-list').empty();
+                    $('.list').empty();
                     $.each(data, function( index, value ) {
-                        $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
-                            ''+ value.nom +' '+ value.prenom +'</a></li>');
+                        $('.list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +')"><h4 class="text-light nameO">' +
+                            ''+ value.nom +' '+ value.prenom +'</h4></a></td></tr>');
                     });
-                    offset = offset + 10;
+                    offset = offset + 5;
                 }
             });
         }
 
         function lazyLoad() {
-            if ($('.right-list').scrollTop() ===
-                document.getElementsByClassName('right-list')[0].scrollHeight - $('.right-list').height()) {
-                $('.right-list').append('<img src="{{ asset('/images/ajax-loader.gif') }}" class="loading-indicator"/>');
+            if ($('.right-listA').scrollTop() ===
+                document.getElementsByClassName('right-listA')[0].scrollHeight - $('.right-listA').height()) {
+                $('.right-listA').append('<img src="{{ asset('/images/ajax-loader.gif') }}" class="loading-indicator"/>');
                 $.ajax({
                     type : "GET",
                     url : '/artiste/indexAjax/'+offset+'/'+$('#recherche').val(),
@@ -77,10 +100,10 @@
                     {
                         $('.loading-indicator').remove();
                         $.each(data, function( index, value ) {
-                            $('.right-list').append('<li><a href="#" onclick="getAjax1('+ value.id +')">' +
-                                ''+ value.nom +' '+ value.prenom +'</a></li>');
+                            $('.list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +')"><h4 class="text-light nameO">' +
+                                ''+ value.nom +' '+ value.prenom +'</h4></a></td></tr>');
                         });
-                        offset = offset + 10;
+                        offset = offset + 5;
                     }
                 });
             }

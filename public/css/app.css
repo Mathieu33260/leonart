@@ -163,6 +163,10 @@ a:hover {
   max-height: 100vh;
   overflow: auto;
 }
+.right-listA {
+  max-height: 50vh;
+  overflow: auto;
+}
 
 .table-dark2 {
   color: #fff;

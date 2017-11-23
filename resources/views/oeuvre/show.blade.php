@@ -30,7 +30,9 @@
                 @endif
                 <p>User : {{ $oeuvre->user->name }}</p>
                 <p>Description : {{ $oeuvre->description }}</p>
+                @if($oeuvre->image != null)
                 <img height="300px" src="/storage/uploads/images/{{ $oeuvre->image }}"/>
+                @endif
                 <a href="{{ route('oeuvre:edit', ['id' => $oeuvre->id]) }}">Modifier</a>
                 <a href="{{ route('oeuvre:destroy', ['id' => $oeuvre->id]) }}">Supprimer</a>
             </div>

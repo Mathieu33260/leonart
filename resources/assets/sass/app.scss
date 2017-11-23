@@ -140,6 +140,11 @@ a:hover {
   background-color: #1d1b1b;
 }
 
+.dark2{
+  height: 100vh;
+  background-color: #1d1b1b;
+}
+
 .border-yellow-right {
   border-right: 1px solid #e9b90b;
 }
@@ -169,6 +174,11 @@ a:hover {
   color: #fff;
   background-color: #212529;
 }
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #303030;
+}
+
 .card-img-top {
   width: 45% !important;
   height: 100%;
@@ -13004,5 +13014,6 @@ a.text-dark:hover {
 /*****************Index Oeuvre******************/
 .nameO{
     font-weight: 600;
+    font-size: 14px;
 }
 

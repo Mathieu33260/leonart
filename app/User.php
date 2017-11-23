@@ -16,6 +16,7 @@ use App\Notifications\MailResetPasswordToken;
  * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property bool $visiteur
  *
  * @property \Illuminate\Database\Eloquent\Collection $artistes
  * @property \Illuminate\Database\Eloquent\Collection $oeuvres
@@ -27,6 +28,10 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $casts = [
+        'visiteur' => 'bool'
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -36,7 +41,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'remember_token'
+        'remember_token',
+        'visiteur'
     ];
 
     /**

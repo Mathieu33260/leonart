@@ -37,11 +37,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /* Admin*/
 
+Route::prefix('admin')->namespace('Admin')->group(function () {
+
+    Route::get('/edit', 'AdminController@edit')
+        ->name('admin:profil:edit');
+
+    Route::patch('/save', 'AdminController@save')
+        ->name('admin:profil:save');
+});
+
+/* User */
 
 Route::prefix('user')->namespace('User')->group(function () {
-
-
-    /* User */
 
     Route::get('users/edit', 'UserController@edit')
         ->name('user:profil:edit');
@@ -50,7 +57,16 @@ Route::prefix('user')->namespace('User')->group(function () {
         ->name('user:profil:save');
 });
 
+/* Guest */
 
+Route::prefix('guest')->namespace('Guest')->group(function () {
+
+    Route::get('users/edit', 'GuestController@edit')
+        ->name('user:profil:edit');
+
+    Route::patch('users', 'GuestController@save')
+        ->name('user:profil:save');
+});
 
 
 /* Type */

@@ -19,20 +19,44 @@
                    <i class="fa fa-area-chart"></i> @lang("Tableau de bord")
                 </a>
             </li>
-            <li class="nav-item {{ request()->segment(1) === 'oeuvre' ? 'active' : null }}">
-                <a class="nav-link" href="{{route('oeuvre:index')}}">
+            <li class="nav-item dropdown {{ request()->segment(1) === 'oeuvre' ? 'active' : null }}">
+                <a class="nav-link" data-toggle="dropdown" href="{{route('oeuvre:index')}}">
                     <i class="fa fa-paint-brush"></i> @lang("Oeuvre")
                 </a>
+                <div class="dropdown-menu">
+                    <a class="nav-link dropdown-item" href="{{route('oeuvre:index')}}">
+                    @lang("Mes oeuvres")
+                </a>
+                <a class="nav-link dropdown-item" href="{{route('oeuvre:create')}}">
+                    @lang("Ajouter une oeuvre")
+                </a>
+            </div>
             </li>
-            <li class="nav-item {{ request()->segment(1) === 'artiste' ? 'active' : null }}">
-                <a class="nav-link" href="{{route('artiste:index')}}">
+            <li class="nav-item dropdown {{ request()->segment(1) === 'artiste' ? 'active' : null }}">
+                <a class="nav-link" data-toggle="dropdown" href="{{route('artiste:index')}}">
                    <i class="fa fa-user"></i> @lang("Artiste")
                 </a>
+                <div class="dropdown-menu">
+                    <a class="nav-link dropdown-item" href="{{route('artiste:index')}}">
+                    @lang("Mes artistes")
+                </a>
+                <a class="nav-link dropdown-item" href="{{route('artiste:create')}}">
+                    @lang("Ajouter un artiste")
+                </a>
+            </div>
             </li>
-            <li class="nav-item {{ request()->segment(1) === 'type' ? 'active' : null }}">
-                <a class="nav-link" href="{{route('type:index')}}">
+            <li class="nav-item dropdown {{ request()->segment(1) === 'type' ? 'active' : null }}">
+                <a class="nav-link" data-toggle="dropdown" href="{{route('type:index')}}">
                     <i class="fa fa-sliders"></i> @lang("Type")
                 </a>
+                <div class="dropdown-menu">
+                    <a class="nav-link dropdown-item" href="{{route('type:index')}}">
+                    @lang("Mes types")
+                </a>
+                <a class="nav-link dropdown-item" href="{{route('type:create')}}">
+                    @lang("Ajouter un type")
+                </a>
+            </div>
             </li>
         </ul>
 

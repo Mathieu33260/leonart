@@ -1,8 +1,10 @@
 @extends('oeuvre.oeuvreLayout')
 
-@section('subtitle', __("Accueil"))
+@section('subtitle', __("Oeuvres"))
 
 @section('content')
+<style>
+</style>
     <div class="col-md-12 d-flex align-items-center justify-content-md-center" id="banner">
         <h1 class="display-1 text-white">Vos Oeuvres</h1>
     </div>
@@ -10,12 +12,13 @@
         <form class="form-inline">
             <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">
         </form>
-        <a href="{{ route('oeuvre:create') }}"><input type="button" class="btn btn-outline-success center-block" value="Ajouter"></a>
+        <a href="{{ route('oeuvre:create') }}"><input type="button" class="btn btn-success center-block" value="Ajouter"></a>
 
     </nav>
         <div class="row">
-            <div class="dark col-lg-3 right-list" onscroll="lazyLoad()">
-                    <table class="table table-dark2 list">
+            <div class="col-lg-2 right-list" onscroll="lazyLoad()">
+                <div class="dark2">
+                    <table class="table table-striped table-dark list">
                     @foreach($oeuvres as $oeuvre)
                             <tr>
                                 <td>
@@ -26,6 +29,7 @@
                             </tr>
                     @endforeach
                     </table>
+                </div>
             </div>
             <div></div>
             <div class="col-lg-9">
@@ -68,8 +72,8 @@
                                         <tr>
                                             <td></td>
                                             <td></td>
-                                            <td><a href="{{ route('oeuvre:edit', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-outline-info">Modifier</button></a></td>
-                                            <td><a href="{{ route('oeuvre:destroy', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-outline-danger" >Supprimer</button></a></td>
+                                            <td><a href="{{ route('oeuvre:edit', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-info">Modifier</button></a></td>
+                                            <td><a href="{{ route('oeuvre:destroy', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-danger" >Supprimer</button></a></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -82,7 +86,7 @@
 
                 </div>
                 <div class="row">
-                    <div class=" col-lg-6">{!! $map !!}</div>
+                    <div class="col-lg-6">{!! $map !!}</div>
                     <div class=" col-lg-6">
                       <div id="container"></div>
                     </div>

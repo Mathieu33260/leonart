@@ -99,7 +99,13 @@ class OeuvresController extends Controller
         ]);
 
         $image = $request->file('image');
-        Storage::put('public/uploads/images/'.$image->getClientOriginalName(), file_get_contents($image->getRealPath()));
+        if(is_null($image))
+        {
+            $filename = null;
+        } else {
+            Storage::put('public/uploads/images/'.$image->getClientOriginalName(), file_get_contents($image->getRealPath()));
+            $filename = $image->getClientOriginalName();
+        }
 
         $oeuvre = Oeuvre::create([
             'nom' => $request->input('nom'),
@@ -112,7 +118,7 @@ class OeuvresController extends Controller
             'artisteId' => $request->input('artisteId'),
             'userId' => auth()->user()->id,
             'description' => $request->input('description'),
-            'image' => $image->getClientOriginalName()
+            'image' => $filename
         ]);
 
         if ($oeuvre) {
@@ -212,7 +218,13 @@ class OeuvresController extends Controller
         ]);
 
         $image = $request->file('image');
-        Storage::put('public/uploads/images/'.$image->getClientOriginalName(), file_get_contents($image->getRealPath()));
+        if(is_null($image))
+        {
+            $filename = null;
+        } else {
+            Storage::put('public/uploads/images/'.$image->getClientOriginalName(), file_get_contents($image->getRealPath()));
+            $filename = $image->getClientOriginalName();
+        }
 
         $oeuvre = Oeuvre::where('id', $oeuvreId)->update([
             'nom' => $request->input('nom'),
@@ -225,7 +237,7 @@ class OeuvresController extends Controller
             'artisteId' => $request->input('artisteId'),
             'userId' => auth()->user()->id,
             'description' => $request->input('description'),
-            'image' => $image->getClientOriginalName()
+            'image' => $filename
         ]);
 
         if ($oeuvre) {

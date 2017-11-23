@@ -203,7 +203,7 @@
             <div class="row justify-content-center">
                 <div class="card col-md-3 col-sm-8  mb-4 mr-4 shadow">
                   <div class="row justify-content-center">
-                     <img class="card-img-top mt-3" src="{{ asset('/images/Pins_maps.svg') }}" alt="Pins map">
+                     <a href="{{ route('page:map') }}" class="text-center"><img class="card-img-top mt-3" src="{{ asset('/images/Pins_maps.svg') }}" alt="Pins map"></a>
                    </div>
                     <div class="card-body text-dark">
                         <h4 class="card-title text-center font-weight-bold">Carte iBeacons</h4>
@@ -213,11 +213,11 @@
 
                 <div class="card col-md-3 col-sm-8 mb-4 mr-4 shadow">
                   <div class="row justify-content-center">
-                    <img class="card-img-top mt-3" src="{{ asset('/images/MonCompte.svg') }}" alt="Mon compte">
+                    <a href="{{ route('home') }}" class="text-center"><img class="card-img-top mt-3" src="{{ asset('/images/MonCompte.svg') }}" alt="Mon compte"></a>
                   </div>
                     <div class="card-body text-dark">
                         <h4 class="card-title text-center font-weight-bold">Compte</h4>
-                        <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text text-center">Acceder à l'ensemble des details de votre compte, vos oeuvres, vos artistes,&nbsp;etc.</p>
                     </div>
                 </div>
 

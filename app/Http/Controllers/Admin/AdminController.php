@@ -55,6 +55,11 @@ class AdminController extends Controller
             flash(__("Une erreur s'est produite."))->error();
         }
 
-        return redirect()->route('user:profil:edit');
+        return redirect()->route('admin:profil:edit');
+    }
+
+    public function changeRights (Request $request)
+    {
+
     }
 }

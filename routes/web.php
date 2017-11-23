@@ -63,11 +63,11 @@ Route::prefix('user')->namespace('User')->group(function () {
 
 Route::prefix('guest')->namespace('Guest')->group(function () {
 
-    Route::get('users/edit', 'GuestController@edit')
-        ->name('user:profil:edit');
+    Route::get('/edit', 'GuestController@edit')
+        ->name('guest:profil:edit');
 
-    Route::patch('users', 'GuestController@save')
-        ->name('user:profil:save');
+    Route::patch('/save', 'GuestController@save')
+        ->name('guest:profil:save');
 });
 
 

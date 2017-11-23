@@ -9,8 +9,11 @@ Ajouter une oeuvre
 @endsection
 
 @include('layout.heading')
-    <div class="container">
-        <div class="row">
+<style type="text/css">
+    input {font-family:FontAwesome, sans-serif;}
+</style>
+    <div class="container-fluid pt-4 ">
+        <div class="row justify-content-md-center">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -20,41 +23,35 @@ Ajouter une oeuvre
                     </ul>
                 </div>
             @endif
+            <div class='container-page'></div>
 
-
-            <div class="col-xs-12 col-md-8 col-lg-5">
+            <div class="col-md-5">
                 {!! Form::open(['route' => 'oeuvre:store', 'files' => true, 'method' => 'post']) !!}
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            {!! Form::Label('nom', 'Nom') !!}
+                        <div class="col-xs-12 col-md-6 col-lg-12">
+                         {!! Form::Label('nom', 'Nom') !!}
                             {!! Form::text('nom', null, array('required' => 'required', 'class' => 'form-control',
-                             'placeholder' => 'Nom')) !!}
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            {!! Form::Label('modele', 'Modèle') !!}
-                            {!! Form::text('modele', null, array('class' => 'form-control',
-                            'placeholder' => 'Modèle')) !!}
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            {!! Form::Label('idIbeacon', 'Id iBeacon') !!}
-                            {!! Form::number('idIbeacon', null, array('required' => 'required','class' => 'form-control',
-                            'placeholder' => 'Id iBeacon')) !!}
+                             'placeholder' => '&#xf007; Nom')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('posX', 'Latitude') !!}
                             {!! Form::text('posX', null, array('required' => 'required', 'class' => 'form-control',
-                            'placeholder' => 'Latitude')) !!}
+                            'placeholder' => '&#xf041; Latitude')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('posY', 'Longitude') !!}
                             {!! Form::text('posY', null, array('required' => 'required', 'class' => 'form-control',
-                            'placeholder' => 'Longitude')) !!}
+                            'placeholder' => '&#xf041; Longitude')) !!}
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            {!! Form::Label('idIbeacon', 'Id iBeacon') !!}
+                            {!! Form::number('idIbeacon', null, array('required' => 'required','class' => 'form-control',
+                            'placeholder' => '&#xf129; Id iBeacon')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('audio', 'Audio') !!}
-                            {!! Form::text('audio', null, array('class' => 'form-control',
-                            'placeholder' => 'Audio')) !!}
+                            {!! Form::file('audio', array('class' => 'form-control')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('typeId', 'Type') !!}
@@ -64,14 +61,13 @@ Ajouter une oeuvre
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('artisteId', 'Artiste') !!}
                             {!! Form::select('artisteId', array(null => 'Sélectionnez un artiste') + $artistes, null,  array('class' => 'form-control')) !!}
-
                         </div>
-                        <div class="col-xs-12 col-md-6">
+                        <div class="col-xs-12 col-md-6 col-lg-12">
                             {!! Form::Label('description', 'Description') !!}
-                            {!! Form::text('description', null, array('class' => 'form-control',
+                            {!! Form::textarea('description', null, array('class' => 'form-control',
                             'placeholder' => 'Description')) !!}
                         </div>
-                        <div class="col-xs-12 col-md-6">
+                        <div class="col-xs-12 col-md-6 col-lg-7">
                             {!! Form::Label('image', 'Image') !!}
                             {!! Form::file('image', array('class' => 'form-control')) !!}
                         </div>
@@ -85,16 +81,10 @@ Ajouter une oeuvre
                 {!! Form::close() !!}
             </div>
 
-                <div class="col-xs-12 col-md-8 col-lg-5">
-                    <button id="btnDefautMarker" type="button" class="btn btn-success">
-                        @lang("Placer un marqueur au centre") <span class="glyphicon glyphicon-ok"></span>
-                    </button>
+                <div class="col-md-6">  
                     {!! $map !!}
                 </div>
-
-
-
-
         </div>
     </div>
+
 @endsection

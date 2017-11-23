@@ -1,4 +1,9 @@
-<div id="map" class="col-lg-12" style="min-height: 300px"></div>
+<button id="btnDefautMarker" type="button" class="btn btn-success mb-4 pull-right">
+                        @lang("Placer un marqueur") 
+</button> 
+<div id="map" class="col-lg-12" style="min-height: 600px"></div>
+
+
 <script>
     var map;
     var centre = {lat: 44.791213, lng: -0.608717};
@@ -10,6 +15,7 @@
             center: centre,
             zoom: 10
         });
+        
 
     }
 

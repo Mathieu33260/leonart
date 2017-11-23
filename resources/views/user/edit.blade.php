@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading lead">
                         {{ $user->name }}
-                        <small class="text-muted">{{ $user->created_at->diffForHumans() }}</small>
+                        <small class="text-muted">(account created {{ $user->created_at->diffForHumans() }})</small>
                     </div>
                     {!! Form::model($user, array('route' => array('user:profil:save'), 'method' => 'patch')) !!}
                     <div class="panel-body">

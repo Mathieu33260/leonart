@@ -17,7 +17,7 @@
 
 
             <div class="col-xs-12 col-md-8 col-lg-5">
-                {!! Form::open(['route' => 'oeuvre:store', 'method' => 'post']) !!}
+                {!! Form::open(['route' => 'oeuvre:store', 'files' => true, 'method' => 'post']) !!}
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
@@ -59,6 +59,15 @@
                             {!! Form::Label('artisteId', 'Artiste') !!}
                             {!! Form::select('artisteId', array(null => 'Sélectionnez un artiste') + $artistes, null,  array('class' => 'form-control')) !!}
 
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            {!! Form::Label('description', 'Description') !!}
+                            {!! Form::text('description', null, array('class' => 'form-control',
+                            'placeholder' => 'Description')) !!}
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            {!! Form::Label('image', 'Image') !!}
+                            {!! Form::file('image', array('class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>

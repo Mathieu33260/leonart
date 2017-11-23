@@ -31,12 +31,15 @@ class HomeController extends Controller
     {
         $oeuvres = Oeuvre::where('userId', auth()->user()->id)
             ->get();
-        $type = Type::all();
-        $artiste = Artiste::all();
+        $type = Type::where('userId', auth()->user()->id)
+            ->get();
+        $artiste = Artiste::where('userId', auth()->user()->id)
+            ->get();
 
         $oeuvreOrdType = DB::table('oeuvre')
         ->join('type', 'oeuvre.typeId', '=', 'type.id')
         ->where('oeuvre.userId', auth()->user()->id)
+        ->where('type.userId', auth()->user()->id)
         ->select('type.libelle', DB::raw('count(*) as total'))
         ->groupBy('libelle')
         ->get()
@@ -52,6 +55,8 @@ class HomeController extends Controller
 
         $oeuvreOrdArtiste = DB::table('oeuvre')
             ->join('artiste', 'oeuvre.artisteId', '=', 'artiste.id')
+            ->where('oeuvre.userId', auth()->user()->id)
+            ->where('artiste.userId', auth()->user()->id)
             ->select('artiste.nom', DB::raw('count(*) as total'))
             ->groupBy('nom')
             ->get()

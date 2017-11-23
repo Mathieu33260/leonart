@@ -1,5 +1,6 @@
 <?php
 
+
 return [
 
     /*
@@ -178,6 +179,11 @@ return [
 
         Laracasts\Flash\FlashServiceProvider::class,
         
+        /*
+         * Flash package
+         */
+
+        Laracasts\Flash\FlashServiceProvider::class,
         /*
          * Application Service Providers...
          */

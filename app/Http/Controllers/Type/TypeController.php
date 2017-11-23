@@ -16,7 +16,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::limit(10)
+        $types = Type::where('userId', auth()->user()->id)
+            ->limit(10)
             ->get();
 
         return view('type.index')->with(compact('types'));
@@ -27,12 +28,14 @@ class TypeController extends Controller
         if($string != "")
         {
             $types = Type::where('libelle', 'like', '%'.$string.'%')
+                ->where('userId', auth()->user()->id)
                 ->orderBy('id','ASC')
                 ->offset($offset)
                 ->limit(10)
                 ->get();
         } else {
-            $types = Type::orderBy('id','ASC')
+            $types = Type::where('userId', auth()->user()->id)
+                ->orderBy('id','ASC')
                 ->offset($offset)
                 ->limit(10)
                 ->get();
@@ -64,7 +67,8 @@ class TypeController extends Controller
         ]);
 
         $type = Type::create([
-            'libelle' => $request->input('libelle')
+            'libelle' => $request->input('libelle'),
+            'userId' => auth()->user()->id
         ]);
 
         return redirect()->route('type:show',['id' => $type->id]);
@@ -80,7 +84,13 @@ class TypeController extends Controller
     public function show(int $typeId)
     {
         $type = Type::where('id', $typeId)
+            ->where('userId', auth()->user()->id)
             ->first();
+
+        if(is_null($type))
+        {
+            return redirect()->route('type:index');
+        }
 
         if(\request()->ajax()) {
             return View::make('type.showAjax',compact('type'))->render();
@@ -99,7 +109,13 @@ class TypeController extends Controller
     public function edit(int $typeId)
     {
         $type = Type::where('id', $typeId)
+            ->where('userId', auth()->user()->id)
             ->first();
+
+        if(is_null($type))
+        {
+            return redirect()->route('type:index');
+        }
 
         return view('type.edit')->with(compact('type'));
     }
@@ -114,19 +130,23 @@ class TypeController extends Controller
      */
     public function update(Request $request, int $typeId)
     {
+        $typetest = Type::where('id', $typeId)
+            ->where('userId', auth()->user()->id)
+            ->first();
+
+        if(is_null($typetest))
+        {
+            return redirect()->route('type:index');
+        }
+
         $this->validate($request, [
             'libelle'     => 'required|string|max:255'
         ]);
 
         $type = Type::where('id', $typeId)->update([
-            'libelle' => $request->input('libelle')
+            'libelle' => $request->input('libelle'),
+            'userId' => auth()->user()->id
         ]);
-
-        /*if ($type) {
-            flash(__("Profil sauvegardé avec succès !"))->success();
-        } else {
-            flash(__("Une erreur s'est produite."))->error();
-        }*/
 
         return redirect()->route('type:show',['id' => $typeId]);
     }
@@ -140,16 +160,17 @@ class TypeController extends Controller
      */
     public function destroy(int $typeId)
     {
-        $type = Type::where('id', $typeId)->first();
+        $type = Type::where('id', $typeId)
+            ->where('userId', auth()->user()->id)
+            ->first();
+
+        if(is_null($type))
+        {
+            return redirect()->route('type:index');
+        }
 
         $type->oeuvres()->rawUpdate(['typeId' => null]);
         $type->delete();
-
-        /*if ($type) {
-            flash(__("Profil sauvegardé avec succès !"))->success();
-        } else {
-            flash(__("Une erreur s'est produite."))->error();
-        }*/
 
         return redirect()->route('type:index');
     }

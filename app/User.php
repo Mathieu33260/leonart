@@ -17,6 +17,7 @@ use App\Notifications\MailResetPasswordToken;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property bool $visiteur
+ * @property bool $admin
  *
  * @property \Illuminate\Database\Eloquent\Collection $artistes
  * @property \Illuminate\Database\Eloquent\Collection $oeuvres
@@ -29,7 +30,8 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $casts = [
-        'visiteur' => 'bool'
+        'visiteur' => 'bool',
+        'admin' => 'bool'
     ];
 
     /**
@@ -42,7 +44,8 @@ class User extends Authenticatable
         'email',
         'password',
         'remember_token',
-        'visiteur'
+        'visiteur',
+        'admin'
     ];
 
     /**

@@ -32,6 +32,7 @@
         <div class="col-lg-9">
             <div class="row">
                 <div id="box">
+                    @if(isset($artiste))
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 col-md-12 col-lg-12 panel panel-default">
@@ -52,6 +53,9 @@
                             </div>
                         </div>
                     </div>
+                    @else
+                        Pas d'artistes
+                    @endif
                 </div>
 
             </div>

@@ -46,6 +46,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         ->name('admin:profil:save');
 });
 
+
 /* User */
 
 Route::prefix('user')->namespace('User')->group(function () {
@@ -55,6 +56,7 @@ Route::prefix('user')->namespace('User')->group(function () {
 
     Route::patch('users', 'UserController@save')
         ->name('user:profil:save');
+
 });
 
 /* Guest */

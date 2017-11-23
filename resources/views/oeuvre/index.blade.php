@@ -3,11 +3,14 @@
 @section('subtitle', __("Oeuvres"))
 
 @section('content')
+
+@section('header') 
+Vos Oeuvres
+@endsection
+
 <style>
 </style>
-    <div class="col-md-12 d-flex align-items-center justify-content-md-center" id="banner">
-        <h1 class="display-1 text-white">Vos Oeuvres</h1>
-    </div>
+
     <nav class="navbar navbar-light bg-light">
         <form class="form-inline">
             <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">

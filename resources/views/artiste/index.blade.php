@@ -3,9 +3,11 @@
 @section('subtitle', __("Artiste"))
 
 @section('content')
-    <div class="col-md-12 d-flex align-items-center justify-content-md-center" id="banner">
-        <h1 class="display-1 text-white">Artistes</h1>
-    </div>
+
+@section('header') 
+Vos Artistes
+@endsection
+
     <nav class="navbar navbar-light bg-light">
         <form class="form-inline">
             <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">

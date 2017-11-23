@@ -3,6 +3,11 @@
 @section('subtitle', __("Accueil"))
 
 @section('content')
+
+@section('header') 
+Vos Types
+@endsection
+
     <div class="container">
         <div class="row">
 

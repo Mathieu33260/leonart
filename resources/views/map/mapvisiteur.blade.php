@@ -4,8 +4,7 @@
     <div id="test"></div>
 
     <script>
-      @foreach($oeuvres as $oeuvre)
-      
+
     function initMap() {
 
 
@@ -37,8 +36,8 @@
       @endforeach
 
 
-    }
+    };
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWARvkaDg6P7iC40S1FF3BN3uZVKC1UFU&callback=initMap" async defer></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWARvkaDg6P7iC40S1FF3BN3uZVKC1UFU&callback=initMap"
+            async defer></script>
 </div>

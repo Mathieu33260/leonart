@@ -11,6 +11,9 @@ use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
+
 
 
 
@@ -47,6 +50,13 @@ class PageController extends Controller
 
     public function map()
     {
-        return view("pages.map");
+      $oeuvres = DB::table('oeuvre')->get();
+
+      $map = View::make('map.mapvisiteur')
+          ->with(compact('oeuvres'))
+          ->render();
+
+      return view('pages.map')->with(compact('map'));
+
     }
 }

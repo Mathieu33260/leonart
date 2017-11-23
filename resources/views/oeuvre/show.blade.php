@@ -29,6 +29,8 @@
                 </p>
                 @endif
                 <p>User : {{ $oeuvre->user->name }}</p>
+                <p>Description : {{ $oeuvre->description }}</p>
+                <img height="300px" src="/storage/uploads/images/{{ $oeuvre->image }}"/>
                 <a href="{{ route('oeuvre:edit', ['id' => $oeuvre->id]) }}">Modifier</a>
                 <a href="{{ route('oeuvre:destroy', ['id' => $oeuvre->id]) }}">Supprimer</a>
             </div>

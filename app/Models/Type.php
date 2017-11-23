@@ -16,7 +16,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $libelle
  * @property int $userId
  * 
- * @property \App\Models\User $user
+ * @property \App\User $user
  * @property \Illuminate\Database\Eloquent\Collection $oeuvres
  *
  * @package App\Models
@@ -37,7 +37,7 @@ class Type extends Eloquent
 
 	public function user()
 	{
-		return $this->belongsTo(\App\Models\User::class, 'userId');
+		return $this->belongsTo(\App\User::class, 'userId');
 	}
 
 	public function oeuvres()

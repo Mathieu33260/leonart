@@ -8,6 +8,7 @@ use App\Models\Type;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 
 class OeuvresController extends Controller
@@ -92,10 +93,13 @@ class OeuvresController extends Controller
             'posY' => 'required|numeric',
             'audio' => 'string|nullable',
             'typeId' => 'integer|digits_between:0,3|nullable',
-            'artisteId' => 'integer|digits_between:0,11|nullable'
+            'artisteId' => 'integer|digits_between:0,11|nullable',
+            'description' => 'string|nullable',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable'
         ]);
 
-
+        $image = $request->file('image');
+        Storage::put('public/uploads/images/'.$image->getClientOriginalName(), file_get_contents($image->getRealPath()));
 
         $oeuvre = Oeuvre::create([
             'nom' => $request->input('nom'),
@@ -106,7 +110,9 @@ class OeuvresController extends Controller
             'audio' => $request->input('audio'),
             'typeId' => $request->input('typeId'),
             'artisteId' => $request->input('artisteId'),
-            'userId' => auth()->user()->id
+            'userId' => auth()->user()->id,
+            'description' => $request->input('description'),
+            'image' => $image->getClientOriginalName()
         ]);
 
         if ($oeuvre) {
@@ -200,8 +206,13 @@ class OeuvresController extends Controller
             'posY' => 'required|numeric',
             'audio' => 'string|nullable',
             'typeId' => 'integer|digits_between:0,3|nullable',
-            'artisteId' => 'integer|digits_between:0,11|nullable'
+            'artisteId' => 'integer|digits_between:0,11|nullable',
+            'description' => 'string|nullable',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable'
         ]);
+
+        $image = $request->file('image');
+        Storage::put('public/uploads/images/'.$image->getClientOriginalName(), file_get_contents($image->getRealPath()));
 
         $oeuvre = Oeuvre::where('id', $oeuvreId)->update([
             'nom' => $request->input('nom'),
@@ -212,7 +223,9 @@ class OeuvresController extends Controller
             'audio' => $request->input('audio'),
             'typeId' => $request->input('typeId'),
             'artisteId' => $request->input('artisteId'),
-            'userId' => auth()->user()->id
+            'userId' => auth()->user()->id,
+            'description' => $request->input('description'),
+            'image' => $image->getClientOriginalName()
         ]);
 
         if ($oeuvre) {

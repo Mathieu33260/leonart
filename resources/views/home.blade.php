@@ -8,6 +8,10 @@
 @section('header') 
 Bienvenue {{ Auth::user()->name }}
 @endsection
+
+@include('layout.heading')
+
+
 <section>
 <div class="position-ref dark pb-4">
         <div class="container-fluid pt-4">

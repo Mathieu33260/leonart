@@ -3,6 +3,12 @@
 @section('subtitle', __("Ajout"))
 
 @section('content')
+
+@section('header') 
+Ajouter une oeuvre
+@endsection
+
+@include('layout.heading')
     <div class="container">
         <div class="row">
             @if ($errors->any())

@@ -8,6 +8,8 @@
 Vos Types
 @endsection
 
+@include('layout.heading')
+
     <div class="container">
         <div class="row">
 

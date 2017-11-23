@@ -8,6 +8,8 @@
 Vos Oeuvres
 @endsection
 
+@include('layout.heading')
+
 <style>
 </style>
 
@@ -19,7 +21,7 @@ Vos Oeuvres
 
     </nav>
         <div class="row">
-            <div class="col-lg-2 right-list" onscroll="lazyLoad()">
+            <div class="col-lg-2 col-md-2 right-list" onscroll="lazyLoad()">
                 <div class="dark2">
                     <table class="table table-striped table-dark list">
                     @foreach($oeuvres as $oeuvre)
@@ -35,64 +37,20 @@ Vos Oeuvres
                 </div>
             </div>
             <div></div>
-            <div class="col-lg-9">
-                <div class="row">
-                    <div id="box">
-                        @if(isset($oeuvre))
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xs-12 col-md-12 col-lg-12 panel panel-default">
-                                    <table class="table">
-                                        <th> <h3>Oeuvre : {{ $oeuvre->nom }}</h3></th>
-                                        <tr>
-                                            <td><p>Nom : {{ $oeuvre->nom }}</p></td>
-                                            <td>
-                                                @if($oeuvre->type != null)
-                                                    <p>Type :
-                                                        <a href="{{ route('type:show',['id' => $oeuvre->type->id]) }}">
-                                                            {{ $oeuvre->type->libelle }}
-                                                        </a>
-                                                    </p>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if($oeuvre->artiste != null)
-                                                    <p>Artiste :
-                                                        <a href="{{ route('artiste:show',['id' => $oeuvre->artiste->id]) }}">
-                                                            {{ $oeuvre->artiste->nom }} {{ $oeuvre->artiste->prenom }}
-                                                        </a>
-                                                    </p>
-                                                @endif
-                                            </td>
-                                            <td><p>Id iBeacon : {{ $oeuvre->idIbeacon }}</p></td>
-                                        </tr>
-                                        <tr>
-                                            <td><p>Latitude : {{ $oeuvre->posX }}</p></td>
-                                            <td><p>Longitude : {{ $oeuvre->posY }}</p></td>
-                                            <td><p>Audio : {{ $oeuvre->audio }}</p></td>
-                                            <td><p>User : {{ $oeuvre->user->name }}</p></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td><a href="{{ route('oeuvre:edit', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-info">Modifier</button></a></td>
-                                            <td><a href="{{ route('oeuvre:destroy', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-danger" >Supprimer</button></a></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        @else
-                            Pas d'oeuvres
-                        @endif
-                    </div>
-
+            <div class="col">
+                <div id="loading">
+                    <img id="loading-image" src="{{ asset('images/Ellipsis.svg') }}" alt="Loading..." />
                 </div>
                 <div class="row">
-                    <div class="col-lg-6">{!! $map !!}</div>
-                    <div class=" col-lg-6">
-                      <div id="container"></div>
+                    <div id="box">
                     </div>
+                </div>
+                <div class="row">
+                    <div id="containerMap" class="container-fluid">
+                    {!! $map !!}</div>
+                    <div id="canvasthree"><div class=" col-lg-6">
+                      <div id="container"></div>
+                    </div></div>
                 </div>
             </div>
 
@@ -101,9 +59,11 @@ Vos Oeuvres
 
     <script>
         $(document).ready(function() {
+         $('#loading').hide();
           init('null');
           animate();
           $('#box').text('');
+          $('#canvasthree').hide();
         })
 
         var renderer, scene, camera, mesh;
@@ -160,11 +120,15 @@ Vos Oeuvres
         }
 
         function getAjax(id,lat,long){
-            centerMap(lat,long);
+            centerMap   (lat,long);
             $.ajax({
                 type:'GET',
                 url:'/oeuvre/'+id,
+                    beforeSend: function(){
+                    $('#loading').show();
+                     },
                 success:function(data){
+                    $('#loading').remove();
                     $('#box').empty();
                     $('#box').append(data);
                 }
@@ -172,9 +136,12 @@ Vos Oeuvres
         }
 
         function twoCall(image, id, lat, long) {
-          $('#container').text('');
           init(image);
           getAjax(id, lat, long);
+          $('#map').animate({
+            "min-height": "400px"
+        });
+          $('#containerMap').attr('class', 'col-lg-6');
         }
 
         var offset = 10;
@@ -184,7 +151,9 @@ Vos Oeuvres
             $.ajax({
                 type:'GET',
                 url:'/oeuvre/indexAjax/'+offset+'/'+$('#recherche').val(),
+
                 success:function(data){
+  
                     $('.list').empty();
                     deleteAllMarker();
                     $.each(data, function( index, value ) {
@@ -207,7 +176,6 @@ Vos Oeuvres
                     url : '/oeuvre/indexAjax/'+offset+'/'+$('#recherche').val(),
                     success : function (data)
                     {
-                        $('.loading-indicator').remove();
                         $.each(data, function( index, value ) {
                             var pos = {lat: value.posX, lng: value.posY};
                             placeMarker(pos,map,value.id);

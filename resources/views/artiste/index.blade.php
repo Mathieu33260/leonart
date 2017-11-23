@@ -8,6 +8,8 @@
 Vos Artistes
 @endsection
 
+@include('layout.heading')
+
     <nav class="navbar navbar-light bg-light">
         <form class="form-inline">
             <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">

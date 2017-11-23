@@ -11,21 +11,24 @@
                         {{ $user->name }}
                         <small class="text-muted">{{ $user->created_at->diffForHumans() }}</small>
                     </div>
-                    {!! BootForm::open()->action(route('user:profil:save'))->patch() !!}
-                    {!! BootForm::bind($user) !!}
+                    {!! Form::model($user, array('route' => array('user:profil:save'), 'method' => 'patch')) !!}
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::text(__("Nom"), 'name')->required() !!}
+                                {!! Form::Label('name', 'Nom') !!}
+                                {!! Form::text('name', $user->name, array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::email(__("Adresse e-mail"), 'email')->required() !!}
+                                {!! Form::Label('email', 'Adresse e-mail') !!}
+                                {!! Form::text('email', $user->email, array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::password(__("Mot de passe"), 'password') !!}
+                                {!! Form::Label('password', 'Mot de passe') !!}
+                                {!! Form::password('password', array('class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                {!! BootForm::password(__("Confirmation"), 'password_confirmation') !!}
+                                {!! Form::Label('password_confirmation', 'Confirmation') !!}
+                                {!! Form::password('password_confirmation', array('class' => 'form-control')) !!}
                             </div>
                         </div>
                     </div>
@@ -34,7 +37,7 @@
                             @lang("Sauvegarder") <span class="glyphicon glyphicon-ok"></span>
                         </button>
                     </div>
-                    {!! BootForm::close() !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

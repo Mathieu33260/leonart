@@ -9,7 +9,7 @@
     	</div>
 
 <section>
-<div class="position-ref dark">
+<div class="position-ref dark pb-4">
         <div class="container-fluid pt-4">
             <div class="row">
             	<div class="col-1">
@@ -23,7 +23,7 @@
            		<div class="col-5">
            		<div class="titleHead">
            			<h2 class="display-4 p-2 pl-4"><i class="fa fa-paint-brush pr-2"></i>Vos oeuvres</h2>
-           			{!! $general !!}
+
            		</div>
            		</div>
            	</div>
@@ -34,30 +34,24 @@
         <div class="row justify-content-center">
         	<div class="col-3">
         		<div class="titleHead">
-        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
-           			{!! $oeuvreV !!}
+        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Oeuvres par type</h2>
+           			{!! $oeuvreT !!}
            			</div>
            	</div>
            	<div class="col-3">
         		<div class="titleHead">
-        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
+        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Répartition</h2>
            			{!! $general !!}
            			</div>
            	</div>
            	<div class="col-3">
         		<div class="titleHead">
-        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
-           			{!! $oeuvreV !!}
+        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Oeuvres par artiste</h2>
+           			{!! $oeuvreA !!}
            			</div>
            	</div>
         </div>
        	</div>
 
 </div>
-</section>
-       <!-- <div class="col-md-8 col-lg-5">{!! $general !!}</div>
-
-        <div class="col-md-8 col-lg-5">{!! $oeuvreV !!}</div>
-
-        <div class="col-md-8">{!! $map !!}</div> -->
 @endsection

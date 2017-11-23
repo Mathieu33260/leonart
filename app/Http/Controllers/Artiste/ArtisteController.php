@@ -16,7 +16,8 @@ class ArtisteController extends Controller
      */
     public function index()
     {
-        $artistes = Artiste::limit(10)
+        $artistes = Artiste::where('userId', auth()->user()->id)
+            ->limit(10)
             ->get();
 
         return view('artiste.index')->with(compact('artistes'));
@@ -28,12 +29,14 @@ class ArtisteController extends Controller
         {
             $artistes = Artiste::where('nom', 'like', '%'.$string.'%')
                 ->orwhere('prenom', 'like', '%'.$string.'%')
+                ->where('userId', auth()->user()->id)
                 ->orderBy('id','ASC')
                 ->offset($offset)
                 ->limit(10)
                 ->get();
         } else {
-            $artistes = Artiste::orderBy('id','ASC')
+            $artistes = Artiste::where('userId', auth()->user()->id)
+                ->orderBy('id','ASC')
                 ->offset($offset)
                 ->limit(10)
                 ->get();
@@ -71,7 +74,8 @@ class ArtisteController extends Controller
             'nom' => $request->input('nom'),
             'prenom' => $request->input('prenom'),
             'dateN' => $request->input('dateN'),
-            'dateM' => $request->input('dateM')
+            'dateM' => $request->input('dateM'),
+            'userId' => auth()->user()->id
         ]);
 
         return redirect()->route('artiste:show',['id' => $artiste->id]);
@@ -88,7 +92,13 @@ class ArtisteController extends Controller
     {
 
         $artiste = Artiste::where('id', $artisteId)
+            ->where('userId', auth()->user()->id)
             ->first();
+
+        if(is_null($artiste))
+        {
+            return redirect()->route('artiste:index');
+        }
 
         if(\request()->ajax()) {
             return View::make('artiste.showAjax',compact('artiste'))->render();
@@ -108,7 +118,13 @@ class ArtisteController extends Controller
     public function edit(int $artisteId)
     {
         $artiste = Artiste::where('id', $artisteId)
+            ->where('userId', auth()->user()->id)
             ->first();
+
+        if(is_null($artiste))
+        {
+            return redirect()->route('artiste:index');
+        }
 
         return view('artiste.edit')->with(compact('artiste'));
     }
@@ -123,6 +139,15 @@ class ArtisteController extends Controller
      */
     public function update(Request $request, int $artisteId)
     {
+        $artistetest = Artiste::where('id', $artisteId)
+            ->where('userId', auth()->user()->id)
+            ->first();
+
+        if(is_null($artistetest))
+        {
+            return redirect()->route('artiste:index');
+        }
+
         $this->validate($request, [
             'nom'     => 'required|string|max:255',
             'prenom'     => 'required|string|max:255',
@@ -134,14 +159,9 @@ class ArtisteController extends Controller
             'nom' => $request->input('nom'),
             'prenom' => $request->input('prenom'),
             'dateN' => $request->input('dateN'),
-            'dateM' => $request->input('dateM')
+            'dateM' => $request->input('dateM'),
+            'userId' => auth()->user()->id
         ]);
-
-        /*if ($type) {
-            flash(__("Profil sauvegardé avec succès !"))->success();
-        } else {
-            flash(__("Une erreur s'est produite."))->error();
-        }*/
 
         return redirect()->route('artiste:show',['id' => $artisteId]);
     }
@@ -155,16 +175,17 @@ class ArtisteController extends Controller
      */
     public function destroy(int $artisteId)
     {
-        $artiste = Artiste::where('id', $artisteId)->first();
+        $artiste = Artiste::where('id', $artisteId)
+            ->where('userId', auth()->user()->id)
+            ->first();
+
+        if(is_null($artiste))
+        {
+            return redirect()->route('artiste:index');
+        }
 
         $artiste->oeuvres()->rawUpdate(['artisteId' => null]);
         $artiste->delete();
-
-        /*if ($type) {
-            flash(__("Profil sauvegardé avec succès !"))->success();
-        } else {
-            flash(__("Une erreur s'est produite."))->error();
-        }*/
 
         return redirect()->route('artiste:index');
     }

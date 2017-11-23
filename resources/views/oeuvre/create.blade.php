@@ -17,32 +17,38 @@
 
 
             <div class="col-xs-12 col-md-8 col-lg-5">
-                {!! Form::open(['route' => 'oeuvre:store', 'method' => 'post']) !!}
+                {!! Form::open(['route' => 'oeuvre:store', 'files' => true, 'method' => 'post']) !!}
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('nom', 'Nom') !!}
-                            {!! Form::text('nom', null, array('required' => 'required', 'class' => 'form-control')) !!}
+                            {!! Form::text('nom', null, array('required' => 'required', 'class' => 'form-control',
+                             'placeholder' => 'Nom')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('modele', 'Modèle') !!}
-                            {!! Form::text('modele', null, array('class' => 'form-control')) !!}
+                            {!! Form::text('modele', null, array('class' => 'form-control',
+                            'placeholder' => 'Modèle')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('idIbeacon', 'Id iBeacon') !!}
-                            {!! Form::number('idIbeacon', null, array('required' => 'required','class' => 'form-control')) !!}
+                            {!! Form::number('idIbeacon', null, array('required' => 'required','class' => 'form-control',
+                            'placeholder' => 'Id iBeacon')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('posX', 'Latitude') !!}
-                            {!! Form::text('posX', null, array('required' => 'required', 'class' => 'form-control')) !!}
+                            {!! Form::text('posX', null, array('required' => 'required', 'class' => 'form-control',
+                            'placeholder' => 'Latitude')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('posY', 'Longitude') !!}
-                            {!! Form::text('posY', null, array('required' => 'required', 'class' => 'form-control')) !!}
+                            {!! Form::text('posY', null, array('required' => 'required', 'class' => 'form-control',
+                            'placeholder' => 'Longitude')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('audio', 'Audio') !!}
-                            {!! Form::text('audio', null, array('class' => 'form-control')) !!}
+                            {!! Form::text('audio', null, array('class' => 'form-control',
+                            'placeholder' => 'Audio')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('typeId', 'Type') !!}
@@ -53,6 +59,15 @@
                             {!! Form::Label('artisteId', 'Artiste') !!}
                             {!! Form::select('artisteId', array(null => 'Sélectionnez un artiste') + $artistes, null,  array('class' => 'form-control')) !!}
 
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            {!! Form::Label('description', 'Description') !!}
+                            {!! Form::text('description', null, array('class' => 'form-control',
+                            'placeholder' => 'Description')) !!}
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            {!! Form::Label('image', 'Image') !!}
+                            {!! Form::file('image', array('class' => 'form-control')) !!}
                         </div>
                     </div>
                 </div>
@@ -65,8 +80,13 @@
             </div>
 
                 <div class="col-xs-12 col-md-8 col-lg-5">
+                    <button id="btnDefautMarker" type="button" class="btn btn-success">
+                        @lang("Placer un marqueur au centre") <span class="glyphicon glyphicon-ok"></span>
+                    </button>
                     {!! $map !!}
                 </div>
+
+
 
 
         </div>

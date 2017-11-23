@@ -18,6 +18,7 @@
         geocoder.geocode({ 'location': latlng }, function (results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
+                centre = latlng;
             } else {
                 console.log("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
             }
@@ -33,20 +34,13 @@
         });
         map.panTo(position);
 
-        /*google.maps.event.addListener(marker, 'dragend', function(marker){
-            var latLng = marker.latLng;
-            currentLatitude = latLng.lat();
-            currentLongitude = latLng.lng();
-            $("#posX").val(currentLatitude);
-            $("#posY").val(currentLongitude);
-        });*/
-
         google.maps.event.addListener(marker, 'drag', function(marker){
             var latLng = marker.latLng;
             currentLatitude = latLng.lat();
             currentLongitude = latLng.lng();
             $("#posX").val(currentLatitude);
             $("#posY").val(currentLongitude);
+            centre = {lat: parseFloat(latLng.lat()), lng: parseFloat(latLng.lng())};
         });
 
         markertab.push(marker);
@@ -69,6 +63,7 @@
                 deleteAllMarker();
                 var pos = {lat: parseFloat(posX), lng: parseFloat(posY)};
                 placeMarker(pos,map);
+                centre = pos;
             }
         }
     });
@@ -83,8 +78,16 @@
                 deleteAllMarker();
                 var pos = {lat: parseFloat(posX), lng: parseFloat(posY)};
                 placeMarker(pos,map);
+                centre = pos;
             }
         }
+    });
+
+    $("#btnDefautMarker").click(function () {
+        deleteAllMarker();
+        placeMarker(map.getCenter(),map);
+        $("#posX").val(markertab[0].position.lat());
+        $("#posY").val(markertab[0].position.lng());
     });
 
 

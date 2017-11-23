@@ -31,23 +31,43 @@ class HomeController extends Controller
     {
         $oeuvres = Oeuvre::where('userId', auth()->user()->id)
             ->get();
-        $type = Type::all();
-        $artiste = Artiste::all();
+        $type = Type::where('userId', auth()->user()->id)
+            ->get();
+        $artiste = Artiste::where('userId', auth()->user()->id)
+            ->get();
 
-        $oeuvreOrd = DB::table('oeuvre')
-            ->join('type', 'oeuvre.typeId', '=', 'type.id')
-            ->where('oeuvre.userId', auth()->user()->id)
-            ->select('type.libelle', DB::raw('count(*) as total'))
-            ->groupBy('libelle')
-            ->get()
-            ->toArray();
+        $oeuvreOrdType = DB::table('oeuvre')
+        ->join('type', 'oeuvre.typeId', '=', 'type.id')
+        ->where('oeuvre.userId', auth()->user()->id)
+        ->where('type.userId', auth()->user()->id)
+        ->select('type.libelle', DB::raw('count(*) as total'))
+        ->groupBy('libelle')
+        ->get()
+        ->toArray();
 
         $tab1 = array();
         $tab2 = array();
-        foreach($oeuvreOrd as $oeuvree)
+        foreach($oeuvreOrdType as $oeuvree)
         {
             array_push($tab1,$oeuvree->libelle);
             array_push($tab2,$oeuvree->total);
+        }
+
+        $oeuvreOrdArtiste = DB::table('oeuvre')
+            ->join('artiste', 'oeuvre.artisteId', '=', 'artiste.id')
+            ->where('oeuvre.userId', auth()->user()->id)
+            ->where('artiste.userId', auth()->user()->id)
+            ->select('artiste.nom', DB::raw('count(*) as total'))
+            ->groupBy('nom')
+            ->get()
+            ->toArray();
+
+        $tab3 = array();
+        $tab4 = array();
+        foreach($oeuvreOrdArtiste as $oeuvree)
+        {
+            array_push($tab3,$oeuvree->nom);
+            array_push($tab4,$oeuvree->total);
         }
 
         $general = View::make('charts.general')
@@ -55,9 +75,14 @@ class HomeController extends Controller
             ->with(compact('artiste'))
             ->with(compact('oeuvres'))->render();
 
-        $oeuvreV = View::make('charts.oeuvre')
+        $oeuvreT = View::make('charts.oeuvreType')
             ->with(compact('tab1'))
             ->with(compact('tab2'))
+            ->with(compact('oeuvres'))->render();
+
+        $oeuvreA = View::make('charts.oeuvreArtiste')
+            ->with(compact('tab3'))
+            ->with(compact('tab4'))
             ->with(compact('oeuvres'))->render();
 
         $map = View::make('map.map')
@@ -67,7 +92,8 @@ class HomeController extends Controller
 
         return view('home')
             ->with(compact('general'))
-            ->with(compact('oeuvreV'))
+            ->with(compact('oeuvreT'))
+            ->with(compact('oeuvreA'))
             ->with(compact('map'));
     }
 }

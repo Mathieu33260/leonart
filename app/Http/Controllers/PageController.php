@@ -34,7 +34,7 @@ class PageController extends Controller
     {
         Mail::send('contact.email_contact', $request->all(), function($message)
         {
-            $message->to('morganel.julien@gmail.com')->subject('Contact');
+            $message->to('leonartfr@gmail.com')->subject('Contact'); //This is subject to change since we still don't have any access to @leon-art.fr domain.
         });
 
         return view('contact.confirmContact');

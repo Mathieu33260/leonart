@@ -34,19 +34,19 @@
         <div class="row justify-content-center">
         	<div class="col-3">
         		<div class="titleHead">
-        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Oeuvres par type</h2>
+        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
            			{!! $oeuvreT !!}
            			</div>
            	</div>
            	<div class="col-3">
         		<div class="titleHead">
-        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Répartition</h2>
+        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
            			{!! $general !!}
            			</div>
            	</div>
            	<div class="col-3">
         		<div class="titleHead">
-        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Oeuvres par artiste</h2>
+        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
            			{!! $oeuvreA !!}
            			</div>
            	</div>
@@ -54,4 +54,8 @@
        	</div>
 
 </div>
+
+
+</section>
+
 @endsection

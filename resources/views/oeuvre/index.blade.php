@@ -19,7 +19,7 @@
                     @foreach($oeuvres as $oeuvre)
                             <tr>
                                 <td>
-                                    <a href="#" onclick="getAjax({{ $oeuvre->id }},{{ $oeuvre->posX }},{{ $oeuvre->posY }})">
+                                    <a href="#" onclick="twoCall('{{ $oeuvre->image }}',{{ $oeuvre->id }},{{ $oeuvre->posX }},{{ $oeuvre->posY }})">
                                         <h4 class="text-light nameO">{{ $oeuvre->nom }}</h4>
                                     </a>
                                 </td>
@@ -94,67 +94,61 @@
 
     <script>
         $(document).ready(function() {
-            var renderer, scene, camera, mesh;
+          init('null');
+          animate();
+        })
 
-            init();
-            animate();
+        var renderer, scene, camera, mesh;
 
-            function init() {
-              renderer = new THREE.WebGLRenderer();
+        function init(image) {
+            renderer = new THREE.WebGLRenderer({ alpha : true });
 
-              renderer.setSize( $(window).width()/2, $(window).height()/2 );
+            renderer.setSize( $(window).width()/2, $(window).height()/2 );
 
-              $('#container').append(renderer.domElement);
+            $('#container').append(renderer.domElement);
 
-              scene = new THREE.Scene();
-              camera =new THREE.PerspectiveCamera(50, $(window).width() / $(window).height(), 1, 10000);
-              camera.position.set(150, 0, 1000);
-              scene.add(camera);
+            scene = new THREE.Scene();
+            camera =new THREE.PerspectiveCamera(50, $(window).width() / $(window).height(), 1, 10000);
+            camera.position.set(200, -100, 1000);
+            scene.add(camera);
 
-              var geometry = new THREE.CubeGeometry($(window).width()/5, $(window).width()/5, $(window).width()/5);
-              var texture1 = new THREE.TextureLoader().load( "{{ asset('/images/texture/texture1.jpg')}}" );
-              var texture2 = new THREE.TextureLoader().load( "{{ asset('/images/texture/texture2.jpg')}}" );
-
-              var tabTexture = [
-                texture1,
-                texture2,
-              ]
-
-              var texture = tabTexture[Math.floor((Math.random() * 2) + 0)];
-
-              var materials = [
-                    new THREE.MeshBasicMaterial({
-                        map: texture
-                    }),
-                    new THREE.MeshBasicMaterial({
-                        map: texture
-                    }),
-                    new THREE.MeshBasicMaterial({
-                        map: texture
-                    }),
-                    new THREE.MeshBasicMaterial({
-                        map: texture
-                    }),
-                    new THREE.MeshBasicMaterial({
-                        map: texture
-                    }),
-                    new THREE.MeshBasicMaterial({
-                        map: texture
-                    })
-                 ];		mesh = new THREE.Mesh ( geometry, materials );
-              scene.add( mesh );
-
-              renderer.render( scene, camera );
+            var geometry = new THREE.CubeGeometry($(window).width()/5, $(window).width()/5, $(window).width()/5);
+            if( image === 'null' ){
+              var texture = new THREE.TextureLoader().load( "{{ asset('images/texture/leonart.png') }}");
+            } else {
+              var texture = new THREE.TextureLoader().load( "/storage/uploads/images/" + image);
             }
 
-            function animate(){
-              requestAnimationFrame( animate );
-              mesh.rotation.x += .03;
-              mesh.rotation.y += .01;
-              renderer.render( scene, camera );
+            var materials = [
+                  new THREE.MeshBasicMaterial({
+                      map: texture
+                  }),
+                  new THREE.MeshBasicMaterial({
+                      map: texture
+                  }),
+                  new THREE.MeshBasicMaterial({
+                      map: texture
+                  }),
+                  new THREE.MeshBasicMaterial({
+                      map: texture
+                  }),
+                  new THREE.MeshBasicMaterial({
+                      map: texture
+                  }),
+                  new THREE.MeshBasicMaterial({
+                      map: texture
+                  })
+               ];		mesh = new THREE.Mesh ( geometry, materials );
+            scene.add( mesh );
+
           }
 
-        });
+          function animate(){
+            requestAnimationFrame( animate );
+            mesh.rotation.x += .01;
+            mesh.rotation.y += .005;
+            renderer.render( scene, camera );
+        }
 
         function getAjax(id,lat,long){
             centerMap(lat,long);
@@ -166,6 +160,12 @@
                     $('#box').append(data);
                 }
             });
+        }
+
+        function twoCall(image, id, lat, long) {
+          $('#container').text('');
+          init(image);
+          getAjax(id, lat, long);
         }
 
         var offset = 10;

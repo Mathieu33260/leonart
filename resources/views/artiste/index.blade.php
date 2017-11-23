@@ -16,9 +16,9 @@ Vos Artistes
 
     </nav>
     <div class="row">
-        <div class=" col-lg-3 right-listA" onscroll="lazyLoad()">
-            <div class="dark">
-            <table class="table table-hover table-dark2 list">
+        <div class=" col-lg-2 right-listA" onscroll="lazyLoad()">
+            <div class="dark2">
+                <table class="table table-striped table-dark list">
                 @foreach($artistes as $artiste)
                     <tr>
                         <td>
@@ -63,9 +63,6 @@ Vos Artistes
             </div>
         </div>
     </div>
-            <div id="box" class="col-xs-12 col-md-5 col-lg-5 p-3">
-
-            </div>
     <script>
 
         function getAjax(id){

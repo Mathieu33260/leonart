@@ -31,33 +31,22 @@ class UserController extends Controller
             'password' => 'nullable|string|min:6|max:255|confirmed'
         ]);
 
-        /*$user = User::where('id', auth()->user()->id)
-            ->first();
-
-        $user->username = $request->input('name');
-        $user->email = $request->input('email');
-
-        $user->update(
-            ($request->has('password') ? array_merge($request->except('password'), ['password' => bcrypt($request->input('password'))])
-                : $request->except('password'))
-        );*/
-
         if ( !$request->input('password') == '')
         {
             //$user->password = bcrypt($request->input('password'));
             $user = User::where('id', auth()->user()->id)->update([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'password' => bcrypt($request->input('password'))
+                'password' => bcrypt($request->input('password')),
+                'visiteur' => true
             ]);
         } else {
             $user = User::where('id', auth()->user()->id)->update([
                 'name' => $request->input('name'),
-                'email' => $request->input('email')
+                'email' => $request->input('email'),
+                'visiteur' => true
             ]);
         }
-
-        //$user->save();
 
         if ($user) {
             flash(__("Profil sauvegardé avec succès !"))->success();

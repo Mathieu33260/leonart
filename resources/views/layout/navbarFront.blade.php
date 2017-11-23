@@ -18,9 +18,23 @@
             </div>
             @else
                     <div class="navbar-nav links ">
-                        <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('home') }}">
+                        @if(!Auth::user()->visiteur && !Auth::user()->admin)
+                        <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('user:home') }}">
                             {{ Auth::user()->name }}
                         </a>
+                        @endif
+
+                            @if(Auth::user()->visiteur && !Auth::user()->admin)
+                                <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('guestuser:home') }}">
+                                    {{ Auth::user()->name }}
+                                </a>
+                            @endif
+
+                            @if(Auth::user()->admin)
+                                <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('admin:manage') }}">
+                                    Gérer les droits
+                                </a>
+                            @endif
 
                         <a class="p-3 font-weight-bold nav-item nav-link" href="{{ route('logout') }}"
                            onclick="event.preventDefault();

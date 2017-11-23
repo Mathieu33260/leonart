@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Guestuser;
 
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class GuestuserController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -16,7 +16,7 @@ class AdminController extends Controller
         $user = User::where('id', auth()->user()->id)
             ->first();
 
-        return view('admin.edit')->with(compact('user'));
+        return view('guestuser.edit')->with(compact('user'));
     }
 
     /**
@@ -37,15 +37,15 @@ class AdminController extends Controller
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
-                'visiteur' => false,
-                'admin' => true
+                'visiteur' => true,
+                'admin' => false
             ]);
         } else {
             $user = User::where('id', auth()->user()->id)->update([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'visiteur' => false,
-                'admin' => true
+                'visiteur' => true,
+                'admin' => false
             ]);
         }
 
@@ -55,11 +55,11 @@ class AdminController extends Controller
             flash(__("Une erreur s'est produite."))->error();
         }
 
-        return redirect()->route('admin:profil:edit');
+        return redirect()->route('guestuser:profil:edit');
     }
 
-    public function manage(Request $request)
+    public function index()
     {
-        return view('admin.manage');
+        return view('guestuser.home');
     }
 }

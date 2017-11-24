@@ -7,8 +7,8 @@
                 <tr>
                     <td><p>Nom : {{ $artiste->nom }}</p></td>
                     <td><p>Prénom : {{ $artiste->prenom }}</p></td>
-                    <td><p>Date de naissance : {{ $artiste->dateN }}</p></td>
-                    <td><p>Date de mort : {{ $artiste->dateM }}</p></td>
+                    <td><p>Date de naissance : {{ $artiste->dateN->day }}/{{ $artiste->dateN->month }}/{{ $artiste->dateN->year }}</p></td>
+                    <td><p>Date de mort : {{ $artiste->dateM->day }}/{{ $artiste->dateM->month }}/{{ $artiste->dateM->year }}</p></td>
                 </tr>
                 <tr>
                     <td><a href="{{ route('artiste:edit', ['id' => $artiste->id]) }}"><button type="button" class="btn btn-outline-info">Modifier</button></a></td>

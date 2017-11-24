@@ -10,8 +10,8 @@
                 <h3>Artiste {{ $artiste->nom }} {{ $artiste->prenom }}</h3>
                 <p>Nom : {{ $artiste->nom }}</p>
                 <p>Prénom : {{ $artiste->prenom }}</p>
-                <p>Date de naissance : {{ $artiste->dateN }}</p>
-                <p>Date de mort : {{ $artiste->dateM }}</p>
+                <p>Date de naissance : {{ $artiste->dateN->day }}/{{ $artiste->dateN->month }}/{{ $artiste->dateN->year }}</p>
+                <p>Date de mort : {{ $artiste->dateM->day }}/{{ $artiste->dateM->month }}/{{ $artiste->dateM->year }}</p>
                 <a href="{{ route('artiste:edit', ['id' => $artiste->id]) }}">Modifier</a>
                 <a href="{{ route('artiste:destroy', ['id' => $artiste->id]) }}">Supprimer</a>
             </div>
@@ -20,9 +20,3 @@
         </div>
     </div>
 @endsection
-
-
-
-
-
-

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guestuser;
 
 use App\User;
 use App\Models\Oeuvre;
+use App\Models\VisitedOeuvre;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
@@ -68,8 +69,11 @@ class GuestuserController extends Controller
             ->with(compact('oeuvres'))
             ->render();
 
+        $oeuvreV = VisitedOeuvre::all();
+
         return view('guestuser.home')
-            ->with(compact('map'));
+            ->with(compact('map'))
+            ->with(compact('oeuvreV'));
     }
 
 }

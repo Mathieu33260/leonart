@@ -1,7 +1,7 @@
-<button id="btnDefautMarker" type="button" class="btn btn-success mb-4 pull-right">
+<button id="btnDefautMarker" type="button" class="btn btn-outline-success mb-4 pull-left">
                         @lang("Placer un marqueur") 
 </button> 
-<div id="map" class="col-lg-12" style="min-height: 600px"></div>
+<div id="map" class="col-lg-12 mb-4" style="min-height: 600px"></div>
 
 
 <script>

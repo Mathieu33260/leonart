@@ -19,20 +19,24 @@
                     <div class="panel-body">
                         <div class="row">
                             @foreach($users as $user)
-                                <div class="col-3 m-2">
+                                <div class="col-5 m-2">
                                     <div class="titleHead">
                                         <h2 class="display-4 p-2 pl-4">{{ $user->name }}</h2>
                                         {!! Form::open(['route' => array('admin:manageStore', $user->id), 'method' => 'patch'])!!}
 
-                                        {!! Form::Label('visiteur', 'Visiteur') !!}
-                                        {!! Form::checkbox('visiteur', $user->visiteur, $user->visiteur) !!}
+                                        @if(!$user->visiteur && !$user->admin)
+                                            <h4>Rôle : Utilisateur</h4>
+                                            <button type="submit" class="btn btn-success">
+                                                @lang("Changer en visiteur") <span class="glyphicon glyphicon-ok"></span>
+                                            </button>
+                                        @endif
 
-                                        {!! Form::Label('admin', 'Admin') !!}
-                                        {!! Form::checkbox('admin', $user->admin, $user->admin) !!}
-
-                                        <button type="submit" class="btn btn-success">
-                                            @lang("Sauvegarder") <span class="glyphicon glyphicon-ok"></span>
-                                        </button>
+                                        @if($user->visiteur && !$user->admin)
+                                            <h4>Rôle : Visiteur</h4>
+                                            <button type="submit" class="btn btn-success">
+                                                @lang("Changer en utilisateur") <span class="glyphicon glyphicon-ok"></span>
+                                            </button>
+                                        @endif
                                         {!! Form::close() !!}
                                     </div>
                                 </div>

@@ -100,26 +100,7 @@ class TypeController extends Controller
       return redirect()->route('type:index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $typeId
-     * @return \Illuminate\Http\Response
-     * @internal param Type $type
-     */
-    public function edit(int $typeId)
-    {
-        $type = Type::where('id', $typeId)
-            ->where('userId', auth()->user()->id)
-            ->first();
 
-        if(is_null($type))
-        {
-            return redirect()->route('type:index');
-        }
-
-        return view('type.edit')->with(compact('type'));
-    }
 
     /**
      * Update the specified resource in storage.

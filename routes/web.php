@@ -122,10 +122,6 @@ Route::middleware(['user'])->group(function () {
             Route::post('/store','TypeController@store')
                 ->name('type:store');
 
-            Route::get('/edit/{id}','TypeController@edit')
-                ->where(['id' => '[0-9]+'])
-                ->name('type:edit');
-
             Route::post('/update/{id}','TypeController@update')
                 ->where(['id' => '[0-9]+'])
                 ->name('type:update');
@@ -205,10 +201,6 @@ Route::middleware(['user'])->group(function () {
 
             Route::post('/store','ArtisteController@store')
                 ->name('artiste:store');
-
-            Route::get('/edit/{id}','ArtisteController@edit')
-                ->where(['id' => '[0-9]+'])
-                ->name('artiste:edit');
 
             Route::post('/update/{id}','ArtisteController@update')
                 ->where(['id' => '[0-9]+'])

@@ -139,6 +139,8 @@ class OeuvresController extends Controller
      */
     public function show(int $oeuvreId)
     {
+      if(\request()->ajax()) {
+
         $oeuvre = Oeuvre::where('id', $oeuvreId)
             ->where('userId', auth()->user()->id)
             ->first();
@@ -148,11 +150,10 @@ class OeuvresController extends Controller
             return redirect()->route('oeuvre:index');
         }
 
-        if(\request()->ajax()) {
-            return View::make('oeuvre.showAjax',compact('oeuvre'))->render();
-        }
+        return View::make('oeuvre.showAjax',compact('oeuvre'))->render();
+     }
 
-        return view('oeuvre.show')->with(compact('oeuvre'));
+     return redirect()->route('oeuvre:index');
     }
 
     /**

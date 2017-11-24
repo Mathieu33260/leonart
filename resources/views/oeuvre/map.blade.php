@@ -33,8 +33,7 @@
 
                 contentString += "{{ $oeuvre->idIbeacon }}, {{ $oeuvre->posX }}, {{ $oeuvre->posY }}";
 
-            contentString += "<br><a href='{{ route('oeuvre:show',array('id'=>$oeuvre->id)) }}'>Consulter l'oeuvre</a>";
-
+            
             var infowindow = new google.maps.InfoWindow({});
 
             var marker = new google.maps.Marker({

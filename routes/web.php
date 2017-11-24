@@ -154,10 +154,6 @@ Route::middleware(['user'])->group(function () {
                 ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
                 ->name('oeuvre:indexAjax');
 
-            Route::get('/{id}','OeuvresController@show')
-                ->where(['id' => '[0-9]+'])
-                ->name('oeuvre:show');
-
             Route::get('/create','OeuvresController@create')
                 ->name('oeuvre:create');
 

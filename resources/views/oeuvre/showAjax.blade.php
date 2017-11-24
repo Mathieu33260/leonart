@@ -41,8 +41,42 @@
 
      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
        <div class="modal-dialog modal-lg">
-         <div class="modal-content">
-           ...
+         <div class="modal-content"><div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <div class="panel panel-default">
+                    <div class="panel-heading lead">
+                        {{ $oeuvre->nom }}
+                    </div>
+                    {!! Form::model($oeuvre, array('route' => array('oeuvre:update', $oeuvre->id), 'method' => 'post')) !!}
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                {!! Form::Label('nom', 'Nom') !!}
+                                {!! Form::text('nom', $oeuvre->nom, array('required' => 'required', 'class' => 'form-control')) !!}
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="panel-footer text-right">
+                        <button type="submit" class="btn btn-success">
+                            @lang("Sauvegarder") <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
          </div>
        </div>
      </div>

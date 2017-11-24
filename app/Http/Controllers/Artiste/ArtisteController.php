@@ -108,28 +108,6 @@ class ArtisteController extends Controller
       return redirect()->route('artiste:index');
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $artisteId
-     * @return \Illuminate\Http\Response
-     * @internal param Artiste $artiste
-     */
-    public function edit(int $artisteId)
-    {
-        $artiste = Artiste::where('id', $artisteId)
-            ->where('userId', auth()->user()->id)
-            ->first();
-
-        if(is_null($artiste))
-        {
-            return redirect()->route('artiste:index');
-        }
-
-        return view('artiste.edit')->with(compact('artiste'));
-    }
-
     /**
      * Update the specified resource in storage.
      *

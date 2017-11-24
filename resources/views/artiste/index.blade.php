@@ -9,14 +9,7 @@ Vos Artistes
 @endsection
 
 @include('layout.heading')
-
-    <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">
-        </form>
-        <a href="{{ route('artiste:create') }}"><input type="button" class="btn btn btn-outline-success center-block" value="Ajouter"></a>
-
-    </nav>
+@include('layout.navSearch')
     <div class="row">
         <div class=" col-lg-2 right-listA" onscroll="lazyLoad()">
             <div class="dark2">

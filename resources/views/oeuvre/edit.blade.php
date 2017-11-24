@@ -43,15 +43,12 @@
                                 {!! Form::text('posY',$oeuvre->posY ,array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                @if($oeuvre->audio != null)
-                                    {!! Form::Label('audio', 'Audio') !!}
-                                    {!! Form::text('audio', $oeuvre->audio, array('class' => 'form-control')) !!}
-                                @else
-                                    {!! Form::Label('audio', 'Audio') !!}
-                                    {!! Form::text('audio', null, array('class' => 'form-control')) !!}
-                                @endif
-
-
+                                {!! Form::Label('audio', 'Audio') !!}
+                                {!! Form::file('audio', array('class' => 'form-control', 'accept' => 'audio/*')) !!}
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-lg-6">
+                                {!! Form::Label('image', 'Image') !!}
+                                {!! Form::file('image', array('class' => 'form-control')) !!}
                             </div>
                             @if($oeuvre->type != null)
                                 <div class="col-xs-12 col-md-6">
@@ -80,6 +77,10 @@
 
                                 </div>
                             @endif
+                            <div class="col-xs-12 col-md-6 col-lg-12">
+                                {!! Form::Label('description', 'Description') !!}
+                                {!! Form::textarea('description', $oeuvre->description, array('class' => 'form-control')) !!}
+                            </div>
                         </div>
                     </div>
                     <div class="panel-footer text-right">

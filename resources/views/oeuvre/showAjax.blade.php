@@ -1,10 +1,10 @@
 <div class="container">
         <div class="col-xs-12 col-md-12 col-lg-12">
             <div class="row">
-                <div class="col-4">
-               <img src="http://www.peintures-sur-toile.com/images/Image/Image/PST3671.jpg?1459244346559" class="img-thumbnail mt-2" alt="tableau"/>
+                <div class="col sm-12 col-md-3 col-lg-3">
+               <img src="/storage/uploads/images/{{$oeuvre->image}}" class="img-thumbnail mt-2" alt="tableau"/>
                 </div>
-                <div class="col-8">
+                <div class="col sm-12 col-md-9 col-lg-9">
                 <h3 class="mt-2 mb-0">Oeuvre : {{ $oeuvre->nom }}</h3>
                 <p class="text-secondary">ID du iBeacon: {{ $oeuvre->idIbeacon }}</p>
                 @if($oeuvre->type != null)

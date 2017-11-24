@@ -27,7 +27,7 @@
 						@foreach($oeuvreV as $oeuvre)
 							<div class="row">
 								<div class="col-lg-2">
-									<img width="100%" src="/storage/uploads/images/{{$oeuvre->oeuvre->image}}" alt="">
+									<img width="100%" src="/storage/uploads/images/{{$oeuvre->oeuvre->image}}" alt="{{$oeuvre->oeuvre->nom}}">
 								</div>
 								<div class="col-lg-6">
 									<h1>{{ $oeuvre->oeuvre->nom }}</h1>

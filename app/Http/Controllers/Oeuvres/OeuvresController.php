@@ -91,7 +91,7 @@ class OeuvresController extends Controller
             'idIbeacon' => 'required|integer|digits_between:0,6',
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
-            'audio' => 'string|nullable',
+            'audio' => 'mimes:mpga,wav,ogg|nullable',
             'typeId' => 'integer|digits_between:0,3|nullable',
             'artisteId' => 'integer|digits_between:0,11|nullable',
             'description' => 'string|nullable',
@@ -107,13 +107,22 @@ class OeuvresController extends Controller
             $filename = $image->getClientOriginalName();
         }
 
+        $audio = $request->file('audio');
+        if(is_null($audio))
+        {
+            $filenameAudio = null;
+        } else {
+            Storage::put('public/uploads/audio/'.$audio->getClientOriginalName(), file_get_contents($audio->getRealPath()));
+            $filenameAudio = $audio->getClientOriginalName();
+        }
+
         $oeuvre = Oeuvre::create([
             'nom' => $request->input('nom'),
             'modele' => $request->input('modele'),
             'idIbeacon' => $request->input('idIbeacon'),
             'posX' => $request->input('posX'),
             'posY' => $request->input('posY'),
-            'audio' => $request->input('audio'),
+            'audio' => $filenameAudio,
             'typeId' => $request->input('typeId'),
             'artisteId' => $request->input('artisteId'),
             'userId' => auth()->user()->id,
@@ -211,7 +220,7 @@ class OeuvresController extends Controller
             'idIbeacon' => 'required|integer|digits_between:0,6',
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
-            'audio' => 'string|nullable',
+            'audio' => 'mimes:mpga,wav,ogg|nullable',
             'typeId' => 'integer|digits_between:0,3|nullable',
             'artisteId' => 'integer|digits_between:0,11|nullable',
             'description' => 'string|nullable',
@@ -227,13 +236,22 @@ class OeuvresController extends Controller
             $filename = $image->getClientOriginalName();
         }
 
+        $audio = $request->file('audio');
+        if(is_null($audio))
+        {
+            $filenameAudio = null;
+        } else {
+            Storage::put('public/uploads/audio/'.$audio->getClientOriginalName(), file_get_contents($audio->getRealPath()));
+            $filenameAudio = $audio->getClientOriginalName();
+        }
+
         $oeuvre = Oeuvre::where('id', $oeuvreId)->update([
             'nom' => $request->input('nom'),
             'modele' => $request->input('modele'),
             'idIbeacon' => $request->input('idIbeacon'),
             'posX' => $request->input('posX'),
             'posY' => $request->input('posY'),
-            'audio' => $request->input('audio'),
+            'audio' => $filenameAudio,
             'typeId' => $request->input('typeId'),
             'artisteId' => $request->input('artisteId'),
             'userId' => auth()->user()->id,

@@ -4,7 +4,7 @@
 
 @section('content')
 
-@section('header') 
+@section('header')
 Vos Oeuvres
 @endsection
 
@@ -154,7 +154,7 @@ Vos Oeuvres
                 url:'/oeuvre/indexAjax/'+offset+'/'+$('#recherche').val(),
 
                 success:function(data){
-  
+
                     $('.list').empty();
                     deleteAllMarker();
                     $.each(data, function( index, value ) {

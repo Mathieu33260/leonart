@@ -3,7 +3,7 @@
         <div class="col-xs-12 col-md-12 col-lg-12 panel panel-default">
             <table class="table">
                 <th><h3>Artiste :</h3></th>
-                <th><h3><a href="{{ route('artiste:show',['id' => $artiste->id]) }}">{{ $artiste->nom }} {{ $artiste->prenom }}</a></h3></th>
+                <th><h3><a href="{{ route('artiste:show',['id' => $artiste->id]) }}">{{ $artiste->prenom }} {{ $artiste->nom }}</a></h3></th>
                 <tr>
                     <td><p>Nom : {{ $artiste->nom }}</p></td>
                     <td><p>Prénom : {{ $artiste->prenom }}</p></td>

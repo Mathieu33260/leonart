@@ -22,20 +22,29 @@
                             </p>
                         @endif
                         <p class="">Ajouté par : {{ $oeuvre->user->name }}</p>
-                        
+
             </div>
             </div>
-            <div class="row">                    
+            <div class="row">
             <div class="col-8 mt-4">
                 <p>{{ $oeuvre->description}}</p>
             </div>
-            </div> 
+            </div>
             <div class="row">
                 <div class="col-6">
-                    <a href="{{ route('oeuvre:edit', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-outline-info">Modifier</button></a>
+                    <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg"  aria-labelledby="myLargeModalLabel" aria-hidden="true" class="btn btn-outline-info">Modifier</button>
                     <a href="{{ route('oeuvre:destroy', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-outline-danger" >Supprimer</button></a>
                 </div>
                     <p>Audio : {{ $oeuvre->audio }}</p>
                 </div>
      </div>
+
+     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+       <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+           ...
+         </div>
+       </div>
+     </div>
+
 </div>

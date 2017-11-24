@@ -48,6 +48,10 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         Route::get('/manage', 'AdminController@manage')
             ->name('admin:manage');
 
+        Route::patch('/manageStore/{id}', 'AdminController@manageStore')
+            ->where(['id' => '[0-9]+'])
+            ->name('admin:manageStore');
+
     });
 
 });
@@ -86,6 +90,7 @@ Route::prefix('guestuser')->namespace('Guestuser')->group(function () {
 
         Route::get('/home', 'GuestuserController@index')
             ->name('guestuser:home');
+
 
     });
 

@@ -60,6 +60,25 @@ class AdminController extends Controller
 
     public function manage(Request $request)
     {
-        return view('admin.manage');
+        $users = User::where('admin', false)
+            ->get();
+
+        return view('admin.manage')
+            ->with(compact('users'));
+    }
+
+    public function manageStore(Request $request, int $userId)
+    {
+        if($request->has('visiteur') && $request->has('admin'))
+        {
+            return redirect()->route('admin:manage');
+        }
+
+        $user = User::where('id', $userId)->update([
+            'visiteur' => $request->has('visiteur'),
+            'admin' => $request->has('admin')
+        ]);
+
+        return redirect()->route('admin:manage');
     }
 }

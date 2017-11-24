@@ -16,7 +16,6 @@
             zoom: 10
         });
         
-
     }
 
     function centerMap(lat,long) {

@@ -14,7 +14,9 @@ Ajouter une oeuvre
 </style>
     <div class="container-fluid pt-4 ">
         <div class="row justify-content-md-center">
-            @if ($errors->any())
+            
+            <div class="col-md-5">
+                @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -23,9 +25,6 @@ Ajouter une oeuvre
                     </ul>
                 </div>
             @endif
-            <div class='container-page'></div>
-
-            <div class="col-md-5">
                 {!! Form::open(['route' => 'oeuvre:store', 'files' => true, 'method' => 'post']) !!}
                 <div class="panel-body">
                     <div class="row">
@@ -51,7 +50,8 @@ Ajouter une oeuvre
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('audio', 'Audio') !!}
-                            {!! Form::file('audio', array('class' => 'form-control')) !!}
+                            {!! Form::file('audio', array('class' => 'form-control',
+                            'accept' => 'image/*')) !!}
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('typeId', 'Type') !!}

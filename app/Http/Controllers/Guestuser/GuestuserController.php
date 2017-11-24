@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Guestuser;
 
 use App\User;
+use App\Models\Oeuvre;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 
 class GuestuserController extends Controller
 {
@@ -60,6 +62,14 @@ class GuestuserController extends Controller
 
     public function index()
     {
-        return view('guestuser.home');
+        $oeuvres = Oeuvre::all();
+
+        $map = View::make('oeuvre.map')
+            ->with(compact('oeuvres'))
+            ->render();
+
+        return view('guestuser.home')
+            ->with(compact('map'));
     }
+
 }

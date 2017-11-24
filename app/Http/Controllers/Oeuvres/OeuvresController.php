@@ -87,7 +87,6 @@ class OeuvresController extends Controller
     {
         $this->validate($request, [
             'nom'     => 'required|string|max:255',
-            'modele'     => 'string|nullable',
             'idIbeacon' => 'required|integer|digits_between:0,6',
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
@@ -118,7 +117,6 @@ class OeuvresController extends Controller
 
         $oeuvre = Oeuvre::create([
             'nom' => $request->input('nom'),
-            'modele' => $request->input('modele'),
             'idIbeacon' => $request->input('idIbeacon'),
             'posX' => $request->input('posX'),
             'posY' => $request->input('posY'),
@@ -216,7 +214,6 @@ class OeuvresController extends Controller
 
         $this->validate($request, [
             'nom'     => 'required|string|max:255',
-            'modele'     => 'string|nullable',
             'idIbeacon' => 'required|integer|digits_between:0,6',
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
@@ -258,7 +255,6 @@ class OeuvresController extends Controller
 
         $oeuvre = Oeuvre::where('id', $oeuvreId)->update([
             'nom' => $request->input('nom'),
-            'modele' => $request->input('modele'),
             'idIbeacon' => $request->input('idIbeacon'),
             'posX' => $request->input('posX'),
             'posY' => $request->input('posY'),

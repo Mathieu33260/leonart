@@ -22,15 +22,6 @@
                                 {!! Form::text('nom', $oeuvre->nom, array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                @if($oeuvre->modele != null)
-                                    {!! Form::Label('modele', 'Modèle') !!}
-                                    {!! Form::text('modele', $oeuvre->modele, array('class' => 'form-control')) !!}
-                                @else
-                                    {!! Form::Label('modele', 'Modèle') !!}
-                                    {!! Form::text('modele', null, array('class' => 'form-control')) !!}
-                                @endif
-                            </div>
-                            <div class="col-xs-12 col-md-6">
                                 {!! Form::Label('idIbeacon', 'Id iBeacon') !!}
                                 {!! Form::number('idIbeacon',$oeuvre->idIbeacon , array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>

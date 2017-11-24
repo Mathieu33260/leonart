@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Wed, 22 Nov 2017 23:35:16 +0000.
+ * Date: Fri, 24 Nov 2017 15:57:23 +0000.
  */
 
 namespace App\Models;
@@ -14,7 +14,6 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * 
  * @property int $id
  * @property string $nom
- * @property string $modele
  * @property int $idIbeacon
  * @property float $posX
  * @property float $posY
@@ -26,8 +25,9 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $image
  * 
  * @property \App\Models\Artiste $artiste
- * @property \App\Models\Type $type
  * @property \App\User $user
+ * @property \App\Models\Type $type
+ * @property \Illuminate\Database\Eloquent\Collection $visited_oeuvres
  *
  * @package App\Models
  */
@@ -47,7 +47,6 @@ class Oeuvre extends Eloquent
 
 	protected $fillable = [
 		'nom',
-		'modele',
 		'idIbeacon',
 		'posX',
 		'posY',
@@ -64,13 +63,18 @@ class Oeuvre extends Eloquent
 		return $this->belongsTo(\App\Models\Artiste::class, 'artisteId');
 	}
 
+	public function user()
+	{
+		return $this->belongsTo(\App\User::class, 'userId');
+	}
+
 	public function type()
 	{
 		return $this->belongsTo(\App\Models\Type::class, 'typeId');
 	}
 
-	public function user()
+	public function visited_oeuvres()
 	{
-		return $this->belongsTo(\App\User::class, 'userId');
+		return $this->hasMany(\App\Models\VisitedOeuvre::class, 'oeuvreId');
 	}
 }

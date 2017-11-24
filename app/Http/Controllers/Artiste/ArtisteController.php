@@ -78,7 +78,7 @@ class ArtisteController extends Controller
             'userId' => auth()->user()->id
         ]);
 
-        return redirect()->route('artiste:show',['id' => $artiste->id]);
+        return redirect()->route('artiste:index');
     }
 
     /**
@@ -90,6 +90,7 @@ class ArtisteController extends Controller
      */
     public function show(int $artisteId)
     {
+      if(\request()->ajax()) {
 
         $artiste = Artiste::where('id', $artisteId)
             ->where('userId', auth()->user()->id)
@@ -100,11 +101,11 @@ class ArtisteController extends Controller
             return redirect()->route('artiste:index');
         }
 
-        if(\request()->ajax()) {
-            return View::make('artiste.showAjax',compact('artiste'))->render();
-        }
 
-        return view('artiste.show')->with(compact('artiste'));
+        return View::make('artiste.showAjax',compact('artiste'))->render();
+      }
+
+      return redirect()->route('artiste:index');
     }
 
 

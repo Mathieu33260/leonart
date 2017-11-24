@@ -71,7 +71,7 @@ class TypeController extends Controller
             'userId' => auth()->user()->id
         ]);
 
-        return redirect()->route('type:show',['id' => $type->id]);
+        return redirect()->route('type:index');
     }
 
     /**
@@ -83,6 +83,8 @@ class TypeController extends Controller
      */
     public function show(int $typeId)
     {
+      if(\request()->ajax()) {
+
         $type = Type::where('id', $typeId)
             ->where('userId', auth()->user()->id)
             ->first();
@@ -92,11 +94,10 @@ class TypeController extends Controller
             return redirect()->route('type:index');
         }
 
-        if(\request()->ajax()) {
-            return View::make('type.showAjax',compact('type'))->render();
-        }
+        return View::make('type.showAjax',compact('type'))->render();
+      }
 
-        return view('type.show')->with(compact('type'));
+      return redirect()->route('type:index');
     }
 
     /**

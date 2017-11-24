@@ -91,6 +91,7 @@ Route::prefix('guestuser')->namespace('Guestuser')->group(function () {
         Route::get('/home', 'GuestuserController@index')
             ->name('guestuser:home');
 
+
     });
 
 });

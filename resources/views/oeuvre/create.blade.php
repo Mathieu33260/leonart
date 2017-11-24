@@ -60,7 +60,8 @@ Ajouter une oeuvre
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('audio', 'Audio') !!}
-                            {!! Form::file('audio', array('class' => 'form-control', 'accept' => 'audio/*')) !!}
+                            {!! Form::file('audio', array('class' => 'form-control',
+                            'accept' => 'image/*')) !!}
                         </div>
                     </div>
                     <div class="row">
@@ -83,7 +84,7 @@ Ajouter une oeuvre
                     <div class="row">
                         <div class="col-xs-12 col-md-6 col-lg-6">
                             {!! Form::Label('image', 'Image') !!}
-                            {!! Form::file('image', array('class' => 'form-control', 'accept' => 'image/*')) !!}
+                            {!! Form::file('image', array('class' => 'form-control')) !!}
                         </div>
                         <div class="col-md-6">
                         <button type="submit" class="btn btn-outline-success buttonBottom">

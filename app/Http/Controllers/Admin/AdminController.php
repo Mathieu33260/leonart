@@ -69,14 +69,30 @@ class AdminController extends Controller
 
     public function manageStore(Request $request, int $userId)
     {
-        if($request->has('visiteur') && $request->has('admin'))
+        $user = User::where('id', $userId)
+            ->first();
+
+        $visiteur = true;
+        $admin = false;
+
+        if(!$user->visiteur && !$user->admin)
+        {
+            $visiteur = true;
+            $admin = false;
+        }
+        if($user->visiteur && !$user->admin)
+        {
+            $visiteur = false;
+            $admin = false;
+        }
+        if($user->admin)
         {
             return redirect()->route('admin:manage');
         }
 
-        $user = User::where('id', $userId)->update([
-            'visiteur' => $request->has('visiteur'),
-            'admin' => $request->has('admin')
+        $user->update([
+            'visiteur' => $visiteur,
+            'admin' => $admin
         ]);
 
         return redirect()->route('admin:manage');

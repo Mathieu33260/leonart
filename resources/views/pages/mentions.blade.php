@@ -1,9 +1,9 @@
-@extends('layout.user')
+@extends('layout.navbarFront')
 
 @section('title', __("Mentions légales"))
 
 @section('content')
-@section('header') 
+@section('header')
 Mentions légales
 @endsection
 

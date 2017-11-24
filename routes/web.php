@@ -32,18 +32,28 @@ Route::get('/{page}', 'PageController@show')
     ->where(['page' => 'services|conditions'])
     ->name('page:show');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 
 /* Admin*/
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
 
-    Route::get('/edit', 'AdminController@edit')
-        ->name('admin:profil:edit');
+    Route::middleware(['admin'])->group(function () {
 
-    Route::patch('/save', 'AdminController@save')
-        ->name('admin:profil:save');
+        Route::get('/edit', 'AdminController@edit')
+            ->name('admin:profil:edit');
+
+        Route::patch('/save', 'AdminController@save')
+            ->name('admin:profil:save');
+
+        Route::get('/manage', 'AdminController@manage')
+            ->name('admin:manage');
+
+        Route::patch('/manageStore/{id}', 'AdminController@manageStore')
+            ->where(['id' => '[0-9]+'])
+            ->name('admin:manageStore');
+
+    });
+
 });
 
 
@@ -51,151 +61,167 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 Route::prefix('user')->namespace('User')->group(function () {
 
-    Route::get('users/edit', 'UserController@edit')
-        ->name('user:profil:edit');
+    Route::middleware(['user'])->group(function () {
 
-    Route::patch('users', 'UserController@save')
-        ->name('user:profil:save');
+        Route::get('users/edit', 'UserController@edit')
+            ->name('user:profil:edit');
+
+        Route::patch('users', 'UserController@save')
+            ->name('user:profil:save');
+
+        Route::get('/home', 'UserController@index')
+            ->name('user:home');
+
+    });
 
 });
 
 /* Guest */
 
-Route::prefix('guest')->namespace('Guest')->group(function () {
+Route::prefix('guestuser')->namespace('Guestuser')->group(function () {
 
-    Route::get('/edit', 'GuestController@edit')
-        ->name('guest:profil:edit');
+    Route::middleware(['guestuser'])->group(function () {
 
-    Route::patch('/save', 'GuestController@save')
-        ->name('guest:profil:save');
-});
+        Route::get('/edit', 'GuestuserController@edit')
+            ->name('guestuser:profil:edit');
 
+        Route::patch('/save', 'GuestuserController@save')
+            ->name('guestuser:profil:save');
 
-/* Type */
+        Route::get('/home', 'GuestuserController@index')
+            ->name('guestuser:home');
 
-Route::prefix('type')->namespace('Type')->group(function () {
-
-    Route::middleware(['auth'])->group(function () {
-
-        Route::get('/','TypeController@index')
-            ->name('type:index');
-
-        Route::get('/indexAjax/{offset}/{string?}','TypeController@indexAjax')
-            ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
-            ->name('type:indexAjax');
-
-        Route::get('/{id}','TypeController@show')
-            ->where(['id' => '[0-9]+'])
-            ->name('type:show');
-
-        Route::get('/create','TypeController@create')
-            ->name('type:create');
-
-        Route::post('/store','TypeController@store')
-            ->name('type:store');
-
-        Route::get('/edit/{id}','TypeController@edit')
-            ->where(['id' => '[0-9]+'])
-            ->name('type:edit');
-
-        Route::post('/update/{id}','TypeController@update')
-            ->where(['id' => '[0-9]+'])
-            ->name('type:update');
-
-        Route::get('/destroy/{id}','TypeController@destroy')
-            ->where(['id' => '[0-9]+'])
-            ->name('type:destroy');
 
     });
 
 });
 
 
+Route::middleware(['user'])->group(function () {
+
+    /* Type */
+
+    Route::prefix('type')->namespace('Type')->group(function () {
+
+        Route::middleware(['auth'])->group(function () {
+
+            Route::get('/','TypeController@index')
+                ->name('type:index');
+
+            Route::get('/indexAjax/{offset}/{string?}','TypeController@indexAjax')
+                ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
+                ->name('type:indexAjax');
+
+            Route::get('/{id}','TypeController@show')
+                ->where(['id' => '[0-9]+'])
+                ->name('type:show');
+
+            Route::get('/create','TypeController@create')
+                ->name('type:create');
+
+            Route::post('/store','TypeController@store')
+                ->name('type:store');
+
+            Route::get('/edit/{id}','TypeController@edit')
+                ->where(['id' => '[0-9]+'])
+                ->name('type:edit');
+
+            Route::post('/update/{id}','TypeController@update')
+                ->where(['id' => '[0-9]+'])
+                ->name('type:update');
+
+            Route::get('/destroy/{id}','TypeController@destroy')
+                ->where(['id' => '[0-9]+'])
+                ->name('type:destroy');
+
+        });
+
+    });
 
 
-/* Oeuvre */
 
-Route::prefix('oeuvre')->namespace('Oeuvres')->group(function () {
 
-    Route::middleware(['auth'])->group(function () {
+    /* Oeuvre */
 
-        Route::get('/','OeuvresController@index')
-            ->name('oeuvre:index');
+    Route::prefix('oeuvre')->namespace('Oeuvres')->group(function () {
 
-        Route::get('/indexAjax/{offset}/{string?}','OeuvresController@indexAjax')
-            ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
-            ->name('oeuvre:indexAjax');
+        Route::middleware(['auth'])->group(function () {
 
-        Route::get('/{id}','OeuvresController@show')
-            ->where(['id' => '[0-9]+'])
-            ->name('oeuvre:show');
+            Route::get('/','OeuvresController@index')
+                ->name('oeuvre:index');
 
-        Route::get('/create','OeuvresController@create')
-            ->name('oeuvre:create');
+            Route::get('/indexAjax/{offset}/{string?}','OeuvresController@indexAjax')
+                ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
+                ->name('oeuvre:indexAjax');
 
-        Route::post('/store','OeuvresController@store')
-            ->name('oeuvre:store');
+            Route::get('/{id}','OeuvresController@show')
+                ->where(['id' => '[0-9]+'])
+                ->name('oeuvre:show');
 
-        Route::get('/edit/{id}','OeuvresController@edit')
-            ->where(['id' => '[0-9]+'])
-            ->name('oeuvre:edit');
+            Route::get('/create','OeuvresController@create')
+                ->name('oeuvre:create');
 
-        Route::post('/update/{id}','OeuvresController@update')
-            ->where(['id' => '[0-9]+'])
-            ->name('oeuvre:update');
+            Route::post('/store','OeuvresController@store')
+                ->name('oeuvre:store');
 
-        Route::get('/destroy/{id}','OeuvresController@destroy')
-            ->where(['id' => '[0-9]+'])
-            ->name('oeuvre:destroy');
+            Route::get('/edit/{id}','OeuvresController@edit')
+                ->where(['id' => '[0-9]+'])
+                ->name('oeuvre:edit');
+
+            Route::post('/update/{id}','OeuvresController@update')
+                ->where(['id' => '[0-9]+'])
+                ->name('oeuvre:update');
+
+            Route::get('/destroy/{id}','OeuvresController@destroy')
+                ->where(['id' => '[0-9]+'])
+                ->name('oeuvre:destroy');
+
+        });
+
+    });
+
+
+
+
+    /* Artiste */
+
+    Route::prefix('artiste')->namespace('Artiste')->group(function () {
+
+        Route::middleware(['auth'])->group(function () {
+
+            Route::get('/','ArtisteController@index')
+                ->name('artiste:index');
+
+            Route::get('/indexAjax/{offset}/{string?}','ArtisteController@indexAjax')
+                ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
+                ->name('artiste:indexAjax');
+
+            Route::get('/{id}','ArtisteController@show')
+                ->where(['id' => '[0-9]+'])
+                ->name('artiste:show');
+
+            Route::get('/create','ArtisteController@create')
+                ->name('artiste:create');
+
+            Route::post('/store','ArtisteController@store')
+                ->name('artiste:store');
+
+            Route::get('/edit/{id}','ArtisteController@edit')
+                ->where(['id' => '[0-9]+'])
+                ->name('artiste:edit');
+
+            Route::post('/update/{id}','ArtisteController@update')
+                ->where(['id' => '[0-9]+'])
+                ->name('artiste:update');
+
+            Route::get('/destroy/{id}','ArtisteController@destroy')
+                ->where(['id' => '[0-9]+'])
+                ->name('artiste:destroy');
+
+        });
 
     });
 
 });
-
-
-
-
-/* Artiste */
-
-Route::prefix('artiste')->namespace('Artiste')->group(function () {
-
-    Route::middleware(['auth'])->group(function () {
-
-        Route::get('/','ArtisteController@index')
-            ->name('artiste:index');
-
-        Route::get('/indexAjax/{offset}/{string?}','ArtisteController@indexAjax')
-            ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
-            ->name('artiste:indexAjax');
-
-        Route::get('/{id}','ArtisteController@show')
-            ->where(['id' => '[0-9]+'])
-            ->name('artiste:show');
-
-        Route::get('/create','ArtisteController@create')
-            ->name('artiste:create');
-
-        Route::post('/store','ArtisteController@store')
-            ->name('artiste:store');
-
-        Route::get('/edit/{id}','ArtisteController@edit')
-            ->where(['id' => '[0-9]+'])
-            ->name('artiste:edit');
-
-        Route::post('/update/{id}','ArtisteController@update')
-            ->where(['id' => '[0-9]+'])
-            ->name('artiste:update');
-
-        Route::get('/destroy/{id}','ArtisteController@destroy')
-            ->where(['id' => '[0-9]+'])
-            ->name('artiste:destroy');
-
-    });
-
-});
-
-
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

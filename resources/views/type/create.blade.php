@@ -3,6 +3,12 @@
 @section('subtitle', __("Ajout"))
 
 @section('content')
+
+@section('header') 
+Ajouter un type
+@endsection
+
+@include('layout.heading')
     <div class="container">
         <div class="row">
 

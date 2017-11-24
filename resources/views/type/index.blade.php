@@ -3,35 +3,42 @@
 @section('subtitle', __("Accueil"))
 
 @section('content')
-    <div class="container">
-        <div class="row">
 
-            <div id="box" class="col-xs-12 col-md-5 col-lg-5">
+@section('header') 
+Vos Types
+@endsection
 
-            </div>
+@include('layout.heading')
 
-            <div class="col-xs-12 col-md-5 col-lg-5 panel panel-default p-3 m-3">
-                <div class="panel-heading lead">
-                    <label>Rechercher un Type
-                        <input id="recherche" type="text" onkeyup="getSearch()">
-                    </label>
-                </div>
-                <ul class="right-list" onscroll="lazyLoad()">
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">
+    </form>
+    <a href="{{ route('type:create') }}"><input type="button" class="btn btn-success center-block" value="Ajouter"></a>
+
+</nav>
+<div class="row">
+    <div class="col-lg-2 right-list" onscroll="lazyLoad()">
+        <div class="dark2">
+            <table class="table table-striped table-dark list">
                     @foreach($types as $type)
-                        <li><a href="#" onclick="getAjax({{ $type->id }})">{{ $type->libelle }}</a></li>
+                    <tr>
+                        <td>
+                            <a href="#" onclick="getAjax({{ $type->id }})">
+                                <h4 class="text-light nameO">{{ $type->libelle }}</h4>
+                            </a>
+                        </td>
+                    </tr>
                     @endforeach
-                </ul>
-
-
-            </div>
-
-            <div class="col-xs-12 col-md-5 col-lg-5">
-                <a href="{{ route('type:create') }}"><input type="button" class="btn center-block" value="Ajouter"></a>
-            </div>
-
-
+            </table>
         </div>
     </div>
+    <div class="col-lg-9">
+        <div class="row">
+            <div id="box"></div>
+        </div>
+    </div>
+</div>
     <script>
 
         function getAjax(id){
@@ -53,10 +60,10 @@
                 type:'GET',
                 url:'/type/indexAjax/'+offset+'/'+$('#recherche').val(),
                 success:function(data){
-                    $('.right-list').empty();
+                    $('.list').empty();
                     $.each(data, function( index, value ) {
-                        $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
-                            ''+ value.libelle +'</a></li>');
+                        $('.list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +')"><h4 class="text-light nameO">' +
+                            ''+ value.libelle +'</h4></a></td></tr>');
                     });
                     offset = offset + 10;
                 }
@@ -76,8 +83,8 @@
                     {
                         $('.loading-indicator').remove();
                         $.each(data, function( index, value ) {
-                            $('.right-list').append('<li><a href="#" onclick="getAjax('+ value.id +')">' +
-                                ''+ value.libelle +'</a></li>');
+                            $('.list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +')"><h4 class="text-light nameO">' +
+                                ''+ value.libelle +'</h4></a></td></tr>');
                         });
                         offset = offset + 10;
                     }

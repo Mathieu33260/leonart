@@ -3,9 +3,13 @@
 @section('subtitle', __("Artiste"))
 
 @section('content')
-    <div class="col-md-12 d-flex align-items-center justify-content-md-center" id="banner">
-        <h1 class="display-1 text-white">Artistes</h1>
-    </div>
+
+@section('header') 
+Vos Artistes
+@endsection
+
+@include('layout.heading')
+
     <nav class="navbar navbar-light bg-light">
         <form class="form-inline">
             <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">
@@ -14,9 +18,9 @@
 
     </nav>
     <div class="row">
-        <div class=" col-lg-3 right-listA" onscroll="lazyLoad()">
-            <div class="dark">
-            <table class="table table-hover table-dark2 list">
+        <div class=" col-lg-2 right-listA" onscroll="lazyLoad()">
+            <div class="dark2">
+                <table class="table table-striped table-dark list">
                 @foreach($artistes as $artiste)
                     <tr>
                         <td>
@@ -61,9 +65,6 @@
             </div>
         </div>
     </div>
-            <div id="box" class="col-xs-12 col-md-5 col-lg-5 p-3">
-
-            </div>
     <script>
 
         function getAjax(id){

@@ -1,6 +1,6 @@
-@extends('layout.user')
+@extends('admin.adminLayout')
 
-@section('title', __("Gestion du profil"))
+@section('subtitle', __("Gestion du profil"))
 
 @section('content')
     <div class="container">
@@ -9,9 +9,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading lead">
                         {{ $user->name }}
-                        <small class="text-muted">(account created {{ $user->created_at->diffForHumans() }})</small>
+                        <small class="text-muted">{{ $user->created_at->diffForHumans() }}</small>
                     </div>
-                    {!! Form::model($user, array('route' => array('user:profil:save'), 'method' => 'patch')) !!}
+                    {!! Form::model($user, array('route' => array('admin:profil:save'), 'method' => 'patch')) !!}
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12 col-md-6">

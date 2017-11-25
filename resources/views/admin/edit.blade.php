@@ -1,5 +1,6 @@
-@extends('admin.adminLayout')
+@extends('layout.user')
 
+@section('title', __("Admin"))
 @section('subtitle', __("Gestion du profil"))
 
 @section('content')

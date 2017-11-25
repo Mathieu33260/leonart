@@ -61,10 +61,32 @@ class AdminController extends Controller
     public function manage(Request $request)
     {
         $users = User::where('admin', false)
+            ->limit(9)
             ->get();
 
         return view('admin.manage')
             ->with(compact('users'));
+    }
+
+    public function manageAjax($offset,$string = "")
+    {
+        if($string != "")
+        {
+            $users = User::where('name', 'like', '%'.$string.'%')
+                ->where('admin', false)
+                ->orderBy('id','ASC')
+                ->offset($offset)
+                ->limit(9)
+                ->get();
+        } else {
+            $users = User::where('admin', false)
+                ->orderBy('id','ASC')
+                ->offset($offset)
+                ->limit(9)
+                ->get();
+        }
+
+        return $users->toArray();
     }
 
     public function manageStore(Request $request, int $userId)

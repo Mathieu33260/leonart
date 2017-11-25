@@ -48,7 +48,11 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         Route::get('/manage', 'AdminController@manage')
             ->name('admin:manage');
 
-        Route::patch('/manageStore/{id}', 'AdminController@manageStore')
+        Route::get('/manageAjax/{offset}/{string?}','AdminController@manageAjax')
+            ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
+            ->name('admin:manageAjax');
+
+        Route::post('/manageStore/{id}', 'AdminController@manageStore')
             ->where(['id' => '[0-9]+'])
             ->name('admin:manageStore');
 

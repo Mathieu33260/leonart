@@ -165,29 +165,6 @@
                     }
                 }
             });
-
-            function lazyLoad() {
-                if ($('#adminSearch').scrollTop() ===
-                    document.getElementById('adminSearch').scrollHeight - $('#adminSearch').height()) {
-                    console.log('scroll');
-                    $('#adminSearch').append('<div id="loading">' +
-                        '                    <img id="loading-image" src="{{ asset('images/Ellipsis.svg') }}" alt="Loading..." />' +
-                        '                </div>');
-                    $.ajax({
-                        type : "GET",
-                        url : '/admin/manageAjax/'+offset+'/'+$('#recherche').val(),
-                        success : function (data)
-                        {
-                            $('#loading').remove();
-                            $.each(data, function( index, value ) {
-                                $('#adminSearch').append('<tr><td><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')"><h4 class="text-light nameO">' +
-                                    ''+ value.nom +'</h4></a></td></tr>');
-                            });
-                            offset = offset + 9;
-                        }
-                    });
-                }
-            }
         </script>
 
 

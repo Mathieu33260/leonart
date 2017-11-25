@@ -1,5 +1,6 @@
-@extends('guestuser.guestuserLayout')
+@extends('layout.user')
 
+@section('title', __("Vsisteur"))
 @section('subtitle', __("Gestion du profil"))
 
 @section('content')

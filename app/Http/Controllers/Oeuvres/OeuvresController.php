@@ -152,12 +152,22 @@ class OeuvresController extends Controller
             ->where('userId', auth()->user()->id)
             ->first();
 
+        $types = Type::where('userId', auth()->user()->id)
+              ->pluck('libelle', 'id')->toArray();
+
+        $artistes = Artiste::where('userId', auth()->user()->id)
+              ->pluck('nom', 'id')->toArray();
+
         if(is_null($oeuvre))
         {
             return redirect()->route('oeuvre:index');
         }
 
-        return View::make('oeuvre.showAjax',compact('oeuvre'))->render();
+        return View::make('oeuvre.showAjax')
+            ->with(compact('oeuvre'))
+            ->with(compact('types'))
+            ->with(compact('artistes'))
+            ->render();
      }
 
      return redirect()->route('oeuvre:index');

@@ -86,6 +86,33 @@
                             {!! Form::textarea('description', null, array('class' => 'form-control',
                             'placeholder' => 'Description')) !!}
                         </div>
+                            @if($oeuvre->type != null)
+                                <div class="col-xs-12 col-md-6">
+                                    {!! Form::Label('typeId', 'Type') !!}
+                                    {!! Form::select('typeId',array(null => 'Aucun') + $types, $oeuvre->type->id, array('class' => 'form-control') ) !!}
+
+                                </div>
+                            @else
+                                <div class="col-xs-12 col-md-6">
+                                    {!! Form::Label('typeId', 'Type') !!}
+                                    {!! Form::select('typeId',array(null => 'Aucun') + $types, null, array('class' => 'form-control') ) !!}
+
+                                </div>
+                            @endif
+
+                            @if($oeuvre->artiste != null)
+                                <div class="col-xs-12 col-md-6">
+                                    {!! Form::Label('artisteId', 'Artiste') !!}
+                                    {!! Form::select('artisteId',array(null => 'Aucun') + $artistes, $oeuvre->artiste->id, array('class' => 'form-control') ) !!}
+
+                                </div>
+                            @else
+                                <div class="col-xs-12 col-md-6">
+                                    {!! Form::Label('artisteId', 'Artiste') !!}
+                                    {!! Form::select('artisteId',array(null => 'Aucun') + $artistes, null, array('class' => 'form-control') ) !!}
+
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="panel-footer text-right">

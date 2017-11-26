@@ -54,9 +54,6 @@
                     </div>
                 @endif
                 <div class="panel panel-default">
-                    <div class="panel-heading lead">
-                        {{ $oeuvre->nom }}
-                    </div>
                     {!! Form::model($oeuvre, array('route' => array('oeuvre:update', $oeuvre->id), 'method' => 'post')) !!}
                     <div class="panel-body">
                         <div class="row">
@@ -64,7 +61,31 @@
                                 {!! Form::Label('nom', 'Nom') !!}
                                 {!! Form::text('nom', $oeuvre->nom, array('required' => 'required', 'class' => 'form-control')) !!}
                             </div>
-                            
+                            <div class="col-xs-12 col-md-6">
+                                {!! Form::Label('idIbeacon', 'Id iBeacon') !!}
+                                {!! Form::number('idIbeacon',$oeuvre->idIbeacon , array('required' => 'required', 'class' => 'form-control')) !!}
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                {!! Form::Label('posX', 'Latitude') !!}
+                                {!! Form::text('posX',$oeuvre->posX, array('required' => 'required', 'class' => 'form-control')) !!}
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                {!! Form::Label('posY', 'Longitude') !!}
+                                {!! Form::text('posY',$oeuvre->posY ,array('required' => 'required', 'class' => 'form-control')) !!}
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                {!! Form::Label('audio', 'Audio') !!}
+                                {!! Form::file('audio', array('class' => 'form-control', 'accept' => 'audio/*')) !!}
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-lg-6">
+                                {!! Form::Label('image', 'Image') !!}
+                                {!! Form::file('image', array('class' => 'form-control')) !!}
+                            </div>
+                        <div class="col-xs-12 col-md-6 col-lg-12">
+                            {!! Form::Label('description', 'Description') !!}
+                            {!! Form::textarea('description', null, array('class' => 'form-control',
+                            'placeholder' => 'Description')) !!}
+                        </div>
                         </div>
                     </div>
                     <div class="panel-footer text-right">

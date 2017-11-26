@@ -8,6 +8,10 @@
 Vos Oeuvres
 @endsection
 
+@section('navSearch')
+{{ route('oeuvre:create') }}
+@endsection
+
 @include('layout.heading')
 @include('layout.navSearch')
         <div class="row">

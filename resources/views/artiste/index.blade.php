@@ -8,6 +8,10 @@
 Vos Artistes
 @endsection
 
+@section('navSearch')
+{{ route('artiste:create') }}
+@endsection
+
 @include('layout.heading')
 @include('layout.navSearch')
     <div class="row">

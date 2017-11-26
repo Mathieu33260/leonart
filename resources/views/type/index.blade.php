@@ -8,6 +8,10 @@
 Vos Types
 @endsection
 
+@section('navSearch')
+{{ route('type:create') }}
+@endsection
+
 @include('layout.heading')
 @include('layout.navSearch')
 <div class="row">

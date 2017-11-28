@@ -13,8 +13,20 @@
                     @endif
                 </tr>
                 <tr>
-                    <td><button type="button" data-toggle="modal" data-target=".bd-example-modal-lg"  aria-labelledby="myLargeModalLabel" aria-hidden="true" class="btn btn-outline-info">Modifier</button></td>
-                    <td><a href="{{ route('artiste:destroy', ['id' => $artiste->id]) }}"><button type="button" class="btn btn-outline-danger" >Supprimer</button></a></td>
+                    <td>
+                        <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg"
+                                aria-labelledby="myLargeModalLabel" aria-hidden="true"
+                                class="btn btn-outline-info">
+                            Modifier
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" data-toggle="modal" data-target=".modal-supp"
+                                aria-labelledby="labelSuppModal" aria-hidden="true"
+                                class="btn btn-outline-danger">
+                            Supprimer
+                        </button>
+                    </td>
                 </tr>
             </table>
 
@@ -69,4 +81,30 @@
         </div>
       </div>
     </div>
+
+
+    <div class="modal fade modal-supp" tabindex="-1" role="dialog" aria-labelledby="labelSuppModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <h4 class="mt-3 center"> Êtes vous sûr de vouloir supprimer cet artiste ? </h4>
+                        <div class="row col-12 justify-content-center">
+                            <a href="{{ route('artiste:destroy', ['id' => $artiste->id]) }}" class="m-4">
+                                <button type="button" class="btn btn-outline-danger" >
+                                    Oui
+                                </button>
+                            </a>
+                            <button type="button" data-dismiss="modal" class="btn btn-outline-info m-4">
+                                Non
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>

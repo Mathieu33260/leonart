@@ -139,7 +139,7 @@ Vos Oeuvres
         });
         }
 
-        var offset = 10;
+        var offset = 20;
 
         function getSearch(){
             offset = 0;
@@ -157,29 +157,35 @@ Vos Oeuvres
                         $('.list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')"><h4 class="text-light nameO">' +
                             ''+ value.nom +'</h4></a></td></tr>');
                     });
-                    offset = offset + 10;
+                    offset = offset + 20;
                 }
             });
         }
 
+        var send = false;
+
         function lazyLoad() {
-            if ($('.right-list').scrollTop() ===
-                document.getElementsByClassName('right-list')[0].scrollHeight - $('.right-list').height()) {
-                $('.right-list').append('<img src="{{ asset('/images/ajax-loader.gif') }}" class="loading-indicator"/>');
-                $.ajax({
-                    type : "GET",
-                    url : '/oeuvre/indexAjax/'+offset+'/'+$('#recherche').val(),
-                    success : function (data)
-                    {
-                        $.each(data, function( index, value ) {
-                            var pos = {lat: value.posX, lng: value.posY};
-                            placeMarker(pos,map,value.id);
-                            $('.right-list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')"><h4 class="text-light nameO">' +
-                                ''+ value.nom +'</h4></a></td></tr>');
-                        });
-                        offset = offset + 10;
-                    }
-                });
+            if (parseInt($('.right-list').scrollTop())+1 ===
+                document.getElementsByClassName('right-list')[0].scrollHeight - parseInt($('.right-list').height())) {
+                if(!send)
+                {
+                    send = true;
+                    $.ajax({
+                        type : "GET",
+                        url : '/oeuvre/indexAjax/'+offset+'/'+$('#recherche').val(),
+                        success : function (data)
+                        {
+                            $.each(data, function( index, value ) {
+                                var pos = {lat: value.posX, lng: value.posY};
+                                placeMarker(pos,map,value.id);
+                                $('.right-list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')"><h4 class="text-light nameO">' +
+                                    ''+ value.nom +'</h4></a></td></tr>');
+                            });
+                            offset = offset + 20;
+                            send = false;
+                        }
+                    });
+                }
             }
         }
     </script>

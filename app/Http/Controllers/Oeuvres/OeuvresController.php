@@ -21,7 +21,7 @@ class OeuvresController extends Controller
     public function index()
     {
         $oeuvres = Oeuvre::where('userId', auth()->user()->id)
-            ->limit(10)
+            ->limit(20)
             ->get();
 
         $map = View::make('oeuvre.map')
@@ -41,13 +41,13 @@ class OeuvresController extends Controller
                 ->where('userId', auth()->user()->id)
                 ->orderBy('id','ASC')
                 ->offset($offset)
-                ->limit(10)
+                ->limit(20)
                 ->get();
         } else {
             $oeuvres = Oeuvre::where('userId', auth()->user()->id)
                 ->orderBy('id','ASC')
                 ->offset($offset)
-                ->limit(10)
+                ->limit(20)
                 ->get();
         }
 

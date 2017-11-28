@@ -19,8 +19,11 @@ Ajouter une oeuvre
 </style>
     <div class="container-fluid pt-4 ">
         <div class="row justify-content-md-center">
-            @if ($errors->any())
-            <div class="col-md-5">
+                <div class="col-md-6">
+                    {!! Form::open(['route' => 'oeuvre:store', 'files' => true, 'method' => 'post']) !!}
+
+                    @if ($errors->any())
+            <div class="col-md-12">
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -30,9 +33,6 @@ Ajouter une oeuvre
                 </div>
             </div>
             @endif
-                <div class="col-md-6">
-                    {!! Form::open(['route' => 'oeuvre:store', 'files' => true, 'method' => 'post']) !!}
-                
                     <div class="row">
                         <div class="col-xs-12 col-md-6 col-lg-12">
                          {!! Form::Label('nom', 'Nom') !!}

@@ -1,4 +1,4 @@
-<canvas id="oeuvreArtisteChart"></canvas>
+<canvas id="oeuvreArtisteChart" style="min-height: 200px;"></canvas>
 
 <script>
     var labels = [];

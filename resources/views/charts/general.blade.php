@@ -1,4 +1,4 @@
-<canvas id="generalChart"></canvas>
+<canvas id="generalChart" style="min-height: 200px;"></canvas>
 <script>
     var ctx = document.getElementById("generalChart");
     var myChart = new Chart(ctx, {

@@ -48,24 +48,24 @@ Bienvenue {{ Auth::user()->name }}
         	</div>
         </div>
         <div class="row justify-content-center">
-        	<div class="col-3">
+        	<div class="col-lg-3 col-md-5 col-sm-10 mt-3">
         		<div class="titleHead">
-        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
-           			{!! $oeuvreT !!}
-           			</div>
+        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Oeuvres par Type</h2>
+                    {!! $oeuvreT !!}
+                </div>
            	</div>
-           	<div class="col-3">
+           	<div class="col-lg-3 col-md-5 col-sm-10 mt-3">
         		<div class="titleHead">
-        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
-           			{!! $general !!}
-           			</div>
-           	</div>
-           	<div class="col-3">
+        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Répartition</h2>
+                    {!! $general !!}
+                </div>
+            </div>
+           	<div class="col-lg-3 col-md-5 col-sm-10 mt-3">
         		<div class="titleHead">
-        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Lieu des oeuvres</h2>
-           			{!! $oeuvreA !!}
-           			</div>
-           	</div>
+        			<h2 class="display-4 p-2 d-flex align-items-center justify-content-md-center">Oeuvres par Artiste</h2>
+                    {!! $oeuvreA !!}
+                </div>
+            </div>
         </div>
        	</div>
 

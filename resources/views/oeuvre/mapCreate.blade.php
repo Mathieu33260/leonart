@@ -1,6 +1,6 @@
 <button id="btnDefautMarker" type="button" class="btn btn-outline-success mb-4 pull-left">
-                        @lang("Placer un marqueur") 
-</button> 
+    @lang("Placer un marqueur")
+</button>
 <div id="map" class="col-lg-12 mb-4" style="min-height: 600px"></div>
 
 
@@ -10,12 +10,12 @@
     var markertab = [];
     function initMap() {
 
-            geocoder = new google.maps.Geocoder();
+        geocoder = new google.maps.Geocoder();
         map = new google.maps.Map(document.getElementById('map'), {
             center: centre,
             zoom: 10
         });
-        
+
     }
 
     function centerMap(lat,long) {

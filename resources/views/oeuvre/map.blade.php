@@ -33,7 +33,7 @@
 
                 contentString += "{{ $oeuvre->idIbeacon }}, {{ $oeuvre->posX }}, {{ $oeuvre->posY }}";
 
-            
+
             var infowindow = new google.maps.InfoWindow({});
 
             var marker = new google.maps.Marker({

@@ -6,7 +6,7 @@
 @section('content')
 
 @section('header')
-Bienvenue {{ Auth::user()->name }}
+	Bienvenue {{ Auth::user()->name }}
 @endsection
 
 @include('layout.heading')

@@ -5,12 +5,12 @@
     var data = [];
 
     @foreach($tab1 as $t1)
-        labels.push('{{$t1}}');
+    labels.push('{{$t1}}');
     @endforeach
 
     @foreach($tab2 as $t2)
-        data.push('{{$t2}}');
-    @endforeach
+    data.push('{{$t2}}');
+            @endforeach
 
     var ctx = document.getElementById("oeuvreChart");
     var myPieChart = new Chart(ctx,{

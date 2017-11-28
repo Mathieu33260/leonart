@@ -10,40 +10,40 @@
 
             @if(isset($oeuvres) && !empty($oeuvres))
                     @foreach($oeuvres as $oeuvre)
-                        centre = {lat: {{ $oeuvre->posX }}, lng: {{ $oeuvre->posY }} };
-                    @endforeach
-            @endif
+                centre = {lat: {{ $oeuvre->posX }}, lng: {{ $oeuvre->posY }} };
+            @endforeach
+                    @endif
 
-            geocoder = new google.maps.Geocoder();
+                geocoder = new google.maps.Geocoder();
             map = new google.maps.Map(document.getElementById('map'), {
                 center: centre,
                 zoom: 10
             });
 
-            @foreach($oeuvres as $oeuvre)
+                    @foreach($oeuvres as $oeuvre)
 
             var contentString = "{{ $oeuvre->nom }}, ";
-                    @if($oeuvre->type != null)
-                        contentString  += "{{ $oeuvre->type->libelle }}, ";
-                    @endif
+            @if($oeuvre->type != null)
+                contentString  += "{{ $oeuvre->type->libelle }}, ";
+            @endif
 
                     @if($oeuvre->artiste != null)
-                        contentString  += "{{ $oeuvre->artiste->nom }} {{ $oeuvre->artiste->prenom }}, ";
-                    @endif
+                contentString  += "{{ $oeuvre->artiste->nom }} {{ $oeuvre->artiste->prenom }}, ";
+            @endif
 
-            contentString += "{{ $oeuvre->idIbeacon }}, {{ $oeuvre->posX }}, {{ $oeuvre->posY }}";
+                contentString += "{{ $oeuvre->idIbeacon }}, {{ $oeuvre->posX }}, {{ $oeuvre->posY }}";
 
-          
+
 
             var infowindow = new google.maps.InfoWindow({});
 
-                var marker = new google.maps.Marker({
-                    position: {lat: {{ $oeuvre->posX }}, lng: {{ $oeuvre->posY }}},
-                    map: map,
-                    label: '{{ $oeuvre->id }}',
-                    title: '{{$oeuvre->nom}}',
-                    contentString: contentString
-                });
+            var marker = new google.maps.Marker({
+                position: {lat: {{ $oeuvre->posX }}, lng: {{ $oeuvre->posY }}},
+                map: map,
+                label: '{{ $oeuvre->id }}',
+                title: '{{$oeuvre->nom}}',
+                contentString: contentString
+            });
             marker.addListener('click', function() {
                 /*infowindow.setContent(this.contentString);
                 infowindow.open(map, this);*/

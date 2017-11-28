@@ -2,5 +2,5 @@
 
 @section('title', __("Map"))
 @section('content')
-{!! $map !!}
+    {!! $map !!}
 @endsection

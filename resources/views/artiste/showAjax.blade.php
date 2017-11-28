@@ -8,7 +8,9 @@
                     <td><p>Nom : {{ $artiste->nom }}</p></td>
                     <td><p>Prénom : {{ $artiste->prenom }}</p></td>
                     <td><p>Date de naissance : {{ $artiste->dateN->day }}/{{ $artiste->dateN->month }}/{{ $artiste->dateN->year }}</p></td>
-                    <td><p>Date de mort : {{ $artiste->dateM->day }}/{{ $artiste->dateM->month }}/{{ $artiste->dateM->year }}</p></td>
+                    @if($artiste->dateM != null)
+                        <td><p>Date de mort : {{ $artiste->dateM->day }}/{{ $artiste->dateM->month }}/{{ $artiste->dateM->year }}</p></td>
+                    @endif
                 </tr>
                 <tr>
                     <td><button type="button" data-toggle="modal" data-target=".bd-example-modal-lg"  aria-labelledby="myLargeModalLabel" aria-hidden="true" class="btn btn-outline-info">Modifier</button></td>

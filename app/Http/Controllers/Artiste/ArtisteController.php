@@ -102,7 +102,9 @@ class ArtisteController extends Controller
         }
 
 
-        return View::make('artiste.showAjax',compact('artiste'))->render();
+        return View::make('artiste.showAjax')
+            ->with(compact('artiste'))
+            ->render();
       }
 
       return redirect()->route('artiste:index');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Type;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -106,6 +107,27 @@ class AdminController extends Controller
         {
             $visiteur = false;
             $admin = false;
+
+            $type = Type::where('userId', $userId)
+                ->get();
+
+            if(!count($type))
+            {
+                $type1 = Type::create([
+                    'libelle' => 'Monument',
+                    'userId' => $user->id
+                ]);
+
+                $type2 = Type::create([
+                    'libelle' => 'Sculpture',
+                    'userId' => $user->id
+                ]);
+
+                $type3 = Type::create([
+                    'libelle' => 'Peinture',
+                    'userId' => $user->id
+                ]);
+            }
         }
         if($user->admin)
         {

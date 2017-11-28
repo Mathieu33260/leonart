@@ -11,10 +11,15 @@ Ajouter une oeuvre
 @include('layout.heading')
 <style type="text/css">
     input {font-family:FontAwesome, sans-serif;}
-    .buttonBottom{
+        .buttonBottom{
     position: absolute;
     bottom:0;
     left:0;
+}
+    @media screen and (max-width: 768px){
+    .buttonBottom{
+    position: initial;
+}
     }
 </style>
     <div class="container-fluid pt-4 ">

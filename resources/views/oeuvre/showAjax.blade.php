@@ -36,9 +36,9 @@
                     <a href="{{ route('oeuvre:destroy', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-outline-danger" >Supprimer</button></a>
                 </div><div class="col-6">
                     <audio controls>
-  <source src="{{ $oeuvre->audio }}" type="audio/mpeg">
+  <source src="/storage/uploads/audio/{{ $oeuvre->audio }}">
 Your browser does not support the audio element.
-</audio>{{ $oeuvre->audio }}
+</audio>
 </div>
                 </div>
      </div>

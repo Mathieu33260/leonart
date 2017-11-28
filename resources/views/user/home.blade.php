@@ -30,7 +30,9 @@ Bienvenue {{ Auth::user()->name }}
 						@foreach($oeuvres as $oeuvre)
 							<div class="row">
 								<div class="col-lg-2">
+									@if($oeuvre->image != null)
 									<img width="100%" src="/storage/uploads/images/{{$oeuvre->image}}" alt="{{$oeuvre->nom}}">
+                                    @endif
 								</div>
 								<div class="col-lg-6">
 									<h1>{{ $oeuvre->nom }}</h1>

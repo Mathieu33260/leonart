@@ -53,11 +53,11 @@ Vos Oeuvres
     <script>
         $(document).ready(function() {
          $('#loading').hide();
-          init('null');
+          init(null);
           animate();
           $('#box').text('');
           $('#canvasthree').hide();
-        })
+        });
 
         var renderer, scene, camera, mesh;
 
@@ -75,10 +75,11 @@ Vos Oeuvres
 
             var geometry = new THREE.CubeGeometry($(window).width()/5, $(window).width()/5, $(window).width()/5);
 
-            try {
-              var texture = new THREE.TextureLoader().load( "/storage/uploads/images/" + image);
-            } catch(exception) {
-              var texture = new THREE.TextureLoader().load( "{{ asset('images/texture/leonart.png') }}");
+            if(image === null || image === undefined || image === "")
+            {
+                var texture = new THREE.TextureLoader().load( "{{ asset('images/texture/leonart.png') }}");
+            } else {
+                var texture = new THREE.TextureLoader().load( "/storage/uploads/images/" + image);
             }
 
             var materials = [

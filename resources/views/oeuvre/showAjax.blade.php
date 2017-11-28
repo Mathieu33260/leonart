@@ -2,7 +2,9 @@
         <div class="col-xs-12 col-md-12 col-lg-12">
             <div class="row">
                 <div class="col sm-12 col-md-3 col-lg-3">
+                    @if($oeuvre->image != null)
                <img src="/storage/uploads/images/{{$oeuvre->image}}" class="img-thumbnail mt-2" alt="tableau"/>
+                    @endif
                 </div>
                 <div class="col sm-12 col-md-9 col-lg-6">
                 <h3 class="mt-2 mb-0">Oeuvre : {{ $oeuvre->nom }}</h3>
@@ -35,10 +37,12 @@
                     <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg"  aria-labelledby="myLargeModalLabel" aria-hidden="true" class="btn btn-outline-info">Modifier</button>
                     <a href="{{ route('oeuvre:destroy', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-outline-danger" >Supprimer</button></a>
                 </div><div class="col-6">
+                    @if($oeuvre->audio != null)
                     <audio controls>
   <source src="/storage/uploads/audio/{{ $oeuvre->audio }}">
 Your browser does not support the audio element.
 </audio>
+                    @endif
 </div>
                 </div>
      </div>

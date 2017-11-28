@@ -8,34 +8,38 @@
                 <h3 class="mt-2 mb-0">Oeuvre : {{ $oeuvre->nom }}</h3>
                 <p class="text-secondary">ID du iBeacon: {{ $oeuvre->idIbeacon }}</p>
                 @if($oeuvre->type != null)
-                            <p>Type :
+                            <p><b>Type :</b>
                                 <a href="{{ route('type:show',['id' => $oeuvre->type->id]) }}">
                                     {{ $oeuvre->type->libelle }}
                                 </a>
                             </p>
                         @endif
                                                 @if($oeuvre->artiste != null)
-                            <p>Artiste :
+                            <p><b>Artiste :</b>
                                 <a href="{{ route('artiste:show',['id' => $oeuvre->artiste->id]) }}">
                                     {{ $oeuvre->artiste->nom }} {{ $oeuvre->artiste->prenom }}
                                 </a>
                             </p>
                         @endif
-                        <p class="">Ajouté par : {{ $oeuvre->user->name }}</p>
+                        <p class=""><b>Ajouté par : </b>{{ $oeuvre->user->name }}</p>
 
             </div>
             </div>
             <div class="row">
-            <div class="col-8 mt-4">
+            <div class="col-12 mt-4">
                 <p>{{ $oeuvre->description}}</p>
             </div>
             </div>
-            <div class="row">
+            <div class="row pb-4">
                 <div class="col-6">
                     <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg"  aria-labelledby="myLargeModalLabel" aria-hidden="true" class="btn btn-outline-info">Modifier</button>
                     <a href="{{ route('oeuvre:destroy', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-outline-danger" >Supprimer</button></a>
-                </div>
-                    <p>Audio : {{ $oeuvre->audio }}</p>
+                </div><div class="col-6">
+                    <audio controls>
+  <source src="{{ $oeuvre->audio }}" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>{{ $oeuvre->audio }}
+</div>
                 </div>
      </div>
 

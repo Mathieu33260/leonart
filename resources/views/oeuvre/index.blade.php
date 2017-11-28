@@ -18,7 +18,7 @@ Vos Oeuvres
             <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">
                    <a href="{{ route('oeuvre:create') }}"><input type="button" class="btn btn-outline-success center-block" value="Ajouter"></a>
         </form>
- 
+
 
     </nav>
         <div class="row">
@@ -43,15 +43,13 @@ Vos Oeuvres
                     <img id="loading-image" src="{{ asset('images/Ellipsis.svg') }}" alt="Loading..." />
                 </div>
                 <div class="row">
-                    <div id="box">
+                    <div id="box" class="col-lg-7">
                     </div>
+                    <div id="canvasthree"></div>
                 </div>
                 <div class="row">
                     <div id="containerMap" class="container-fluid">
                     {!! $map !!}</div>
-                    <div id="canvasthree"><div class=" col-lg-6">
-                      <div id="container"></div>
-                    </div></div>
                 </div>
             </div>
 
@@ -70,15 +68,15 @@ Vos Oeuvres
         var renderer, scene, camera, mesh;
 
         function init(image) {
-            renderer = new THREE.WebGLRenderer({ alpha : true });
+            renderer = new THREE.WebGLRenderer({ alpha: true});
 
-            renderer.setSize( $(window).width()/2, $(window).height()/2 );
+            renderer.setSize( $(window).width()/3, $(window).height()/3 );
 
-            $('#container').append(renderer.domElement);
+            $('#canvasthree').append(renderer.domElement);
 
             scene = new THREE.Scene();
             camera =new THREE.PerspectiveCamera(50, $(window).width() / $(window).height(), 1, 10000);
-            camera.position.set(200, -100, 1000);
+            camera.position.set(0, 0, 700);
             scene.add(camera);
 
             var geometry = new THREE.CubeGeometry($(window).width()/5, $(window).width()/5, $(window).width()/5);
@@ -137,12 +135,13 @@ Vos Oeuvres
         }
 
         function twoCall(image, id, lat, long) {
+          $('#canvasthree').text('');
           init(image);
+          $('#canvasthree').show();
           getAjax(id, lat, long);
           $('#map').animate({
             "min-height": "400px"
         });
-          $('#canvasthree').show();
         }
 
         var offset = 10;

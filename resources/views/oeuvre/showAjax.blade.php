@@ -4,7 +4,7 @@
                 <div class="col sm-12 col-md-3 col-lg-3">
                <img src="/storage/uploads/images/{{$oeuvre->image}}" class="img-thumbnail mt-2" alt="tableau"/>
                 </div>
-                <div class="col sm-12 col-md-9 col-lg-9">
+                <div class="col sm-12 col-md-9 col-lg-6">
                 <h3 class="mt-2 mb-0">Oeuvre : {{ $oeuvre->nom }}</h3>
                 <p class="text-secondary">ID du iBeacon: {{ $oeuvre->idIbeacon }}</p>
                 @if($oeuvre->type != null)
@@ -22,14 +22,14 @@
                             </p>
                         @endif
                         <p class="">Ajouté par : {{ $oeuvre->user->name }}</p>
-                        
+
             </div>
             </div>
-            <div class="row">                    
+            <div class="row">
             <div class="col-8 mt-4">
                 <p>{{ $oeuvre->description}}</p>
             </div>
-            </div> 
+            </div>
             <div class="row">
                 <div class="col-6">
                     <a href="{{ route('oeuvre:edit', ['id' => $oeuvre->id]) }}"><button type="button" class="btn btn-outline-info">Modifier</button></a>

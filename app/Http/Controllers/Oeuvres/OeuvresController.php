@@ -282,7 +282,7 @@ class OeuvresController extends Controller
             $request->flash("Une erreur s'est produite.");
         }
 
-        return redirect()->route('oeuvre:show',['id' => $oeuvreId]);
+        return redirect()->route('oeuvre:index');
     }
 
     /**

@@ -54,7 +54,7 @@
                     </div>
                 @endif
                 <div class="panel panel-default">
-                    {!! Form::model($oeuvre, array('route' => array('oeuvre:update', $oeuvre->id), 'method' => 'post')) !!}
+                    {!! Form::model($oeuvre, array('route' => array('oeuvre:update', $oeuvre->id), 'files' => true, 'method' => 'post')) !!}
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12 col-md-6">

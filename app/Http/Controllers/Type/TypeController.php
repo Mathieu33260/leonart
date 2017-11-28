@@ -17,7 +17,7 @@ class TypeController extends Controller
     public function index()
     {
         $types = Type::where('userId', auth()->user()->id)
-            ->limit(10)
+            ->limit(20)
             ->get();
 
         return view('type.index')->with(compact('types'));
@@ -31,13 +31,13 @@ class TypeController extends Controller
                 ->where('userId', auth()->user()->id)
                 ->orderBy('id','ASC')
                 ->offset($offset)
-                ->limit(10)
+                ->limit(20)
                 ->get();
         } else {
             $types = Type::where('userId', auth()->user()->id)
                 ->orderBy('id','ASC')
                 ->offset($offset)
-                ->limit(10)
+                ->limit(20)
                 ->get();
         }
 

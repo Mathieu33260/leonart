@@ -17,7 +17,7 @@ class ArtisteController extends Controller
     public function index()
     {
         $artistes = Artiste::where('userId', auth()->user()->id)
-            ->limit(10)
+            ->limit(20)
             ->get();
 
         return view('artiste.index')->with(compact('artistes'));
@@ -32,13 +32,13 @@ class ArtisteController extends Controller
                 ->where('userId', auth()->user()->id)
                 ->orderBy('id','ASC')
                 ->offset($offset)
-                ->limit(10)
+                ->limit(20)
                 ->get();
         } else {
             $artistes = Artiste::where('userId', auth()->user()->id)
                 ->orderBy('id','ASC')
                 ->offset($offset)
-                ->limit(10)
+                ->limit(20)
                 ->get();
         }
 

@@ -114,11 +114,7 @@
             var send = false;
 
             $(window).scroll(function() {
-                console.log(parseInt($(window).scrollTop()));
-                console.log($(document).height() - $(window).height());
-                console.log('');
                 if(parseInt($(window).scrollTop())+1 === $(document).height() - $(window).height()) {
-                    console.log('scroll');
                     if(!send)
                     {
                         $('#adminSearch').append('<div id="loading" class="col-12">' +

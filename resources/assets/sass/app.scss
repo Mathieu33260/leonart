@@ -3675,6 +3675,7 @@ tbody.collapse.show {
   margin-left: 0;
 }
 
+
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -3693,6 +3694,11 @@ tbody.collapse.show {
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
 }
 
 .dropup .dropdown-menu {

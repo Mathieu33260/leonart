@@ -48,7 +48,11 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         Route::get('/manage', 'AdminController@manage')
             ->name('admin:manage');
 
-        Route::patch('/manageStore/{id}', 'AdminController@manageStore')
+        Route::get('/manageAjax/{offset}/{string?}','AdminController@manageAjax')
+            ->where(['offset' => '[0-9]+'], ['string' => '[A-Za-z]+'])
+            ->name('admin:manageAjax');
+
+        Route::post('/manageStore/{id}', 'AdminController@manageStore')
             ->where(['id' => '[0-9]+'])
             ->name('admin:manageStore');
 
@@ -121,10 +125,6 @@ Route::middleware(['user'])->group(function () {
 
             Route::post('/store','TypeController@store')
                 ->name('type:store');
-
-            Route::get('/edit/{id}','TypeController@edit')
-                ->where(['id' => '[0-9]+'])
-                ->name('type:edit');
 
             Route::post('/update/{id}','TypeController@update')
                 ->where(['id' => '[0-9]+'])
@@ -205,10 +205,6 @@ Route::middleware(['user'])->group(function () {
 
             Route::post('/store','ArtisteController@store')
                 ->name('artiste:store');
-
-            Route::get('/edit/{id}','ArtisteController@edit')
-                ->where(['id' => '[0-9]+'])
-                ->name('artiste:edit');
 
             Route::post('/update/{id}','ArtisteController@update')
                 ->where(['id' => '[0-9]+'])

@@ -3,7 +3,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://mrdoob.github.com/three.js/build/three.min.js"></script>
-
 <nav class="navbar navbar-expand-sm navbar-light bg-faded">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="dropdownMenu">
     <span class="navbar-toggler-icon"></span>
@@ -20,7 +19,7 @@
                    <i class="fa fa-area-chart"></i> @lang("Tableau de bord")
                 </a>
             </li>
-            <li class="nav-item dropdown {{ request()->segment(1) === 'oeuvre' ? 'active' : null }}">
+            <li class="nav-item dropdown {{ request()->segment(1) === 'oeuvre' ? 'active' : null }}" onclick="location.href='{{route('oeuvre:index')}}'">
                 <a class="nav-link" data-toggle="dropdown" href="{{route('oeuvre:index')}}">
                     <i class="fa fa-paint-brush"></i> @lang("Oeuvre")
                 </a>
@@ -33,7 +32,7 @@
                 </a>
             </div>
             </li>
-            <li class="nav-item dropdown {{ request()->segment(1) === 'artiste' ? 'active' : null }}">
+            <li class="nav-item dropdown {{ request()->segment(1) === 'artiste' ? 'active' : null }}" onclick="location.href='{{route('artiste:index')}}'">
                 <a class="nav-link" data-toggle="dropdown" href="{{route('artiste:index')}}">
                    <i class="fa fa-user"></i> @lang("Artiste")
                 </a>
@@ -46,7 +45,7 @@
                 </a>
             </div>
             </li>
-            <li class="nav-item dropdown {{ request()->segment(1) === 'type' ? 'active' : null }}">
+            <li class="nav-item dropdown {{ request()->segment(1) === 'type' ? 'active' : null }}" onclick="location.href='{{route('type:index')}}'">
                 <a class="nav-link" data-toggle="dropdown" href="{{route('type:index')}}">
                     <i class="fa fa-sliders"></i> @lang("Type")
                 </a>

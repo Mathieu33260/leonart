@@ -87,11 +87,10 @@ class OeuvresController extends Controller
     {
         $this->validate($request, [
             'nom'     => 'required|string|max:255',
-            'modele'     => 'string|nullable',
             'idIbeacon' => 'required|integer|digits_between:0,6',
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
-            'audio' => 'string|nullable',
+            'audio' => 'mimes:mpga,wav,ogg|nullable',
             'typeId' => 'integer|digits_between:0,3|nullable',
             'artisteId' => 'integer|digits_between:0,11|nullable',
             'description' => 'string|nullable',
@@ -107,13 +106,21 @@ class OeuvresController extends Controller
             $filename = $image->getClientOriginalName();
         }
 
+        $audio = $request->file('audio');
+        if(is_null($audio))
+        {
+            $filenameAudio = null;
+        } else {
+            Storage::put('public/uploads/audio/'.$audio->getClientOriginalName(), file_get_contents($audio->getRealPath()));
+            $filenameAudio = $audio->getClientOriginalName();
+        }
+
         $oeuvre = Oeuvre::create([
             'nom' => $request->input('nom'),
-            'modele' => $request->input('modele'),
             'idIbeacon' => $request->input('idIbeacon'),
             'posX' => $request->input('posX'),
             'posY' => $request->input('posY'),
-            'audio' => $request->input('audio'),
+            'audio' => $filenameAudio,
             'typeId' => $request->input('typeId'),
             'artisteId' => $request->input('artisteId'),
             'userId' => auth()->user()->id,
@@ -145,12 +152,22 @@ class OeuvresController extends Controller
             ->where('userId', auth()->user()->id)
             ->first();
 
+        $types = Type::where('userId', auth()->user()->id)
+              ->pluck('libelle', 'id')->toArray();
+
+        $artistes = Artiste::where('userId', auth()->user()->id)
+              ->pluck('nom', 'id')->toArray();
+
         if(is_null($oeuvre))
         {
             return redirect()->route('oeuvre:index');
         }
 
-        return View::make('oeuvre.showAjax',compact('oeuvre'))->render();
+        return View::make('oeuvre.showAjax')
+            ->with(compact('oeuvre'))
+            ->with(compact('types'))
+            ->with(compact('artistes'))
+            ->render();
      }
 
      return redirect()->route('oeuvre:index');
@@ -207,11 +224,10 @@ class OeuvresController extends Controller
 
         $this->validate($request, [
             'nom'     => 'required|string|max:255',
-            'modele'     => 'string|nullable',
             'idIbeacon' => 'required|integer|digits_between:0,6',
             'posX' => 'required|numeric',
             'posY' => 'required|numeric',
-            'audio' => 'string|nullable',
+            'audio' => 'mimes:mpga,wav,ogg|nullable',
             'typeId' => 'integer|digits_between:0,3|nullable',
             'artisteId' => 'integer|digits_between:0,11|nullable',
             'description' => 'string|nullable',
@@ -221,19 +237,38 @@ class OeuvresController extends Controller
         $image = $request->file('image');
         if(is_null($image))
         {
-            $filename = null;
+            if(is_null($oeuvretest->image))
+            {
+                $filename = null;
+            } else {
+                $filename = $oeuvretest->image;
+            }
         } else {
             Storage::put('public/uploads/images/'.$image->getClientOriginalName(), file_get_contents($image->getRealPath()));
             $filename = $image->getClientOriginalName();
         }
 
+        $audio = $request->file('audio');
+        if(is_null($audio))
+        {
+            if(is_null($oeuvretest->audio))
+            {
+                $filenameAudio = null;
+            } else {
+                $filenameAudio = $oeuvretest->audio;
+            }
+        } else {
+            Storage::put('public/uploads/audio/'.$audio->getClientOriginalName(), file_get_contents($audio->getRealPath()));
+            $filenameAudio = $audio->getClientOriginalName();
+        }
+
+
         $oeuvre = Oeuvre::where('id', $oeuvreId)->update([
             'nom' => $request->input('nom'),
-            'modele' => $request->input('modele'),
             'idIbeacon' => $request->input('idIbeacon'),
             'posX' => $request->input('posX'),
             'posY' => $request->input('posY'),
-            'audio' => $request->input('audio'),
+            'audio' => $filenameAudio,
             'typeId' => $request->input('typeId'),
             'artisteId' => $request->input('artisteId'),
             'userId' => auth()->user()->id,

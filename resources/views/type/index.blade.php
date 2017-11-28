@@ -8,15 +8,12 @@
 Vos Types
 @endsection
 
+@section('navSearch')
+{{ route('type:create') }}
+@endsection
+
 @include('layout.heading')
-
-<nav class="navbar navbar-light bg-light">
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">
-    </form>
-    <a href="{{ route('type:create') }}"><input type="button" class="btn btn-success center-block" value="Ajouter"></a>
-
-</nav>
+@include('layout.navSearch')
 <div class="row">
     <div class="col-lg-2 right-list" onscroll="lazyLoad()">
         <div class="dark2">

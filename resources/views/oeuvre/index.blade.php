@@ -8,19 +8,12 @@
 Vos Oeuvres
 @endsection
 
+@section('navSearch')
+{{ route('oeuvre:create') }}
+@endsection
+
 @include('layout.heading')
-
-<style>
-</style>
-
-    <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" id="recherche" placeholder="Recherche" type="text" onkeyup="getSearch()">
-                   <a href="{{ route('oeuvre:create') }}"><input type="button" class="btn btn-outline-success center-block" value="Ajouter"></a>
-        </form>
-
-
-    </nav>
+@include('layout.navSearch')
         <div class="row">
             <div class="col-lg-2 col-md-2 right-list" onscroll="lazyLoad()">
                 <div class="dark2">
@@ -55,6 +48,7 @@ Vos Oeuvres
 
 
         </div>
+
 
     <script>
         $(document).ready(function() {

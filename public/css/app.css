@@ -3695,6 +3695,11 @@ tbody.collapse.show {
   border-radius: 0.25rem;
 }
 
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+
 .dropup .dropdown-menu {
   margin-top: 0;
   margin-bottom: 0.125rem;

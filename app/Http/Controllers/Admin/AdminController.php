@@ -61,22 +61,60 @@ class AdminController extends Controller
     public function manage(Request $request)
     {
         $users = User::where('admin', false)
+            ->limit(9)
             ->get();
 
         return view('admin.manage')
             ->with(compact('users'));
     }
 
+    public function manageAjax($offset,$string = "")
+    {
+        if($string != "")
+        {
+            $users = User::where('name', 'like', '%'.$string.'%')
+                ->where('admin', false)
+                ->orderBy('id','ASC')
+                ->offset($offset)
+                ->limit(9)
+                ->get();
+        } else {
+            $users = User::where('admin', false)
+                ->orderBy('id','ASC')
+                ->offset($offset)
+                ->limit(9)
+                ->get();
+        }
+
+        return $users->toArray();
+    }
+
     public function manageStore(Request $request, int $userId)
     {
-        if($request->has('visiteur') && $request->has('admin'))
+        $user = User::where('id', $userId)
+            ->first();
+
+        $visiteur = true;
+        $admin = false;
+
+        if(!$user->visiteur && !$user->admin)
+        {
+            $visiteur = true;
+            $admin = false;
+        }
+        if($user->visiteur && !$user->admin)
+        {
+            $visiteur = false;
+            $admin = false;
+        }
+        if($user->admin)
         {
             return redirect()->route('admin:manage');
         }
 
-        $user = User::where('id', $userId)->update([
-            'visiteur' => $request->has('visiteur'),
-            'admin' => $request->has('admin')
+        $user->update([
+            'visiteur' => $visiteur,
+            'admin' => $admin
         ]);
 
         return redirect()->route('admin:manage');

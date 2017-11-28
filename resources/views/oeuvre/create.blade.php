@@ -60,8 +60,7 @@ Ajouter une oeuvre
                         </div>
                         <div class="col-xs-12 col-md-6">
                             {!! Form::Label('audio', 'Audio') !!}
-                            {!! Form::file('audio', array('class' => 'form-control',
-                            'accept' => 'image/*')) !!}
+                            {!! Form::file('audio', array('class' => 'form-control', 'accept' => 'audio/*')) !!}
                         </div>
                     </div>
                     <div class="row">

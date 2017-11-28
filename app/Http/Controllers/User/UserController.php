@@ -135,6 +135,7 @@ class UserController extends Controller
             ->with(compact('general'))
             ->with(compact('oeuvreT'))
             ->with(compact('oeuvreA'))
-            ->with(compact('map'));
+            ->with(compact('map'))
+            ->with(compact('oeuvres'));
     }
 }

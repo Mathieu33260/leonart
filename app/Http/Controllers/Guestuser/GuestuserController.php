@@ -65,7 +65,7 @@ class GuestuserController extends Controller
     {
         $oeuvres = Oeuvre::all();
 
-        $map = View::make('oeuvre.map')
+        $map = View::make('map.mapvisiteur')
             ->with(compact('oeuvres'))
             ->render();
 

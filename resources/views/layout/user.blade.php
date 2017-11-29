@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('nav')
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://mrdoob.github.com/three.js/build/three.min.js"></script>
@@ -125,3 +127,5 @@
         </ul>
     </div>
 </nav>
+
+@endsection

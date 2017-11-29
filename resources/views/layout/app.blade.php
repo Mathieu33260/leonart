@@ -40,11 +40,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#2c3e50" />
 
     {{-- Page title --}}
-    <title>{{ config('app.name') }}: @yield('title') | @yield('subtitle')</title>
+    <title>{{ config('app.name') }} : @yield('title') | @yield('subtitle')</title>
 
     {{-- Favicons --}}
-    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
 
 
     {{-- Stylesheets --}}

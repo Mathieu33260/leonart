@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 
-    <div id="map" class="col-lg-12" style="min-height: 500px"></div>
+    <div id="map" class="col-lg-12" style="min-height: 464px"></div>
 
     <script>
         var map;
@@ -8,8 +8,8 @@
         function initMap() {
 
 
-            @if(isset($oeuvres) && !empty($oeuvres))
-                    @foreach($oeuvres as $oeuvre)
+            @if(isset($oeuvresLast) && !empty($oeuvresLast))
+                    @foreach($oeuvresLast as $oeuvre)
                 centre = {lat: {{ $oeuvre->posX }}, lng: {{ $oeuvre->posY }} };
             @endforeach
                     @endif
@@ -20,7 +20,7 @@
                 zoom: 10
             });
 
-                    @foreach($oeuvres as $oeuvre)
+                    @foreach($oeuvresLast as $oeuvre)
 
             var contentString = "{{ $oeuvre->nom }}, ";
             @if($oeuvre->type != null)

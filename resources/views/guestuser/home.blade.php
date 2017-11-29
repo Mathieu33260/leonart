@@ -19,7 +19,7 @@
 				</div>
 				<div class="col-5">
 					<div class="titleHead">
-						<h2 class="display-4 p-2 pl-4"><i class="fa fa-map-marker pr-2"></i>Lieu des oeuvres</h2>
+						<h2 class="display-4 p-2 pl-4"><i class="fa fa-map-marker pr-2"></i>Position des oeuvres</h2>
 						{!! $map !!}
 					</div>
 				</div>

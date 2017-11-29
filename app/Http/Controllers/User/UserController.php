@@ -76,6 +76,10 @@ class UserController extends Controller
             ->get();
         $artiste = Artiste::where('userId', auth()->user()->id)
             ->get();
+        $oeuvresLast = Oeuvre::where('userId', auth()->user()->id)
+            ->orderBy('id', 'desc')
+            ->limit(5)
+            ->get();
 
         $oeuvreOrdType = DB::table('oeuvre')
             ->join('type', 'oeuvre.typeId', '=', 'type.id')
@@ -127,7 +131,7 @@ class UserController extends Controller
             ->with(compact('oeuvres'))->render();
 
         $map = View::make('map.map')
-            ->with(compact('oeuvres'))
+            ->with(compact('oeuvresLast'))
             ->render();
 
 
@@ -136,6 +140,6 @@ class UserController extends Controller
             ->with(compact('oeuvreT'))
             ->with(compact('oeuvreA'))
             ->with(compact('map'))
-            ->with(compact('oeuvres'));
+            ->with(compact('oeuvresLast'));
     }
 }

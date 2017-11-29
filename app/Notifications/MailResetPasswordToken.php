@@ -45,7 +45,8 @@ class MailResetPasswordToken extends Notification
                     ->Greeting("Bonjour !")
                     ->line('Vous recevez ce mail car nous avons reçu une demande de réinitialisation de mot de passe de votre compte.')
                     ->action('Réinitialiser', url('password/reset', $this->token))
-                    ->line('Merci d\'utiliser notre application !');
+                    ->line('Merci d\'utiliser notre application !')
+                    ->salutation('L\'équipe Leonart');
     }
 
     /**

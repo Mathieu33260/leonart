@@ -51,8 +51,16 @@
                 </div>
               </div>
               <div class="col-xs-12 col-md-7">
+                  @if ($errors->has('cgu'))
+                      <div class="alert alert-danger">
+                         <strong>Vous devez accepter les <a href="#" data-toggle="modal" data-target=".modal-cgu"
+                                                            aria-labelledby="cguModal" aria-hidden="true">
+                                 conditions générales d'utilisation</a> pour pouvoir vous enregistrer.
+                         </strong>
+                      </div>
+                  @endif
                 <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input">
+                  <input id="cgu" name="cgu" type="checkbox" class="form-check-input">
                     En cochant cette case, vous acceptez l'intégralité des <a href="#" data-toggle="modal" data-target=".modal-cgu"
                     aria-labelledby="cguModal" aria-hidden="true">conditions générales d'utilisation</a>
                 </label>

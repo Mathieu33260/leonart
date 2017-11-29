@@ -154,8 +154,16 @@
                 $.each(data, function( index, value ) {
                     var pos = {lat: value.posX, lng: value.posY};
                     placeMarker(pos,map,value.id);
-                    $('.list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')"><h4 class="text-light nameO">' +
-                        ''+ value.nom +'</h4></a></td></tr>');
+                    if(value.image !== null)
+                    {
+                        $('.list').append('<tr><td><a href="#" onclick="twoCall(\''+value.image+'\','+ value.id +','+value.posX+','+value.posY+')">' +
+                            '<h4 class="text-light nameO">' +
+                            ''+ value.nom +'</h4></a></td></tr>');
+                    } else {
+                        $('.list').append('<tr><td><a href="#" onclick="twoCall('+value.image+','+ value.id +','+value.posX+','+value.posY+')">' +
+                            '<h4 class="text-light nameO">' +
+                            ''+ value.nom +'</h4></a></td></tr>');
+                    }
                 });
                 offset = offset + 20;
             }
@@ -178,8 +186,16 @@
                         $.each(data, function( index, value ) {
                             var pos = {lat: value.posX, lng: value.posY};
                             placeMarker(pos,map,value.id);
-                            $('.right-list').append('<tr><td><a href="#" onclick="getAjax('+ value.id +','+value.posX+','+value.posY+')"><h4 class="text-light nameO">' +
-                                ''+ value.nom +'</h4></a></td></tr>');
+                            if(value.image !== null)
+                            {
+                                $('.list').append('<tr><td><a href="#" onclick="twoCall(\''+value.image+'\','+ value.id +','+value.posX+','+value.posY+')">' +
+                                    '<h4 class="text-light nameO">' +
+                                    ''+ value.nom +'</h4></a></td></tr>');
+                            } else {
+                                $('.list').append('<tr><td><a href="#" onclick="twoCall('+value.image+','+ value.id +','+value.posX+','+value.posY+')">' +
+                                    '<h4 class="text-light nameO">' +
+                                    ''+ value.nom +'</h4></a></td></tr>');
+                            }
                         });
                         offset = offset + 20;
                         send = false;

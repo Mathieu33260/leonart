@@ -18,13 +18,13 @@
 			<div class="row">
 				<div class="col-1">
 				</div>
-				<div class="col-5">
+				<div class="col-lg-5 col-md-5 col-sm-11 mt-2">
 					<div class="titleHead">
 						<h2 class="display-4 p-2 pl-4"><i class="fa fa-map-marker pr-2"></i>Position des oeuvres</h2>
 						{!! $map !!}
 					</div>
 				</div>
-				<div class="col-5">
+				<div class="col-lg-5 col-md-5 col-sm-11 mt-2">
 					<div class="titleHead">
 						<h2 class="display-4 p-2 pl-4"><i class="fa fa-paint-brush pr-2"></i>Vos dernières oeuvres</h2>
 						@foreach($oeuvresLast as $oeuvre)

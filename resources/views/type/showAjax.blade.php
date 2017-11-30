@@ -1,29 +1,22 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-12 col-lg-12 panel panel-default">
-            <table class="table">
-                <th><h3>Type :</h3></th>
-                <th><h3><a href="{{ route('type:show',['id' => $type->id]) }}">{{ $type->libelle }}</a></h3></th>
-                <tr>
-                    <td><p>Libelle : {{ $type->libelle }}</p></td>
-                </tr>
-                <tr>
-                    <td>
+            <div class="col sm-12 col-md-12 col-lg-12">
+                <h3 class="mt-2 mb-0">Type : {{ $type->libelle }}</h3>
+                <p class="text-secondary">Libellé: {{ $type->libelle }}</p>
+            </div>
+            <div class="buttonFix col sm-12 col-md-12 col-12-12">
                         <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg"
                                 aria-labelledby="myLargeModalLabel" aria-hidden="true"
                                 class="btn btn-outline-info">
                             Modifier
                         </button>
-                    </td>
-                    <td>
                         <button type="button" data-toggle="modal" data-target=".modal-supp"
                                 aria-labelledby="labelSuppModal" aria-hidden="true"
                                 class="btn btn-outline-danger">
                             Supprimer
                         </button>
-                    </td>
-                </tr>
-            </table>
+            </div>
         </div>
     </div>
 

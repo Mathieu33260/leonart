@@ -1,34 +1,30 @@
+<style>
+.buttonArtiste{
+    height: 100px;
+}
+</style>
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-12 col-lg-12 panel panel-default">
-            <table class="table">
-                <th><h3>Artiste :</h3></th>
-                <th><h3><a href="{{ route('artiste:show',['id' => $artiste->id]) }}">{{ $artiste->prenom }} {{ $artiste->nom }}</a></h3></th>
-                <tr>
-                    <td><p>Nom : {{ $artiste->nom }}</p></td>
-                    <td><p>Prénom : {{ $artiste->prenom }}</p></td>
-                    <td><p>Date de naissance : {{ $artiste->dateN->day }}/{{ $artiste->dateN->month }}/{{ $artiste->dateN->year }}</p></td>
-                    @if($artiste->dateM != null)
-                        <td><p>Date de mort : {{ $artiste->dateM->day }}/{{ $artiste->dateM->month }}/{{ $artiste->dateM->year }}</p></td>
-                    @endif
-                </tr>
-                <tr>
-                    <td>
+            <div class="col sm-12 col-md-12 col-lg-12">
+                <h3 class="mt-2 mb-0">Artiste : {{ $artiste->prenom }} {{ $artiste->nom }}</h3>
+                <p class="text-secondary">Nom: {{ $artiste->nom }}</p>
+                <p class="text-secondary">Prénom: {{ $artiste->prenom }}</p>
+                <p>Date de naissance: {{ $artiste->dateN->day }}/{{ $artiste->dateN->month }}/{{ $artiste->dateN->year }}</p>
+                <p>Date de mort: {{ $artiste->dateM->day }}/{{ $artiste->dateM->month }}/{{ $artiste->dateM->year }}</p>
+            </div>
+            <div class="buttonFix col sm-12 col-md-12 col-12-12">
                         <button type="button" data-toggle="modal" data-target=".bd-example-modal-lg"
                                 aria-labelledby="myLargeModalLabel" aria-hidden="true"
                                 class="btn btn-outline-info">
                             Modifier
                         </button>
-                    </td>
-                    <td>
                         <button type="button" data-toggle="modal" data-target=".modal-supp"
                                 aria-labelledby="labelSuppModal" aria-hidden="true"
                                 class="btn btn-outline-danger">
                             Supprimer
                         </button>
-                    </td>
-                </tr>
-            </table>
+                    </div>
 
         </div>
     </div>

@@ -60,7 +60,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content"><div class="container">
                     <div class="row">
-                        <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                        <div class="col-xs-12 col-md-12 col-lg-12">
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>

@@ -1,3 +1,255 @@
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap.scss";
+
+@import "icon";
+
+html {
+  height: 100%;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 53px;
+}
+
+html,
+body {
+  background-color: #fff;
+  color: #636b6f;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.middle-height {
+  height: 50vh;
+}
+
+.bandeau-height {
+  height: 10vh;
+}
+
+.flex-center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.position-ref {
+  position: relative;
+}
+
+.top-right {
+  position: absolute;
+  right: 10px;
+  top: 18px;
+}
+
+.content {
+  min-width: 50%;
+}
+
+.content {
+  min-width: 60%;
+}
+
+h2 {
+  font-family: 'Raleway', sans-serif !important;
+  letter-spacing: .1rem;
+  font-size: 200% !important;
+}
+
+h4 {
+  font-family: 'Raleway', sans-serif !important;
+}
+
+.container-fluid p {
+  font-family: 'Raleway', sans-serif !important;
+  font-size: 14px !important;
+}
+
+.line {
+  background-color: white;
+  width: 4%;
+  height: 1px;
+}
+
+.map_container {
+  padding-right: 0px !important;
+}
+
+#map_index {
+  width: 100%;
+  height: 250px;
+}
+
+.title {
+  font-size: 84px;
+}
+
+.linksUnder {
+  font-size: 140%;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+}
+
+.links > a {
+  color: #636b6f;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+a:hover {
+  color: #023147 !important;
+}
+
+.m-b-md {
+  margin-bottom: 30px;
+}
+
+.dark {
+  background-color: #1d1b1b;
+}
+
+.dark2{
+  height: 100vh;
+  background-color: #1d1b1b;
+}
+
+.border-yellow-right {
+  border-right: 1px solid #e9b90b;
+}
+
+.white-grey {
+  background-color: #cccccc;
+}
+
+.radius {
+  border-radius: 25px;
+}
+
+.nodeco:hover {
+  text-decoration: none;
+}
+
+.shadow:hover {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(201, 201, 201, 0.2), 0 6px 20px 0 rgba(201, 201, 201, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(201, 201, 201, 0.2), 0 6px 20px 0 rgba(201, 201, 201, 0.19);
+}
+
+.right-list {
+  max-height: 100vh;
+  overflow: auto;
+}
+.table-dark2 {
+  color: #fff;
+  background-color: #212529;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #303030;
+}
+
+.card-img-top {
+  width: 45% !important;
+  height: 100%;
+}
+
+.navbar {
+  background-color: white;
+}
+
+.navbar.light-dark {
+  background-color: #282525;
+}
+
+.navbar img {
+  width: 55%;
+  margin-left: 15%;
+}
+
+p {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 400;
+  font-size: 19px;
+}
+
+#iBeacon img {
+  margin-top: 15%;
+  margin-bottom: 15%;
+}
+
+#phone img {
+  margin-top: 15%;
+  margin-bottom: 15%;
+}
+
+@media (max-width: 576px) {
+  .navbar-brand {
+    width: 70%;
+  }
+}
+
+/******************Banner*********************/
+
+#banner{
+  background-image: url("https://i.imgur.com/Lk73Pru.jpg");
+  height: 35vh;
+  width: 100%;
+}
+.titleHead{
+  width: 100%;
+  background-color: white;
+  border-radius: 5px;
+}
+.separationBar{
+  width: 10%;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  height:1px;
+}
+
+/*****************Index Oeuvre******************/
+.nameO{
+  font-weight: 600;
+  font-size: 14px;
+}
 /*****************Button Fix********************/
 .buttonFix{
   height: 100px;

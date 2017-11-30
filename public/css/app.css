@@ -12954,7 +12954,7 @@ a:hover {
 }
 
 .right-list {
-  max-height: 20vh;
+  height: 20vh;
   overflow: auto;
   margin-bottom: 5%;
 }

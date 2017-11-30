@@ -76,7 +76,7 @@ footer {
   }
 }
 .img-home{
-  width: 10%;
+  width: 20%;
 }
 @media (min-width: 720px){
   .img-home{
@@ -187,13 +187,13 @@ a:hover {
 }
 
 .right-list {
-  max-height: 20vh;
+  height: 20vh;
   overflow: auto;
   margin-bottom: 5%;
 }
 @media (min-width: 720px)  {
   .right-list {
-    height:100vh;
+   height:100vh;
   }
 }
 

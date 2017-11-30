@@ -22,7 +22,7 @@
     <div class="container">
         <div class="row d-flex justify-content-between" id="adminSearch">
             @foreach($users as $user)
-                <div class="col-3 m-3 border border-secondary rounded">
+                <div class="col-lg-3 col-sm-12 m-3 border border-secondary rounded">
                     <div class="titleHead">
                         <h2 class="display-4 p-2 pl-4">{{ $user->name }}</h2>
                         {!! Form::open(['route' => array('admin:manageStore', $user->id), 'method' => 'post'])!!}
@@ -77,7 +77,7 @@
                             role2 = "Utilisateur";
                         }
                         $('#adminSearch').append(
-                            '<div class="col-3 m-3 border border-secondary rounded">' +
+                            '<div class="col-lg-3 col-sm-12 m-3 border border-secondary rounded">' +
                             '<div class="titleHead">' +
                             '<h2 class="display-4 p-2 pl-4">'+value.name+'</h2>' +
                             '<form onsubmit="submitForm('+value.id+');return false;">' +

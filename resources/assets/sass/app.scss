@@ -288,3 +288,11 @@ p {
 .buttonFix {
   height: 100px;
 }
+
+/*****************Hover on navbar**************/
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+

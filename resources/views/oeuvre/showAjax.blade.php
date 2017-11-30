@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col sm-12 col-md-3 col-lg-3">
                 @if($oeuvre->image != null)
-                    <img src="/storage/uploads/images/{{$oeuvre->image}}" class="img-thumbnail mt-2" alt="tableau"/>
+                    <img src="/storage/uploads/images/{{$oeuvre->image}}" width="80%" img-thumbnail mt-2" alt="tableau"/>
                 @endif
             </div>
             <div class="col sm-12 col-md-9 col-lg-6">

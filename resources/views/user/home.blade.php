@@ -16,22 +16,22 @@
 	<div class="position-ref dark pb-4">
 		<div class="container-fluid pt-4">
 			<div class="row">
-				<div class="col-1">
+				<div class="col-lg-1 col-md-0">
 				</div>
-				<div class="col-lg-5 col-md-5 col-sm-11 mt-2">
+				<div class="col-lg-5 col-md-10 col-sm-11 mt-2">
 					<div class="titleHead">
 						<h2 class="display-4 p-2 pl-4"><i class="fa fa-map-marker pr-2"></i>Position des oeuvres</h2>
 						{!! $map !!}
 					</div>
 				</div>
-				<div class="col-lg-5 col-md-5 col-sm-11 mt-2">
+				<div class="col-lg-5 col-md-10 col-sm-11 mt-2">
 					<div class="titleHead">
 						<h2 class="display-4 p-2 pl-4"><i class="fa fa-paint-brush pr-2"></i>Vos dernières oeuvres</h2>
 						@foreach($oeuvresLast as $oeuvre)
 							<div class="row">
 								<div class="col-lg-2">
 									@if($oeuvre->image != null)
-										<img width="100%" src="/storage/uploads/images/{{$oeuvre->image}}" alt="{{$oeuvre->nom}}">
+										<img class="img-home" src="/storage/uploads/images/{{$oeuvre->image}}" alt="{{$oeuvre->nom}}">
 									@endif
 								</div>
 								<div class="col-lg-6">

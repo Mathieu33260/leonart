@@ -13005,6 +13005,10 @@ p {
   border-radius: 5px;
 }
 
+.headernav {
+  margin: 0 auto;
+}
+
 .separationBar {
   width: 10%;
   background-color: white;
@@ -13018,5 +13022,11 @@ p {
 .nameO {
   font-weight: 600;
   font-size: 14px;
+}
+
+/*****************Button Fix********************/
+
+.buttonFix {
+  height: 100px;
 }
 

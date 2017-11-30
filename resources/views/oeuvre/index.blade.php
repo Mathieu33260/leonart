@@ -21,7 +21,7 @@
                 @foreach($oeuvres as $oeuvre)
                     <tr>
                         <td>
-                            <a href="#" onclick="twoCall('{{ $oeuvre->image }}',{{ $oeuvre->id }},{{ $oeuvre->posX }},{{ $oeuvre->posY }})">
+                            <a onclick="twoCall('{{ $oeuvre->image }}',{{ $oeuvre->id }},{{ $oeuvre->posX }},{{ $oeuvre->posY }})">
                                 <h4 class="text-light nameO">{{ $oeuvre->nom }}</h4>
                             </a>
                         </td>

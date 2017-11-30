@@ -6,6 +6,7 @@
 
 @import "icon";
 
+
 html {
   height: 100%;
 }
@@ -67,8 +68,21 @@ footer {
 
 .position-ref {
   position: relative;
+  margin-top: 2%;
 }
-
+@media (min-width: 720px) {
+  .position-ref {
+    margin-top: 0;
+  }
+}
+.img-home{
+  width: 10%;
+}
+@media (min-width: 720px){
+  .img-home{
+    width: 100%;
+  }
+}
 .top-right {
   position: absolute;
   right: 10px;
@@ -173,9 +187,16 @@ a:hover {
 }
 
 .right-list {
-  max-height: 100vh;
+  max-height: 20vh;
   overflow: auto;
+  margin-bottom: 5%;
 }
+@media (min-width: 720px)  {
+  .right-list {
+    height:100vh;
+  }
+}
+
 .table-dark2 {
   color: #fff;
   background-color: #212529;
@@ -232,6 +253,10 @@ p {
   height: 35vh;
   width: 100%;
 }
+.txt-banner{
+  font-size: 35px;
+
+}
 .titleHead{
   width: 100%;
   background-color: white;
@@ -244,13 +269,22 @@ p {
   border-radius: 5px;
   height:1px;
 }
-
+@media (min-width: 720px) {
+  .txt-banner{
+    font-size: 70px;
+  }
+}
 /*****************Index Oeuvre******************/
 .nameO{
   font-weight: 600;
   font-size: 14px;
 }
+#box{
+  margin-top: 5%;
+}
+
 /*****************Button Fix********************/
-.buttonFix{
+
+.buttonFix {
   height: 100px;
 }

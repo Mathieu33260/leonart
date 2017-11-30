@@ -1,7 +1,7 @@
 <div class="container">
     <div class="col-xs-12 col-md-12 col-lg-12">
         <div class="row">
-            <div class="col sm-12 col-md-3 col-lg-3">
+            <div class="col-sm-12 col-md-3 col-lg-3">
                 @if($oeuvre->image != null)
                     <img src="/storage/uploads/images/{{$oeuvre->image}}" width="80%" img-thumbnail mt-2" alt="tableau"/>
                 @endif

@@ -20,12 +20,12 @@
 
         {!! Form::open(['route' => 'artiste:store', 'method' => 'post']) !!}
 
-        <div class="row justify-content-md-center">
-            <div class="card">
+        <div class="row justify-content-md-center text-center">
+            <div class="card text-center">
                 <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/51136-200.png" alt="Card img" class="imgArtiste" width="100px" height="100px">
                 <div class="card-block" style="width: 40rem;">
                     <div class="row justify-content-md-center">
-                        <div class="col-xs-10 col-md-6 col-lg-6 text-center">
+                        <div class="col-8 col-md-6 col-lg-6 text-center">
                             {!! Form::Label('nom', 'Nom de l\'artiste') !!}
                             {!! Form::text('nom', null, array('required' => 'required',
                             'placeholder' => 'Nom',
@@ -33,24 +33,24 @@
                         </div>
                     </div>
                     <div class="row justify-content-md-center">
-                        <div class="col-xs-10 col-md-6 col-lg-6 text-center">
+                        <div class="col-8 col-md-6 col-lg-6 text-center">
                             {!! Form::Label('prenom', 'Prénom de l\'artiste') !!}
                             {!! Form::text('prenom', null, array('required' => 'required', 'class' => 'form-control',
                             'placeholder' => 'Prénom')) !!}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-10 col-md-6">
+                        <div class="col-8 col-md-6">
                             {!! Form::Label('dateN', 'Date de naissance') !!}
                             {!! Form::date('dateN', null, array('required' => 'required', 'class' => 'form-control')) !!}
                         </div>
-                        <div class="col-xs-10 col-md-6">
+                        <div class="col-8 col-md-6">
                             {!! Form::Label('dateM', 'Date de mort') !!}
                             {!! Form::date('dateM', null, array('class' => 'form-control')) !!}
                         </div>
                     </div>
                     <div class="row justify-content-md-center">
-                        <div class="col-xs-12 col-md-6 col-lg-6 text-center mt-4 mb-4">
+                        <div class="buttonFix col-6 col-md-6 col-lg-6 text-center mt-4 mb-4">
                             <button type="submit" class="btn btn-success">
                                 @lang("Sauvegarder") <span class="glyphicon glyphicon-ok"></span>
                             </button>

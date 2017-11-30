@@ -19,14 +19,14 @@
             <div class="card">
                 <div class="card-block" style="width: 40rem;">
                     <div class="row justify-content-md-center">
-                        <div class="col-xs-10 col-md-6 col-lg-6 text-center">
+                        <div class="col-8 col-md-6 col-lg-6 text-center">
                             <h6>{!! Form::Label('libelle', 'Libellé du type') !!}</h6>
                             {!! Form::text('libelle', null, array('required' => 'required', 'class' => 'form-control',
                             'placeholder' => 'Libellé')) !!}
                         </div>
                     </div>
                     <div class="row justify-content-md-center">
-                        <div class="col-xs-12 col-md-6 col-lg-6 text-center mt-4 mb-4">
+                        <div class="buttonFix col-8 col-md-6 col-lg-6 text-center mt-4 mb-4">
                             <button type="submit" class="btn btn-success">
                                 @lang("Sauvegarder") <span class="glyphicon glyphicon-ok"></span>
                             </button>

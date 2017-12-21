@@ -30,15 +30,14 @@
             </table>
         </div>
     </div>
-    <div></div>
     <div class="col">
         <div id="loading">
             <img id="loading-image" src="{{ asset('images/Ellipsis.svg') }}" alt="Loading..." />
         </div>
         <div class="row">
-            <div id="box" class="col-lg-7">
+            <div id="box" class="col-lg-7 col-md-5">
             </div>
-            <div id="canvasthree"></div>
+            <div id="canvasthree" class="col-lg-5 col-md-7"></div>
         </div>
         <div class="row">
             <div id="containerMap" class="container-fluid">
